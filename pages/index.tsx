@@ -14,6 +14,7 @@ import {
   createDaysForCurrentMonth,
   daysOfWeek,
 } from '../utils/dates';
+import DatePicker from 'react-datepicker';
 
 const initialColumns = createDaysForCurrentMonth('2021', '10').reduce(
   (acc, currentValue, currentIndex) => ({
@@ -243,14 +244,20 @@ const Home = () => {
     return;
   };
 
+  const [startDate, setStartDate] = useState(new Date());
+
   return (
     <div className="flex absolute top-0 left-0 w-full h-full">
-      <div className="LeftSidebar w-60 flex flex-col bg-gray-100 h-full flex-grow-0 p-4">
-        Calendar
+      <div className="LeftSidebar min-w-60 flex flex-col bg-gray-50 h-full flex-grow-0 p-4 border-r border-gray-200 shadow-inner">
+        <DatePicker
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+          inline
+        />
       </div>
-      <div className="Board flex flex-col w-full flex-auto h-full bg-gray-100 max-w-full">
+      <div className="Board flex flex-col w-full flex-auto h-full bg-gray-50 max-w-full">
         <div className="Board__Nav flex flex-col border-b border-gray-400 p-4">
-          Nav
+          Board nav
         </div>
         <div className="flex p-4">
           <DragDropContext onDragEnd={dragEnd}>

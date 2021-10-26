@@ -9,13 +9,16 @@ module.exports = {
     fontFamily: {
       'sans-serif': ['Noto Sans', 'sans-serif'],
     },
+    boxShadow: {
+      inner: 'inset -5px 0 15px rgba(0,0,0,.05)',
+    },
     extend: {
       strokeWidth: {
         '3': '3',
         '4': '4',
-        '6': '6'
-      }
-    }
+        '6': '6',
+      },
+    },
   },
   variants: {
     extend: {

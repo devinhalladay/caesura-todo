@@ -1,6 +1,7 @@
 import React from 'react';
 import initAuth from '../lib/auth';
 import 'tailwindcss/tailwind.css';
+import '../assets/css/components/DatePicker/datepicker.scss';
 
 initAuth();
 
