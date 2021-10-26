@@ -1,5 +1,6 @@
+import React from 'react';
+import initAuth from '../utils/initAuth';
 import 'tailwindcss/tailwind.css';
-import initAuth from '../lib/auth';
 
 initAuth();
 
