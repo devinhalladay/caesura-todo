@@ -2,6 +2,7 @@ import React from 'react';
 import initAuth from '../lib/auth';
 import 'tailwindcss/tailwind.css';
 import '../assets/css/components/DatePicker/datepicker.scss';
+import { BoardProvider } from '../contexts/Board';
 
 initAuth();
 
@@ -18,7 +19,9 @@ function MyApp({ Component, pageProps }) {
         href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet"
       />
-      <Component {...pageProps} />
+      <BoardProvider>
+        <Component {...pageProps} />
+      </BoardProvider>
     </div>
   );
 }

@@ -29,10 +29,11 @@ const Column = ({ column, tasks, newTask }) => {
           {(provided) => (
             <div
               className="w-60 cursor-pointer"
-              onClick={() => newTask(column.id)}
               ref={provided.innerRef}
               {...provided.droppableProps}>
-              <div className="text-sm border mb-2 shadow-sm hover:shadow-md rounded-md p-3 flex bg-white font-sans-serif transition-all duration-300">
+              <div
+                className="text-sm border mb-2 shadow-sm hover:shadow-md rounded-md p-3 flex bg-white font-sans-serif transition-all duration-300"
+                onClick={() => newTask(column.id)}>
                 <button className="border mr-2 border-gray-300 flex items-center justify-center h-5 w-5 rounded-full transition-all  hover:border-2 text-gray-300  stroke-4 hover:stroke-6">
                   <svg
                     width="14"

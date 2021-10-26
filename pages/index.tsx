@@ -15,113 +15,15 @@ import {
   daysOfWeek,
 } from '../utils/dates';
 import DatePicker from 'react-datepicker';
-
-const initialColumns = createDaysForCurrentMonth('2021', '10').reduce(
-  (acc, currentValue, currentIndex) => ({
-    ...acc,
-    [currentValue.dateString]: {
-      id: currentValue.dateString,
-      title: 'testset',
-      taskIds: [
-        `${currentValue.dateString}-1`,
-        `${currentValue.dateString}-2`,
-        `${currentValue.dateString}-3`,
-      ],
-    },
-  }),
-  {}
-);
-
-let initialColumnOrder = createDaysForCurrentMonth('2021', '10').map(
-  (day, index) => day.dateString
-);
-
-const initialTasks = createDaysForCurrentMonth('2021', '10').reduce(
-  (acc, currentValue, currentIndex) => ({
-    ...acc,
-    [`${currentValue.dateString}-1`]: {
-      'id': `${currentValue.dateString}-1`,
-      'actualTime': null,
-      'completeDate': null,
-      'completeOn': null,
-      'completed': false,
-      'completedBy': null,
-      'createdAt': '2021-10-11T20:05:47.293Z',
-      'createdBy': '6116d75820a45f00095030ae',
-      'dueDate': null,
-      'duration': null,
-      'eventInfo': null,
-      'groupId': '6116d78120a45f00095030b0',
-      'integration': null,
-      'lastModified': '2021-10-25T14:31:12.628Z',
-      'notes': '',
-      'objectiveId': null,
-      'runDate': null,
-      'taskType': 'outcomes',
-      'text': 'Clear sink of dishes',
-      'timeEstimate': 15,
-    },
-    [`${currentValue.dateString}-2`]: {
-      'id': `${currentValue.dateString}-2`,
-      'actualTime': null,
-      'completeDate': null,
-      'completeOn': null,
-      'completed': false,
-      'completedBy': null,
-      'createdAt': '2021-10-11T20:05:47.293Z',
-      'createdBy': '6116d75820a45f00095030ae',
-      'dueDate': null,
-      'duration': null,
-      'eventInfo': null,
-      'groupId': '6116d78120a45f00095030b0',
-      'integration': null,
-      'lastModified': '2021-10-25T14:31:12.628Z',
-      'notes': '',
-      'objectiveId': null,
-      'runDate': null,
-      'taskType': 'outcomes',
-      'text': 'Clear sink of dishes',
-      'timeEstimate': 15,
-    },
-    [`${currentValue.dateString}-3`]: {
-      'id': `${currentValue.dateString}-3`,
-      'actualTime': null,
-      'completeDate': null,
-      'completeOn': null,
-      'completed': false,
-      'completedBy': null,
-      'createdAt': '2021-10-11T20:05:47.293Z',
-      'createdBy': '6116d75820a45f00095030ae',
-      'dueDate': null,
-      'duration': null,
-      'eventInfo': null,
-      'groupId': '6116d78120a45f00095030b0',
-      'integration': null,
-      'lastModified': '2021-10-25T14:31:12.628Z',
-      'notes': '',
-      'objectiveId': null,
-      'runDate': null,
-      'taskType': 'outcomes',
-      'text': 'Clear sink of dishes',
-      'timeEstimate': 15,
-    },
-  }),
-  {}
-);
-
-const initialData = {
-  tasks: initialTasks,
-  columns: initialColumns,
-  columnOrder: initialColumnOrder,
-};
+import { useBoard } from '../contexts/Board';
+import { useEffect } from 'hoist-non-react-statics/node_modules/@types/react';
 
 const Home = () => {
   const AuthUser = useAuthUser();
 
-  console.log(initialData);
-  const currentMonthDays = createDaysForCurrentMonth('2021', '10');
+  const { state, setState, createTask } = useBoard();
 
-  const [data, setData] = useState(initialData);
+  const currentMonthDays = createDaysForCurrentMonth('2021', '10');
 
   const dragEnd = (result) => {
     const { destination, source, draggableId } = result;
@@ -137,8 +39,8 @@ const Home = () => {
       return;
     }
 
-    const start = data.columns[source.droppableId];
-    const finish = data.columns[destination.droppableId];
+    const start = state.columns[source.droppableId];
+    const finish = state.columns[destination.droppableId];
 
     if (start === finish) {
       const newTaskIds = Array.from(start.taskIds);
@@ -152,11 +54,11 @@ const Home = () => {
       };
 
       const newState = {
-        ...data,
-        columns: { ...data.columns, [newColumn.id]: newColumn },
+        ...state,
+        columns: { ...state.columns, [newColumn.id]: newColumn },
       };
 
-      setData(newState);
+      setState(newState);
 
       return;
     }
@@ -177,71 +79,15 @@ const Home = () => {
     };
 
     const newState = {
-      ...data,
+      ...state,
       columns: {
-        ...data.columns,
+        ...state.columns,
         [newStart.id]: newStart,
         [newFinish.id]: newFinish,
       },
     };
 
-    setData(newState);
-  };
-
-  const newTask = (columnId: string) => {
-    let newTaskIds = Array.from(data.columns[columnId].taskIds);
-
-    console.log(newTaskIds);
-    let taskId = `${columnId}-${
-      data.columns[columnId].taskIds.length + 1
-    }`;
-
-    newTaskIds.unshift(taskId);
-
-    let newTasks = {
-      ...data.tasks,
-      [taskId]: {
-        'id': taskId,
-        'actualTime': null,
-        'completeDate': null,
-        'completeOn': null,
-        'completed': false,
-        'completedBy': null,
-        'createdAt': '2021-10-11T20:05:47.293Z',
-        'createdBy': '6116d75820a45f00095030ae',
-        'dueDate': null,
-        'duration': null,
-        'eventInfo': null,
-        'groupId': '6116d78120a45f00095030b0',
-        'integration': null,
-        'lastModified': '2021-10-25T14:31:12.628Z',
-        'notes': '',
-        'objectiveId': null,
-        'runDate': null,
-        'taskType': 'outcomes',
-        'text': 'Clear sink of diretyshes',
-        'timeEstimate': 15,
-      },
-    };
-
-    const newColumn = {
-      ...data.columns[columnId],
-      taskIds: newTaskIds,
-    };
-
-    const newState = {
-      ...data,
-      columns: { ...data.columns, [columnId]: newColumn },
-      tasks: { ...initialTasks, ...newTasks },
-    };
-
-    console.log(data);
-
-    console.log(newState);
-
-    setData(newState);
-
-    return;
+    setState(newState);
   };
 
   const [startDate, setStartDate] = useState(new Date());
@@ -255,22 +101,22 @@ const Home = () => {
           inline
         />
       </div>
-      <div className="Board flex flex-col w-full flex-auto h-full bg-gray-50 max-w-full">
+      <div className="Board overflow-x-scroll flex flex-col w-full flex-auto h-full bg-gray-50 max-w-full">
         <div className="Board__Nav flex flex-col border-b border-gray-400 p-4">
           Board nav
         </div>
         <div className="flex p-4">
           <DragDropContext onDragEnd={dragEnd}>
-            {data.columnOrder.map((columnId, index) => {
-              const column = data.columns[columnId];
+            {state.columnOrder.map((columnId, index) => {
+              const column = state.columns[columnId];
 
               const tasks = column.taskIds.map(
-                (taskId) => data.tasks[taskId]
+                (taskId) => state.tasks[taskId]
               );
 
               return (
                 <Column
-                  newTask={newTask}
+                  newTask={createTask}
                   key={column.id}
                   column={column}
                   tasks={tasks}
