@@ -1,0 +1,118 @@
+{
+  "thread": {
+    "id": "17c944e84baee99a",
+    "historyId": "1436678",
+    "messages": [
+      {
+        "id": "17c944e84baee99a",
+        "threadId": "17c944e84baee99a",
+        "labelIds": ["IMPORTANT", "CATEGORY_PERSONAL", "INBOX"],
+        "snippet": "Wow, love this thought! We&#39;re doing some major work on our digital product at Index right now that could hold an idea like this really well, I think. I&#39;m CCing Devin, who&#39;s been leading the",
+        "payload": {
+          "mimeType": "multipart/alternative",
+          "headers": [
+            {
+              "name": "From",
+              "value": "Elie Andersen <studio@elie.live>"
+            },
+            {
+              "name": "Subject",
+              "value": "Re: Can you send me zoom link?"
+            },
+            { "name": "Cc", "value": "devin@sanctuary.computer" },
+            {
+              "name": "To",
+              "value": "Camille Baldwin <camille.baldwin@gmail.com>"
+            }
+          ]
+        },
+        "sizeEstimate": 75247,
+        "historyId": "1436678",
+        "internalDate": "1634575742000"
+      },
+      {
+        "id": "17c947f184ba1370",
+        "threadId": "17c944e84baee99a",
+        "labelIds": ["IMPORTANT", "CATEGORY_PERSONAL", "INBOX"],
+        "snippet": "Thank you Elie!! Devin excited to hear what you&#39;re up to and chat more with you both soon. :) On Mon, Oct 18, 2021 at 12:49 PM Elie Andersen &lt;studio@elie.live&gt; wrote: Wow, love this thought!",
+        "payload": {
+          "mimeType": "multipart/alternative",
+          "headers": [
+            {
+              "name": "From",
+              "value": "Camille Baldwin <camille.baldwin@gmail.com>"
+            },
+            {
+              "name": "Subject",
+              "value": "Re: Can you send me zoom link?"
+            },
+            {
+              "name": "To",
+              "value": "Elie Andersen <studio@elie.live>"
+            },
+            { "name": "Cc", "value": "devin@sanctuary.computer" }
+          ]
+        },
+        "sizeEstimate": 21234,
+        "historyId": "1436678",
+        "internalDate": "1634578918000"
+      },
+      {
+        "id": "17c94ed951ddf5be",
+        "threadId": "17c944e84baee99a",
+        "labelIds": ["SENT"],
+        "snippet": "Hi! Elie, thanks for the intro :) Camille, I&#39;d love to share more of what I&#39;m up to with the product! This is just a note that I&#39;ve seen your email and will get back with a ~real~ reply",
+        "payload": {
+          "mimeType": "multipart/alternative",
+          "headers": [
+            {
+              "name": "Subject",
+              "value": "Re: Can you send me zoom link?"
+            },
+            {
+              "name": "From",
+              "value": "Devin Halladay <devin@sanctuary.computer>"
+            },
+            {
+              "name": "To",
+              "value": "Camille Baldwin <camille.baldwin@gmail.com>"
+            },
+            {
+              "name": "Cc",
+              "value": "Elie Andersen <studio@elie.live>"
+            }
+          ]
+        },
+        "sizeEstimate": 18174,
+        "historyId": "1436678",
+        "internalDate": "1634586169000"
+      },
+      {
+        "id": "17cbcd755981842d",
+        "threadId": "17c944e84baee99a",
+        "labelIds": ["IMPORTANT", "CATEGORY_PERSONAL", "INBOX"],
+        "snippet": "Just a reminder to follow up with Camille if you haven&#39;t! I&#39;m eager to keep working with her on this and want to keep the momentum! Thank you! —— Elie Andersen studio@elie.live 914 486 8801 On",
+        "payload": {
+          "mimeType": "multipart/alternative",
+          "headers": [
+            {
+              "name": "From",
+              "value": "Elie Andersen <studio@elie.live>"
+            },
+            {
+              "name": "Subject",
+              "value": "Re: Can you send me zoom link?"
+            },
+            {
+              "name": "To",
+              "value": "Devin Halladay <devin@sanctuary.computer>"
+            }
+          ]
+        },
+        "sizeEstimate": 28860,
+        "historyId": "1436678",
+        "internalDate": "1635255798000"
+      }
+    ]
+  }
+}

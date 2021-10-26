@@ -1,0 +1,968 @@
+{
+  "data": {
+    "calendarEventsByCalendarId": [
+      {
+        "_id": "_c8oj4e1jc4q68b9hcpgm8b9k6hh3cbb2cgr62b9m6pgmadb1chi3gp1pc8",
+        "createdBy": "6116d75820a45f00095030ae",
+        "date": {
+          "startDate": "2021-10-29T12:00:00.000Z",
+          "endDate": "2021-10-29T12:00:00.000Z",
+          "isAllDay": true,
+          "timeZone": null,
+          "__typename": "CalendarEventDate"
+        },
+        "inviteeList": [],
+        "location": {
+          "name": "",
+          "address": "",
+          "alias": "",
+          "coordinate": {
+            "lat": 0,
+            "lng": 0,
+            "__typename": "CalendarEventLocationCoordinate"
+          },
+          "__typename": "CalendarEventLocation"
+        },
+        "staticMapUrl": "",
+        "status": "scheduled",
+        "title": "Hourly payday",
+        "createdAt": "2020-10-10T10:10:11.000Z",
+        "scheduledTo": [
+          {
+            "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "userId": "6116d75820a45f00095030ae",
+            "streamIds": null,
+            "__typename": "CalendarEventScheduledToEntry"
+          }
+        ],
+        "organizerCalendar": {
+          "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+          "calendarDisplayName": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+          "__typename": "CalendarEventOrganizerCalendar"
+        },
+        "serviceIds": {
+          "google": "_c8oj4e1jc4q68b9hcpgm8b9k6hh3cbb2cgr62b9m6pgmadb1chi3gp1pc8",
+          "microsoft": null,
+          "microsoftUniqueId": null,
+          "__typename": "CalendarEventServiceIds"
+        },
+        "description": "",
+        "sequence": 0,
+        "streamIds": [],
+        "lastModified": "2020-10-10T10:10:11.000Z",
+        "permissions": {
+          "guestsCanModify": null,
+          "guestsCanInviteOthers": null,
+          "guestsCanSeeOtherGuests": null,
+          "anyoneCanAddSelf": null,
+          "locked": null,
+          "privateCopy": null,
+          "__typename": "CalendarEventPermissions"
+        },
+        "hangoutLink": "",
+        "googleCalendarURL": "https://www.google.com/calendar/event?eid=X2M4b2o0ZTFqYzRxNjhiOWhjcGdtOGI5azZoaDNjYmIyY2dyNjJiOW02cGdtYWRiMWNoaTNncDFwYzggM3FnNG11c2o3Y2gybmRubG9vb2hrNmJhaGZiOGtwbmpAaQ&ctz=UTC",
+        "transparency": "opaque",
+        "visibility": "default",
+        "googleLocation": null,
+        "conferenceData": null,
+        "recurringEventInfo": null,
+        "runDate": null,
+        "agenda": [],
+        "outcomes": [],
+        "seedTask": null,
+        "_userCanView": true,
+        "_userCanEdit": false,
+        "_calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+        "__typename": "CalendarEvent"
+      },
+      {
+        "_id": "_68qj6eb3cgrjgb9g6di3cb9k6cp64bb26kp3ib9icko3ioph6srm8p36co",
+        "createdBy": "6116d75820a45f00095030ae",
+        "date": {
+          "startDate": "2021-10-29T12:00:00.000Z",
+          "endDate": "2021-10-29T12:00:00.000Z",
+          "isAllDay": true,
+          "timeZone": null,
+          "__typename": "CalendarEventDate"
+        },
+        "inviteeList": [],
+        "location": {
+          "name": "",
+          "address": "",
+          "alias": "",
+          "coordinate": {
+            "lat": 0,
+            "lng": 0,
+            "__typename": "CalendarEventLocationCoordinate"
+          },
+          "__typename": "CalendarEventLocation"
+        },
+        "staticMapUrl": "",
+        "status": "scheduled",
+        "title": "Salary payday",
+        "createdAt": "2020-10-16T03:02:11.000Z",
+        "scheduledTo": [
+          {
+            "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "userId": "6116d75820a45f00095030ae",
+            "streamIds": null,
+            "__typename": "CalendarEventScheduledToEntry"
+          }
+        ],
+        "organizerCalendar": {
+          "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+          "calendarDisplayName": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+          "__typename": "CalendarEventOrganizerCalendar"
+        },
+        "serviceIds": {
+          "google": "_68qj6eb3cgrjgb9g6di3cb9k6cp64bb26kp3ib9icko3ioph6srm8p36co",
+          "microsoft": null,
+          "microsoftUniqueId": null,
+          "__typename": "CalendarEventServiceIds"
+        },
+        "description": "",
+        "sequence": 0,
+        "streamIds": [],
+        "lastModified": "2020-10-16T03:02:11.000Z",
+        "permissions": {
+          "guestsCanModify": null,
+          "guestsCanInviteOthers": null,
+          "guestsCanSeeOtherGuests": null,
+          "anyoneCanAddSelf": null,
+          "locked": null,
+          "privateCopy": null,
+          "__typename": "CalendarEventPermissions"
+        },
+        "hangoutLink": "",
+        "googleCalendarURL": "https://www.google.com/calendar/event?eid=XzY4cWo2ZWIzY2dyamdiOWc2ZGkzY2I5azZjcDY0YmIyNmtwM2liOWlja28zaW9waDZzcm04cDM2Y28gM3FnNG11c2o3Y2gybmRubG9vb2hrNmJhaGZiOGtwbmpAaQ&ctz=UTC",
+        "transparency": "opaque",
+        "visibility": "default",
+        "googleLocation": null,
+        "conferenceData": null,
+        "recurringEventInfo": null,
+        "runDate": null,
+        "agenda": [],
+        "outcomes": [],
+        "seedTask": null,
+        "_userCanView": true,
+        "_userCanEdit": false,
+        "_calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+        "__typename": "CalendarEvent"
+      },
+      {
+        "_id": "_6cpjgdhj65j6cbb5c8pjeb9kchijgbb2c4pj0bb5c8s64chjc8rj0chn68",
+        "createdBy": "6116d75820a45f00095030ae",
+        "date": {
+          "startDate": "2021-10-25T12:00:00.000Z",
+          "endDate": "2021-10-28T12:00:00.000Z",
+          "isAllDay": true,
+          "timeZone": null,
+          "__typename": "CalendarEventDate"
+        },
+        "inviteeList": [],
+        "location": {
+          "name": "",
+          "address": "",
+          "alias": "",
+          "coordinate": {
+            "lat": 0,
+            "lng": 0,
+            "__typename": "CalendarEventLocationCoordinate"
+          },
+          "__typename": "CalendarEventLocation"
+        },
+        "staticMapUrl": "",
+        "status": "scheduled",
+        "title": "Flick E. PTO (PTO)",
+        "createdAt": "2021-09-20T23:39:56.000Z",
+        "scheduledTo": [
+          {
+            "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "userId": "6116d75820a45f00095030ae",
+            "streamIds": null,
+            "__typename": "CalendarEventScheduledToEntry"
+          }
+        ],
+        "organizerCalendar": {
+          "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+          "calendarDisplayName": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+          "__typename": "CalendarEventOrganizerCalendar"
+        },
+        "serviceIds": {
+          "google": "_6cpjgdhj65j6cbb5c8pjeb9kchijgbb2c4pj0bb5c8s64chjc8rj0chn68",
+          "microsoft": null,
+          "microsoftUniqueId": null,
+          "__typename": "CalendarEventServiceIds"
+        },
+        "description": "",
+        "sequence": 0,
+        "streamIds": [],
+        "lastModified": "2021-09-20T23:39:56.000Z",
+        "permissions": {
+          "guestsCanModify": null,
+          "guestsCanInviteOthers": null,
+          "guestsCanSeeOtherGuests": null,
+          "anyoneCanAddSelf": null,
+          "locked": null,
+          "privateCopy": null,
+          "__typename": "CalendarEventPermissions"
+        },
+        "hangoutLink": "",
+        "googleCalendarURL": "https://www.google.com/calendar/event?eid=XzZjcGpnZGhqNjVqNmNiYjVjOHBqZWI5a2NoaWpnYmIyYzRwajBiYjVjOHM2NGNoamM4cmowY2huNjggM3FnNG11c2o3Y2gybmRubG9vb2hrNmJhaGZiOGtwbmpAaQ&ctz=UTC",
+        "transparency": "opaque",
+        "visibility": "default",
+        "googleLocation": null,
+        "conferenceData": null,
+        "recurringEventInfo": null,
+        "runDate": null,
+        "agenda": [],
+        "outcomes": [],
+        "seedTask": null,
+        "_userCanView": true,
+        "_userCanEdit": false,
+        "_calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+        "__typename": "CalendarEvent"
+      },
+      {
+        "_id": "_6cs36d9gc5i38bb274qjib9k6cr3gbb264smabb36pi3ee9n6crmcdpp60",
+        "createdBy": "6116d75820a45f00095030ae",
+        "date": {
+          "startDate": "2021-10-20T12:00:00.000Z",
+          "endDate": "2021-10-22T12:00:00.000Z",
+          "isAllDay": true,
+          "timeZone": null,
+          "__typename": "CalendarEventDate"
+        },
+        "inviteeList": [],
+        "location": {
+          "name": "",
+          "address": "",
+          "alias": "",
+          "coordinate": {
+            "lat": 0,
+            "lng": 0,
+            "__typename": "CalendarEventLocationCoordinate"
+          },
+          "__typename": "CalendarEventLocation"
+        },
+        "staticMapUrl": "",
+        "status": "scheduled",
+        "title": "Sam W. PTO (PTO)",
+        "createdAt": "2021-09-20T23:39:56.000Z",
+        "scheduledTo": [
+          {
+            "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "userId": "6116d75820a45f00095030ae",
+            "streamIds": null,
+            "__typename": "CalendarEventScheduledToEntry"
+          }
+        ],
+        "organizerCalendar": {
+          "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+          "calendarDisplayName": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+          "__typename": "CalendarEventOrganizerCalendar"
+        },
+        "serviceIds": {
+          "google": "_6cs36d9gc5i38bb274qjib9k6cr3gbb264smabb36pi3ee9n6crmcdpp60",
+          "microsoft": null,
+          "microsoftUniqueId": null,
+          "__typename": "CalendarEventServiceIds"
+        },
+        "description": "",
+        "sequence": 0,
+        "streamIds": [],
+        "lastModified": "2021-09-20T23:39:56.000Z",
+        "permissions": {
+          "guestsCanModify": null,
+          "guestsCanInviteOthers": null,
+          "guestsCanSeeOtherGuests": null,
+          "anyoneCanAddSelf": null,
+          "locked": null,
+          "privateCopy": null,
+          "__typename": "CalendarEventPermissions"
+        },
+        "hangoutLink": "",
+        "googleCalendarURL": "https://www.google.com/calendar/event?eid=XzZjczM2ZDlnYzVpMzhiYjI3NHFqaWI5azZjcjNnYmIyNjRzbWFiYjM2cGkzZWU5bjZjcm1jZHBwNjAgM3FnNG11c2o3Y2gybmRubG9vb2hrNmJhaGZiOGtwbmpAaQ&ctz=UTC",
+        "transparency": "opaque",
+        "visibility": "default",
+        "googleLocation": null,
+        "conferenceData": null,
+        "recurringEventInfo": null,
+        "runDate": null,
+        "agenda": [],
+        "outcomes": [],
+        "seedTask": null,
+        "_userCanView": true,
+        "_userCanEdit": false,
+        "_calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+        "__typename": "CalendarEvent"
+      },
+      {
+        "_id": "_6lgjcd9ncdj32bb36di6cb9kc5gm6bb2coo68b9k6hi32oj268pm2d34cg",
+        "createdBy": "6116d75820a45f00095030ae",
+        "date": {
+          "startDate": "2021-11-01T12:00:00.000Z",
+          "endDate": "2021-11-12T12:00:00.000Z",
+          "isAllDay": true,
+          "timeZone": null,
+          "__typename": "CalendarEventDate"
+        },
+        "inviteeList": [],
+        "location": {
+          "name": "",
+          "address": "",
+          "alias": "",
+          "coordinate": {
+            "lat": 0,
+            "lng": 0,
+            "__typename": "CalendarEventLocationCoordinate"
+          },
+          "__typename": "CalendarEventLocation"
+        },
+        "staticMapUrl": "",
+        "status": "scheduled",
+        "title": "Isabel M. PTO (PTO)",
+        "createdAt": "2021-10-04T20:44:05.000Z",
+        "scheduledTo": [
+          {
+            "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "userId": "6116d75820a45f00095030ae",
+            "streamIds": null,
+            "__typename": "CalendarEventScheduledToEntry"
+          }
+        ],
+        "organizerCalendar": {
+          "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+          "calendarDisplayName": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+          "__typename": "CalendarEventOrganizerCalendar"
+        },
+        "serviceIds": {
+          "google": "_6lgjcd9ncdj32bb36di6cb9kc5gm6bb2coo68b9k6hi32oj268pm2d34cg",
+          "microsoft": null,
+          "microsoftUniqueId": null,
+          "__typename": "CalendarEventServiceIds"
+        },
+        "description": "",
+        "sequence": 0,
+        "streamIds": [],
+        "lastModified": "2021-10-04T20:44:05.000Z",
+        "permissions": {
+          "guestsCanModify": null,
+          "guestsCanInviteOthers": null,
+          "guestsCanSeeOtherGuests": null,
+          "anyoneCanAddSelf": null,
+          "locked": null,
+          "privateCopy": null,
+          "__typename": "CalendarEventPermissions"
+        },
+        "hangoutLink": "",
+        "googleCalendarURL": "https://www.google.com/calendar/event?eid=XzZsZ2pjZDluY2RqMzJiYjM2ZGk2Y2I5a2M1Z202YmIyY29vNjhiOWs2aGkzMm9qMjY4cG0yZDM0Y2cgM3FnNG11c2o3Y2gybmRubG9vb2hrNmJhaGZiOGtwbmpAaQ&ctz=UTC",
+        "transparency": "opaque",
+        "visibility": "default",
+        "googleLocation": null,
+        "conferenceData": null,
+        "recurringEventInfo": null,
+        "runDate": null,
+        "agenda": [],
+        "outcomes": [],
+        "seedTask": null,
+        "_userCanView": true,
+        "_userCanEdit": false,
+        "_calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+        "__typename": "CalendarEvent"
+      },
+      {
+        "_id": "_6sqmacpic4p36bb264pjcb9k6ss38bb174ojabb46csjgc3561j68phn70",
+        "createdBy": "6116d75820a45f00095030ae",
+        "date": {
+          "startDate": "2021-10-25T12:00:00.000Z",
+          "endDate": "2021-10-25T12:00:00.000Z",
+          "isAllDay": true,
+          "timeZone": null,
+          "__typename": "CalendarEventDate"
+        },
+        "inviteeList": [],
+        "location": {
+          "name": "",
+          "address": "",
+          "alias": "",
+          "coordinate": {
+            "lat": 0,
+            "lng": 0,
+            "__typename": "CalendarEventLocationCoordinate"
+          },
+          "__typename": "CalendarEventLocation"
+        },
+        "staticMapUrl": "",
+        "status": "scheduled",
+        "title": "Nate V. PTO (PTO)",
+        "createdAt": "2021-10-18T04:56:37.000Z",
+        "scheduledTo": [
+          {
+            "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "userId": "6116d75820a45f00095030ae",
+            "streamIds": null,
+            "__typename": "CalendarEventScheduledToEntry"
+          }
+        ],
+        "organizerCalendar": {
+          "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+          "calendarDisplayName": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+          "__typename": "CalendarEventOrganizerCalendar"
+        },
+        "serviceIds": {
+          "google": "_6sqmacpic4p36bb264pjcb9k6ss38bb174ojabb46csjgc3561j68phn70",
+          "microsoft": null,
+          "microsoftUniqueId": null,
+          "__typename": "CalendarEventServiceIds"
+        },
+        "description": "",
+        "sequence": 0,
+        "streamIds": [],
+        "lastModified": "2021-10-18T04:56:37.000Z",
+        "permissions": {
+          "guestsCanModify": null,
+          "guestsCanInviteOthers": null,
+          "guestsCanSeeOtherGuests": null,
+          "anyoneCanAddSelf": null,
+          "locked": null,
+          "privateCopy": null,
+          "__typename": "CalendarEventPermissions"
+        },
+        "hangoutLink": "",
+        "googleCalendarURL": "https://www.google.com/calendar/event?eid=XzZzcW1hY3BpYzRwMzZiYjI2NHBqY2I5azZzczM4YmIxNzRvamFiYjQ2Y3NqZ2MzNTYxajY4cGhuNzAgM3FnNG11c2o3Y2gybmRubG9vb2hrNmJhaGZiOGtwbmpAaQ&ctz=UTC",
+        "transparency": "opaque",
+        "visibility": "default",
+        "googleLocation": null,
+        "conferenceData": null,
+        "recurringEventInfo": null,
+        "runDate": null,
+        "agenda": [],
+        "outcomes": [],
+        "seedTask": null,
+        "_userCanView": true,
+        "_userCanEdit": false,
+        "_calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+        "__typename": "CalendarEvent"
+      },
+      {
+        "_id": "_6sqm2phh60oj2bb5c9h32b9k6oomcb9ocoq32b9pc9gm8cj2clhj6c9pc4",
+        "createdBy": "6116d75820a45f00095030ae",
+        "date": {
+          "startDate": "2021-11-01T12:00:00.000Z",
+          "endDate": "2021-11-01T12:00:00.000Z",
+          "isAllDay": true,
+          "timeZone": null,
+          "__typename": "CalendarEventDate"
+        },
+        "inviteeList": [],
+        "location": {
+          "name": "",
+          "address": "",
+          "alias": "",
+          "coordinate": {
+            "lat": 0,
+            "lng": 0,
+            "__typename": "CalendarEventLocationCoordinate"
+          },
+          "__typename": "CalendarEventLocation"
+        },
+        "staticMapUrl": "",
+        "status": "scheduled",
+        "title": "Sam T. PTO (PTO)",
+        "createdAt": "2021-10-18T17:55:00.000Z",
+        "scheduledTo": [
+          {
+            "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "userId": "6116d75820a45f00095030ae",
+            "streamIds": null,
+            "__typename": "CalendarEventScheduledToEntry"
+          }
+        ],
+        "organizerCalendar": {
+          "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+          "calendarDisplayName": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+          "__typename": "CalendarEventOrganizerCalendar"
+        },
+        "serviceIds": {
+          "google": "_6sqm2phh60oj2bb5c9h32b9k6oomcb9ocoq32b9pc9gm8cj2clhj6c9pc4",
+          "microsoft": null,
+          "microsoftUniqueId": null,
+          "__typename": "CalendarEventServiceIds"
+        },
+        "description": "",
+        "sequence": 0,
+        "streamIds": [],
+        "lastModified": "2021-10-18T17:55:00.000Z",
+        "permissions": {
+          "guestsCanModify": null,
+          "guestsCanInviteOthers": null,
+          "guestsCanSeeOtherGuests": null,
+          "anyoneCanAddSelf": null,
+          "locked": null,
+          "privateCopy": null,
+          "__typename": "CalendarEventPermissions"
+        },
+        "hangoutLink": "",
+        "googleCalendarURL": "https://www.google.com/calendar/event?eid=XzZzcW0ycGhoNjBvajJiYjVjOWgzMmI5azZvb21jYjlvY29xMzJiOXBjOWdtOGNqMmNsaGo2YzlwYzQgM3FnNG11c2o3Y2gybmRubG9vb2hrNmJhaGZiOGtwbmpAaQ&ctz=UTC",
+        "transparency": "opaque",
+        "visibility": "default",
+        "googleLocation": null,
+        "conferenceData": null,
+        "recurringEventInfo": null,
+        "runDate": null,
+        "agenda": [],
+        "outcomes": [],
+        "seedTask": null,
+        "_userCanView": true,
+        "_userCanEdit": false,
+        "_calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+        "__typename": "CalendarEvent"
+      },
+      {
+        "_id": "_75i68d346ooj6bb1cdj36b9k75gm8b9o60qm6bb3c8q68c36cco34p3464",
+        "createdBy": "6116d75820a45f00095030ae",
+        "date": {
+          "startDate": "2021-10-22T12:00:00.000Z",
+          "endDate": "2021-10-22T12:00:00.000Z",
+          "isAllDay": true,
+          "timeZone": null,
+          "__typename": "CalendarEventDate"
+        },
+        "inviteeList": [],
+        "location": {
+          "name": "",
+          "address": "",
+          "alias": "",
+          "coordinate": {
+            "lat": 0,
+            "lng": 0,
+            "__typename": "CalendarEventLocationCoordinate"
+          },
+          "__typename": "CalendarEventLocation"
+        },
+        "staticMapUrl": "",
+        "status": "scheduled",
+        "title": "Sebastian O. PTO (PTO)",
+        "createdAt": "2021-10-18T17:55:00.000Z",
+        "scheduledTo": [
+          {
+            "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "userId": "6116d75820a45f00095030ae",
+            "streamIds": null,
+            "__typename": "CalendarEventScheduledToEntry"
+          }
+        ],
+        "organizerCalendar": {
+          "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+          "calendarDisplayName": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+          "__typename": "CalendarEventOrganizerCalendar"
+        },
+        "serviceIds": {
+          "google": "_75i68d346ooj6bb1cdj36b9k75gm8b9o60qm6bb3c8q68c36cco34p3464",
+          "microsoft": null,
+          "microsoftUniqueId": null,
+          "__typename": "CalendarEventServiceIds"
+        },
+        "description": "",
+        "sequence": 0,
+        "streamIds": [],
+        "lastModified": "2021-10-18T17:55:00.000Z",
+        "permissions": {
+          "guestsCanModify": null,
+          "guestsCanInviteOthers": null,
+          "guestsCanSeeOtherGuests": null,
+          "anyoneCanAddSelf": null,
+          "locked": null,
+          "privateCopy": null,
+          "__typename": "CalendarEventPermissions"
+        },
+        "hangoutLink": "",
+        "googleCalendarURL": "https://www.google.com/calendar/event?eid=Xzc1aTY4ZDM0Nm9vajZiYjFjZGozNmI5azc1Z204YjlvNjBxbTZiYjNjOHE2OGMzNmNjbzM0cDM0NjQgM3FnNG11c2o3Y2gybmRubG9vb2hrNmJhaGZiOGtwbmpAaQ&ctz=UTC",
+        "transparency": "opaque",
+        "visibility": "default",
+        "googleLocation": null,
+        "conferenceData": null,
+        "recurringEventInfo": null,
+        "runDate": null,
+        "agenda": [],
+        "outcomes": [],
+        "seedTask": null,
+        "_userCanView": true,
+        "_userCanEdit": false,
+        "_calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+        "__typename": "CalendarEvent"
+      },
+      {
+        "_id": "_6sq38pj66sr3gb9oc4rmcb9kccq3ebb174q36bb371i30p366krj8c9k60",
+        "createdBy": "6116d75820a45f00095030ae",
+        "date": {
+          "startDate": "2021-10-19T12:00:00.000Z",
+          "endDate": "2021-10-19T12:00:00.000Z",
+          "isAllDay": true,
+          "timeZone": null,
+          "__typename": "CalendarEventDate"
+        },
+        "inviteeList": [],
+        "location": {
+          "name": "",
+          "address": "",
+          "alias": "",
+          "coordinate": {
+            "lat": 0,
+            "lng": 0,
+            "__typename": "CalendarEventLocationCoordinate"
+          },
+          "__typename": "CalendarEventLocation"
+        },
+        "staticMapUrl": "",
+        "status": "scheduled",
+        "title": "Isabel M. PTO (Mental Health & Sick Leave)",
+        "createdAt": "2021-10-20T18:36:28.000Z",
+        "scheduledTo": [
+          {
+            "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "userId": "6116d75820a45f00095030ae",
+            "streamIds": null,
+            "__typename": "CalendarEventScheduledToEntry"
+          }
+        ],
+        "organizerCalendar": {
+          "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+          "calendarDisplayName": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+          "__typename": "CalendarEventOrganizerCalendar"
+        },
+        "serviceIds": {
+          "google": "_6sq38pj66sr3gb9oc4rmcb9kccq3ebb174q36bb371i30p366krj8c9k60",
+          "microsoft": null,
+          "microsoftUniqueId": null,
+          "__typename": "CalendarEventServiceIds"
+        },
+        "description": "",
+        "sequence": 0,
+        "streamIds": [],
+        "lastModified": "2021-10-20T18:36:28.000Z",
+        "permissions": {
+          "guestsCanModify": null,
+          "guestsCanInviteOthers": null,
+          "guestsCanSeeOtherGuests": null,
+          "anyoneCanAddSelf": null,
+          "locked": null,
+          "privateCopy": null,
+          "__typename": "CalendarEventPermissions"
+        },
+        "hangoutLink": "",
+        "googleCalendarURL": "https://www.google.com/calendar/event?eid=XzZzcTM4cGo2NnNyM2diOW9jNHJtY2I5a2NjcTNlYmIxNzRxMzZiYjM3MWkzMHAzNjZrcmo4YzlrNjAgM3FnNG11c2o3Y2gybmRubG9vb2hrNmJhaGZiOGtwbmpAaQ&ctz=UTC",
+        "transparency": "opaque",
+        "visibility": "default",
+        "googleLocation": null,
+        "conferenceData": null,
+        "recurringEventInfo": null,
+        "runDate": null,
+        "agenda": [],
+        "outcomes": [],
+        "seedTask": null,
+        "_userCanView": true,
+        "_userCanEdit": false,
+        "_calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+        "__typename": "CalendarEvent"
+      },
+      {
+        "_id": "_ccsjap1h6ksj0bb174om2b9k65j34b9o6th3abb269gj0phn6di38d1n6s",
+        "createdBy": "6116d75820a45f00095030ae",
+        "date": {
+          "startDate": "2021-10-22T12:00:00.000Z",
+          "endDate": "2021-10-22T12:00:00.000Z",
+          "isAllDay": true,
+          "timeZone": null,
+          "__typename": "CalendarEventDate"
+        },
+        "inviteeList": [],
+        "location": {
+          "name": "",
+          "address": "",
+          "alias": "",
+          "coordinate": {
+            "lat": 0,
+            "lng": 0,
+            "__typename": "CalendarEventLocationCoordinate"
+          },
+          "__typename": "CalendarEventLocation"
+        },
+        "staticMapUrl": "",
+        "status": "scheduled",
+        "title": "Jake H. PTO (Mental Health & Sick Leave)",
+        "createdAt": "2021-10-23T04:28:49.000Z",
+        "scheduledTo": [
+          {
+            "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "userId": "6116d75820a45f00095030ae",
+            "streamIds": null,
+            "__typename": "CalendarEventScheduledToEntry"
+          }
+        ],
+        "organizerCalendar": {
+          "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+          "calendarDisplayName": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+          "__typename": "CalendarEventOrganizerCalendar"
+        },
+        "serviceIds": {
+          "google": "_ccsjap1h6ksj0bb174om2b9k65j34b9o6th3abb269gj0phn6di38d1n6s",
+          "microsoft": null,
+          "microsoftUniqueId": null,
+          "__typename": "CalendarEventServiceIds"
+        },
+        "description": "",
+        "sequence": 0,
+        "streamIds": [],
+        "lastModified": "2021-10-23T04:28:49.000Z",
+        "permissions": {
+          "guestsCanModify": null,
+          "guestsCanInviteOthers": null,
+          "guestsCanSeeOtherGuests": null,
+          "anyoneCanAddSelf": null,
+          "locked": null,
+          "privateCopy": null,
+          "__typename": "CalendarEventPermissions"
+        },
+        "hangoutLink": "",
+        "googleCalendarURL": "https://www.google.com/calendar/event?eid=X2Njc2phcDFoNmtzajBiYjE3NG9tMmI5azY1ajM0YjlvNnRoM2FiYjI2OWdqMHBobjZkaTM4ZDFuNnMgM3FnNG11c2o3Y2gybmRubG9vb2hrNmJhaGZiOGtwbmpAaQ&ctz=UTC",
+        "transparency": "opaque",
+        "visibility": "default",
+        "googleLocation": null,
+        "conferenceData": null,
+        "recurringEventInfo": null,
+        "runDate": null,
+        "agenda": [],
+        "outcomes": [],
+        "seedTask": null,
+        "_userCanView": true,
+        "_userCanEdit": false,
+        "_calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+        "__typename": "CalendarEvent"
+      },
+      {
+        "_id": "_6comad1gckrj4bb660qm8b9k61i3ab9p6tim4b9icgq6aoppcgsjad316c",
+        "createdBy": "6116d75820a45f00095030ae",
+        "date": {
+          "startDate": "2021-10-27T12:00:00.000Z",
+          "endDate": "2021-10-28T12:00:00.000Z",
+          "isAllDay": true,
+          "timeZone": null,
+          "__typename": "CalendarEventDate"
+        },
+        "inviteeList": [],
+        "location": {
+          "name": "",
+          "address": "",
+          "alias": "",
+          "coordinate": {
+            "lat": 0,
+            "lng": 0,
+            "__typename": "CalendarEventLocationCoordinate"
+          },
+          "__typename": "CalendarEventLocation"
+        },
+        "staticMapUrl": "",
+        "status": "scheduled",
+        "title": "Joseph T. PTO (PTO)",
+        "createdAt": "2021-10-26T02:30:03.000Z",
+        "scheduledTo": [
+          {
+            "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "userId": "6116d75820a45f00095030ae",
+            "streamIds": null,
+            "__typename": "CalendarEventScheduledToEntry"
+          }
+        ],
+        "organizerCalendar": {
+          "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+          "calendarDisplayName": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+          "__typename": "CalendarEventOrganizerCalendar"
+        },
+        "serviceIds": {
+          "google": "_6comad1gckrj4bb660qm8b9k61i3ab9p6tim4b9icgq6aoppcgsjad316c",
+          "microsoft": null,
+          "microsoftUniqueId": null,
+          "__typename": "CalendarEventServiceIds"
+        },
+        "description": "",
+        "sequence": 0,
+        "streamIds": [],
+        "lastModified": "2021-10-26T02:30:03.000Z",
+        "permissions": {
+          "guestsCanModify": null,
+          "guestsCanInviteOthers": null,
+          "guestsCanSeeOtherGuests": null,
+          "anyoneCanAddSelf": null,
+          "locked": null,
+          "privateCopy": null,
+          "__typename": "CalendarEventPermissions"
+        },
+        "hangoutLink": "",
+        "googleCalendarURL": "https://www.google.com/calendar/event?eid=XzZjb21hZDFnY2tyajRiYjY2MHFtOGI5azYxaTNhYjlwNnRpbTRiOWljZ3E2YW9wcGNnc2phZDMxNmMgM3FnNG11c2o3Y2gybmRubG9vb2hrNmJhaGZiOGtwbmpAaQ&ctz=UTC",
+        "transparency": "opaque",
+        "visibility": "default",
+        "googleLocation": null,
+        "conferenceData": null,
+        "recurringEventInfo": null,
+        "runDate": null,
+        "agenda": [],
+        "outcomes": [],
+        "seedTask": null,
+        "_userCanView": true,
+        "_userCanEdit": false,
+        "_calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+        "__typename": "CalendarEvent"
+      },
+      {
+        "_id": "_6hhjiphh6goj4bb675hj8b9k6csj6bb26oo62bb5chijadb56cojeeb170",
+        "createdBy": "6116d75820a45f00095030ae",
+        "date": {
+          "startDate": "2021-10-19T12:00:00.000Z",
+          "endDate": "2021-10-19T12:00:00.000Z",
+          "isAllDay": true,
+          "timeZone": null,
+          "__typename": "CalendarEventDate"
+        },
+        "inviteeList": [],
+        "location": {
+          "name": "",
+          "address": "",
+          "alias": "",
+          "coordinate": {
+            "lat": 0,
+            "lng": 0,
+            "__typename": "CalendarEventLocationCoordinate"
+          },
+          "__typename": "CalendarEventLocation"
+        },
+        "staticMapUrl": "",
+        "status": "scheduled",
+        "title": "Simone R. PTO (Mental Health & Sick Leave)",
+        "createdAt": "2021-10-26T02:30:03.000Z",
+        "scheduledTo": [
+          {
+            "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "userId": "6116d75820a45f00095030ae",
+            "streamIds": null,
+            "__typename": "CalendarEventScheduledToEntry"
+          }
+        ],
+        "organizerCalendar": {
+          "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+          "calendarDisplayName": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+          "__typename": "CalendarEventOrganizerCalendar"
+        },
+        "serviceIds": {
+          "google": "_6hhjiphh6goj4bb675hj8b9k6csj6bb26oo62bb5chijadb56cojeeb170",
+          "microsoft": null,
+          "microsoftUniqueId": null,
+          "__typename": "CalendarEventServiceIds"
+        },
+        "description": "",
+        "sequence": 0,
+        "streamIds": [],
+        "lastModified": "2021-10-26T02:30:03.000Z",
+        "permissions": {
+          "guestsCanModify": null,
+          "guestsCanInviteOthers": null,
+          "guestsCanSeeOtherGuests": null,
+          "anyoneCanAddSelf": null,
+          "locked": null,
+          "privateCopy": null,
+          "__typename": "CalendarEventPermissions"
+        },
+        "hangoutLink": "",
+        "googleCalendarURL": "https://www.google.com/calendar/event?eid=XzZoaGppcGhoNmdvajRiYjY3NWhqOGI5azZjc2o2YmIyNm9vNjJiYjVjaGlqYWRiNTZjb2plZWIxNzAgM3FnNG11c2o3Y2gybmRubG9vb2hrNmJhaGZiOGtwbmpAaQ&ctz=UTC",
+        "transparency": "opaque",
+        "visibility": "default",
+        "googleLocation": null,
+        "conferenceData": null,
+        "recurringEventInfo": null,
+        "runDate": null,
+        "agenda": [],
+        "outcomes": [],
+        "seedTask": null,
+        "_userCanView": true,
+        "_userCanEdit": false,
+        "_calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+        "__typename": "CalendarEvent"
+      },
+      {
+        "_id": "_6hi68oj26krj2bb2c4qmab9k60rjgb9o64o68b9ncpi30d1o6oo62eb6co",
+        "createdBy": "6116d75820a45f00095030ae",
+        "date": {
+          "startDate": "2021-11-01T12:00:00.000Z",
+          "endDate": "2021-11-05T12:00:00.000Z",
+          "isAllDay": true,
+          "timeZone": null,
+          "__typename": "CalendarEventDate"
+        },
+        "inviteeList": [],
+        "location": {
+          "name": "",
+          "address": "",
+          "alias": "",
+          "coordinate": {
+            "lat": 0,
+            "lng": 0,
+            "__typename": "CalendarEventLocationCoordinate"
+          },
+          "__typename": "CalendarEventLocation"
+        },
+        "staticMapUrl": "",
+        "status": "scheduled",
+        "title": "Joseph T. PTO (PTO)",
+        "createdAt": "2021-10-26T02:30:03.000Z",
+        "scheduledTo": [
+          {
+            "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "userId": "6116d75820a45f00095030ae",
+            "streamIds": null,
+            "__typename": "CalendarEventScheduledToEntry"
+          }
+        ],
+        "organizerCalendar": {
+          "calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+          "calendarDisplayName": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+          "__typename": "CalendarEventOrganizerCalendar"
+        },
+        "serviceIds": {
+          "google": "_6hi68oj26krj2bb2c4qmab9k60rjgb9o64o68b9ncpi30d1o6oo62eb6co",
+          "microsoft": null,
+          "microsoftUniqueId": null,
+          "__typename": "CalendarEventServiceIds"
+        },
+        "description": "",
+        "sequence": 0,
+        "streamIds": [],
+        "lastModified": "2021-10-26T02:30:03.000Z",
+        "permissions": {
+          "guestsCanModify": null,
+          "guestsCanInviteOthers": null,
+          "guestsCanSeeOtherGuests": null,
+          "anyoneCanAddSelf": null,
+          "locked": null,
+          "privateCopy": null,
+          "__typename": "CalendarEventPermissions"
+        },
+        "hangoutLink": "",
+        "googleCalendarURL": "https://www.google.com/calendar/event?eid=XzZoaTY4b2oyNmtyajJiYjJjNHFtYWI5azYwcmpnYjlvNjRvNjhiOW5jcGkzMGQxbzZvbzYyZWI2Y28gM3FnNG11c2o3Y2gybmRubG9vb2hrNmJhaGZiOGtwbmpAaQ&ctz=UTC",
+        "transparency": "opaque",
+        "visibility": "default",
+        "googleLocation": null,
+        "conferenceData": null,
+        "recurringEventInfo": null,
+        "runDate": null,
+        "agenda": [],
+        "outcomes": [],
+        "seedTask": null,
+        "_userCanView": true,
+        "_userCanEdit": false,
+        "_calendarId": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+        "__typename": "CalendarEvent"
+      }
+    ]
+  }
+}

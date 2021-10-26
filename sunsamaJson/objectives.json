@@ -1,0 +1,78 @@
+{
+  "data": {
+    "objectivesByPeriod": [
+      {
+        "_id": "616d85920845ed33206e5e96",
+        "createdAt": "2021-10-18T14:32:50.302Z",
+        "completed": true,
+        "completedAt": "2021-10-19T23:50:56.900Z",
+        "deleted": false,
+        "lastModified": "2021-10-19T23:50:56.902Z",
+        "groupId": "6116d78120a45f00095030b0",
+        "ordinal": 32768,
+        "parentObjectiveId": null,
+        "period": {
+          "interval": "week",
+          "start": "2021-10-18",
+          "end": null,
+          "__typename": "ObjectivePeriod"
+        },
+        "streamId": null,
+        "taskIds": [
+          "616608d64086ec10a9a5d9d8",
+          "616df12e0845ed33206e5ec8"
+        ],
+        "text": "Ship Proper sprint 14",
+        "timeEstimate": null,
+        "userId": "6116d75820a45f00095030ae",
+        "__typename": "Objective"
+      },
+      {
+        "_id": "616d85c80845ed33206e5e97",
+        "createdAt": "2021-10-18T14:33:44.281Z",
+        "completed": true,
+        "completedAt": "2021-10-22T21:02:36.897Z",
+        "deleted": false,
+        "lastModified": "2021-10-22T21:02:36.900Z",
+        "groupId": "6116d78120a45f00095030b0",
+        "ordinal": 30720,
+        "parentObjectiveId": null,
+        "period": {
+          "interval": "week",
+          "start": "2021-10-18",
+          "end": null,
+          "__typename": "ObjectivePeriod"
+        },
+        "streamId": null,
+        "taskIds": ["616df0e70845ed33206e5ec4"],
+        "text": "12 points for Index",
+        "timeEstimate": null,
+        "userId": "6116d75820a45f00095030ae",
+        "__typename": "Objective"
+      },
+      {
+        "_id": "616d86280845ed33206e5e99",
+        "createdAt": "2021-10-18T14:35:20.117Z",
+        "completed": true,
+        "completedAt": "2021-10-19T23:50:54.469Z",
+        "deleted": false,
+        "lastModified": "2021-10-19T23:50:54.471Z",
+        "groupId": "6116d78120a45f00095030b0",
+        "ordinal": 28672,
+        "parentObjectiveId": null,
+        "period": {
+          "interval": "week",
+          "start": "2021-10-18",
+          "end": null,
+          "__typename": "ObjectivePeriod"
+        },
+        "streamId": null,
+        "taskIds": null,
+        "text": "Hold first Hydro Studio Hour and new Design Review",
+        "timeEstimate": null,
+        "userId": "6116d75820a45f00095030ae",
+        "__typename": "Objective"
+      }
+    ]
+  }
+}

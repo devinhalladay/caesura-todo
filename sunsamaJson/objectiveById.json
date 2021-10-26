@@ -1,0 +1,27 @@
+{
+  "data": {
+    "objectiveById": {
+      "_id": "616d85c80845ed33206e5e97",
+      "createdAt": "2021-10-18T14:33:44.281Z",
+      "completed": true,
+      "completedAt": "2021-10-22T21:02:36.897Z",
+      "deleted": false,
+      "lastModified": "2021-10-22T21:02:36.900Z",
+      "groupId": "6116d78120a45f00095030b0",
+      "ordinal": 30720,
+      "parentObjectiveId": null,
+      "period": {
+        "interval": "week",
+        "start": "2021-10-18",
+        "end": null,
+        "__typename": "ObjectivePeriod"
+      },
+      "streamId": null,
+      "taskIds": ["616df0e70845ed33206e5ec4"],
+      "text": "12 points for Index",
+      "timeEstimate": null,
+      "userId": "6116d75820a45f00095030ae",
+      "__typename": "Objective"
+    }
+  }
+}

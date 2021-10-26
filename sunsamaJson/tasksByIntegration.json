@@ -1,0 +1,192 @@
+{
+  "data": {
+    "tasksByIntegration": [
+      {
+        "_id": "6176bfed9a77422b43df1d1c",
+        "groupId": "6116d78120a45f00095030b0",
+        "taskType": "outcomes",
+        "streamIds": [],
+        "eventInfo": null,
+        "seededEventIds": null,
+        "private": false,
+        "assigneeId": "6116d75820a45f00095030ae",
+        "createdBy": "6116d75820a45f00095030ae",
+        "integration": {
+          "service": "gmail",
+          "identifier": {
+            "id": "17c944e84baee99a",
+            "messageId": "17c94ed951ddf5be",
+            "accountId": "devin@sanctuary.computer",
+            "url": "https://mail.google.com/mail/u/devin@sanctuary.computer/#inbox/17c944e84baee99a",
+            "__typename": "TaskGmailIntegrationIdentifier"
+          },
+          "__typename": "TaskGmailIntegration"
+        },
+        "deleted": false,
+        "text": "Re: Can you send me zoom link?",
+        "notes": "",
+        "notesMarkdown": null,
+        "notesChecksum": null,
+        "editorVersion": null,
+        "collabSnapshot": null,
+        "completed": false,
+        "completedBy": null,
+        "completeDate": null,
+        "completeOn": null,
+        "duration": null,
+        "runDate": null,
+        "snooze": {
+          "userId": "6116d75820a45f00095030ae",
+          "date": "2021-10-26T14:50:47.201Z",
+          "until": "2021-10-26T04:00:00.000Z",
+          "__typename": "TaskSnooze"
+        },
+        "dueDate": null,
+        "comments": null,
+        "orderings": [
+          {
+            "ordinal": 14336,
+            "panelDate": "2021-10-26T04:00:00.000Z",
+            "channelId": null,
+            "userId": "6116d75820a45f00095030ae",
+            "__typename": "TaskOrdering"
+          }
+        ],
+        "subtasks": [],
+        "subtasksCollapsed": null,
+        "sequence": null,
+        "followers": [],
+        "timeEstimate": null,
+        "actualTime": null,
+        "createdAt": "2021-10-25T14:32:13.223Z",
+        "lastModified": "2021-10-26T14:50:47.250Z",
+        "objectiveId": null,
+        "__typename": "Task"
+      },
+      {
+        "_id": "611d97ed07d21689ea9a3efe",
+        "groupId": "6116d78120a45f00095030b0",
+        "taskType": "outcomes",
+        "streamIds": [],
+        "eventInfo": null,
+        "seededEventIds": null,
+        "private": false,
+        "assigneeId": "6116d75820a45f00095030ae",
+        "createdBy": "6116d75820a45f00095030ae",
+        "integration": {
+          "service": "gmail",
+          "identifier": {
+            "id": "179a3a52a9cb5fdd",
+            "messageId": "17b56256a51db499",
+            "accountId": "devin@sanctuary.computer",
+            "url": null,
+            "__typename": "TaskGmailIntegrationIdentifier"
+          },
+          "__typename": "TaskGmailIntegration"
+        },
+        "deleted": false,
+        "text": "Re: Groves",
+        "notes": "",
+        "notesMarkdown": null,
+        "notesChecksum": null,
+        "editorVersion": null,
+        "collabSnapshot": null,
+        "completed": false,
+        "completedBy": null,
+        "completeDate": null,
+        "completeOn": null,
+        "duration": null,
+        "runDate": null,
+        "snooze": {
+          "userId": "6116d75820a45f00095030ae",
+          "date": "2021-10-25T14:30:40.191Z",
+          "until": "2021-10-27T04:00:00.000Z",
+          "__typename": "TaskSnooze"
+        },
+        "dueDate": null,
+        "comments": null,
+        "orderings": [
+          {
+            "ordinal": 8192,
+            "panelDate": "2021-10-27T04:00:00.000Z",
+            "channelId": null,
+            "userId": "6116d75820a45f00095030ae",
+            "__typename": "TaskOrdering"
+          }
+        ],
+        "subtasks": [],
+        "subtasksCollapsed": null,
+        "sequence": null,
+        "followers": [],
+        "timeEstimate": null,
+        "actualTime": null,
+        "createdAt": "2021-08-18T23:29:49.554Z",
+        "lastModified": "2021-10-25T14:30:40.220Z",
+        "objectiveId": null,
+        "__typename": "Task"
+      },
+      {
+        "_id": "611da6a407d21689ea9a3f01",
+        "groupId": "6116d78120a45f00095030b0",
+        "taskType": "outcomes",
+        "streamIds": ["612532f6d1b40fdeb68bf832"],
+        "eventInfo": null,
+        "seededEventIds": null,
+        "private": false,
+        "assigneeId": "6116d75820a45f00095030ae",
+        "createdBy": "6116d75820a45f00095030ae",
+        "integration": {
+          "service": "gmail",
+          "identifier": {
+            "id": "17a97f238eb025b4",
+            "messageId": "17a97f238eb025b4",
+            "accountId": "devin@devinhalladay.com",
+            "url": null,
+            "__typename": "TaskGmailIntegrationIdentifier"
+          },
+          "__typename": "TaskGmailIntegration"
+        },
+        "deleted": false,
+        "text": "Hey",
+        "notes": "",
+        "notesMarkdown": null,
+        "notesChecksum": null,
+        "editorVersion": null,
+        "collabSnapshot": null,
+        "completed": false,
+        "completedBy": null,
+        "completeDate": null,
+        "completeOn": null,
+        "duration": null,
+        "runDate": null,
+        "snooze": {
+          "userId": "6116d75820a45f00095030ae",
+          "date": "2021-10-25T14:30:41.306Z",
+          "until": "2021-10-27T04:00:00.000Z",
+          "__typename": "TaskSnooze"
+        },
+        "dueDate": null,
+        "comments": null,
+        "orderings": [
+          {
+            "ordinal": 10240,
+            "panelDate": "2021-10-27T04:00:00.000Z",
+            "channelId": null,
+            "userId": "6116d75820a45f00095030ae",
+            "__typename": "TaskOrdering"
+          }
+        ],
+        "subtasks": [],
+        "subtasksCollapsed": null,
+        "sequence": null,
+        "followers": [],
+        "timeEstimate": null,
+        "actualTime": null,
+        "createdAt": "2021-08-19T00:32:36.658Z",
+        "lastModified": "2021-10-25T14:30:41.306Z",
+        "objectiveId": null,
+        "__typename": "Task"
+      }
+    ]
+  }
+}

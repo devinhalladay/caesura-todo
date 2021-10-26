@@ -1,12 +1,26 @@
 module.exports = {
   mode: 'jit',
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  purge: [
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+  ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    fontFamily: {
+      'sans-serif': ['Noto Sans', 'sans-serif'],
+    },
+    extend: {
+      strokeWidth: {
+        '3': '3',
+        '4': '4',
+        '6': '6'
+      }
+    }
   },
   variants: {
-    extend: {},
+    extend: {
+      strokeWidth: ['hover', 'focus'],
+    },
   },
   plugins: [],
-}
+};

@@ -8,6 +8,7 @@
   "dependencies": {
     "@firebase/auth": "^0.18.3",
     "@firebase/database": "^0.12.2",
+    "@svgr/webpack": "^5.5.0",
     "dayjs": "^1.10.7",
     "firebase": "^8.9.1",
     "firebase-admin": "^9.11.0",

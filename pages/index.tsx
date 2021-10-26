@@ -195,7 +195,7 @@ const Home = () => {
       data.columns[columnId].taskIds.length + 1
     }`;
 
-    newTaskIds.push(taskId);
+    newTaskIds.unshift(taskId);
 
     let newTasks = {
       ...data.tasks,
@@ -218,7 +218,7 @@ const Home = () => {
         'objectiveId': null,
         'runDate': null,
         'taskType': 'outcomes',
-        'text': 'Clear sink of dishes',
+        'text': 'Clear sink of diretyshes',
         'timeEstimate': 15,
       },
     };
@@ -248,7 +248,7 @@ const Home = () => {
       <div className="LeftSidebar w-60 flex flex-col bg-gray-100 h-full flex-grow-0 p-4">
         Calendar
       </div>
-      <div className="Board flex flex-col w-full flex-auto h-full">
+      <div className="Board flex flex-col w-full flex-auto h-full bg-gray-100 max-w-full">
         <div className="Board__Nav flex flex-col border-b border-gray-400 p-4">
           Nav
         </div>

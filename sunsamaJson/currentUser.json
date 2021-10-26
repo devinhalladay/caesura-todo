@@ -1,0 +1,589 @@
+{
+  "data": {
+    "currentUser": {
+      "_id": "6116d75820a45f00095030ae",
+      "activationDate": "2021-08-13T20:35:16.613Z",
+      "admin": null,
+      "aka": ["devin@sanctuary.computer"],
+      "calendar": {
+        "items": [
+          {
+            "id": "ht3jlfaac5lfd6263ulfh4tql8@group.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1587579947802000\"",
+              "summary": "Phases of the Moon",
+              "timeZone": "America/New_York",
+              "colorId": "18",
+              "selected": null,
+              "accessRole": "reader",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "sanctuary.computer_6a5lbf6b0sg0242e7sqsoub6mc@group.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1606169900077000\"",
+              "summary": "Work Log",
+              "timeZone": "America/New_York",
+              "colorId": "12",
+              "selected": null,
+              "accessRole": "owner",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "addressbook#contacts@group.v.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1606169900077000\"",
+              "summary": "Birthdays",
+              "timeZone": "America/New_York",
+              "colorId": "13",
+              "selected": null,
+              "accessRole": "reader",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "en.usa#holiday@group.v.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1606169900077000\"",
+              "summary": "Holidays in United States",
+              "timeZone": "America/New_York",
+              "colorId": "8",
+              "selected": null,
+              "accessRole": "reader",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "c_jq4kug1ikusjl89ofu50r3piuo@group.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1606169908278000\"",
+              "summary": "Hydraulics Meetings",
+              "timeZone": "America/New_York",
+              "colorId": "14",
+              "selected": null,
+              "accessRole": "owner",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "3qg4musj7ch2ndnlooohk6bahfb8kpnj@import.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1606169913056000\"",
+              "summary": "https://secure.justworks.com/calendar/ical/c74fc262d9e78e30d4a17a5ce901bad5",
+              "timeZone": "UTC",
+              "colorId": "22",
+              "selected": null,
+              "accessRole": "reader",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "sanctuary.computer_gbrhi5ntv010b4878hcjg4vrks@group.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1606233166525000\"",
+              "summary": "Sanctuary Meetings",
+              "timeZone": "America/New_York",
+              "colorId": "16",
+              "selected": null,
+              "accessRole": "writer",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "c_ost5qq25j8grdtamt9tu82jl7c@group.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1612373490780000\"",
+              "summary": "Clockwise: garden3d",
+              "timeZone": "America/Los_Angeles",
+              "colorId": "12",
+              "selected": true,
+              "accessRole": "owner",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "c_crtpij8eh5b7f17oqdrd4jki94@group.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1613674233603000\"",
+              "summary": "Clockwise: Manhattan Hydraulics",
+              "timeZone": "America/Los_Angeles",
+              "colorId": "10",
+              "selected": true,
+              "accessRole": "owner",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "tim@sanctuary.computer",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1616694390545000\"",
+              "summary": "garden3d",
+              "timeZone": "America/Los_Angeles",
+              "colorId": "7",
+              "selected": null,
+              "accessRole": "reader",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "gg2h8b4nanpsutcsfqpel3kc1c@group.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1624559188455000\"",
+              "summary": "Project Farmhouse",
+              "timeZone": "America/New_York",
+              "colorId": "1",
+              "selected": true,
+              "accessRole": "reader",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "7cdbgn4oggnon2h5e670683a20@group.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1624559188674000\"",
+              "summary": "Greenmarket",
+              "timeZone": "America/New_York",
+              "colorId": "4",
+              "selected": true,
+              "accessRole": "reader",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "cfrnhf22h4qlqmgvtckbb4vtmk@group.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1624559188953000\"",
+              "summary": "Gardens",
+              "timeZone": "America/New_York",
+              "colorId": "19",
+              "selected": true,
+              "accessRole": "reader",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "oklhpttolel8q4u6c738hhspuk@group.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1624559189162000\"",
+              "summary": "Recycling",
+              "timeZone": "America/New_York",
+              "colorId": "18",
+              "selected": true,
+              "accessRole": "reader",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "grownycevents@gmail.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1624559189394000\"",
+              "summary": "GrowNYC Special Events",
+              "timeZone": "America/New_York",
+              "colorId": "18",
+              "selected": true,
+              "accessRole": "reader",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "adt0af2ln8j8mdjov5ods2hbo8@group.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1624559189607000\"",
+              "summary": "Grow to Learn",
+              "timeZone": "America/New_York",
+              "colorId": "3",
+              "selected": true,
+              "accessRole": "reader",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "devin@sanctuary.computer",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1624559518050000\"",
+              "summary": "devin@sanctuary.computer",
+              "timeZone": "America/New_York",
+              "colorId": "16",
+              "selected": true,
+              "accessRole": "owner",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          },
+          {
+            "id": "c_7qo0cl10teotv1hnith51f5bv0@group.calendar.google.com",
+            "accountId": "devin@sanctuary.computer",
+            "google": {
+              "kind": "calendar#calendarListEntry",
+              "etag": "\"1625090340567000\"",
+              "summary": "Bookings",
+              "timeZone": "America/New_York",
+              "colorId": "17",
+              "selected": true,
+              "accessRole": "owner",
+              "accountId": "devin@sanctuary.computer",
+              "__typename": "UserCalendarItemGoogle"
+            },
+            "microsoft": null,
+            "__typename": "UserCalendarItem"
+          }
+        ],
+        "__typename": "UserCalendar"
+      },
+      "services": {
+        "google": {
+          "scope": [
+            "https://www.googleapis.com/auth/userinfo.email",
+            "https://www.googleapis.com/auth/userinfo.profile",
+            "https://www.googleapis.com/auth/calendar.events",
+            "https://www.googleapis.com/auth/calendar.readonly",
+            "openid",
+            "https://www.googleapis.com/auth/gmail.modify"
+          ],
+          "id": "108355334640003924264",
+          "email": "devin@sanctuary.computer",
+          "name": "Devin Halladay",
+          "picture": "https://lh3.googleusercontent.com/a-/AOh14GgwhLLAP-fk8uiiE-Rtd0hbi94bfW7oYjGV_7_u=s96-c",
+          "locale": "en",
+          "__typename": "UserServicesGoogle"
+        },
+        "microsoft": null,
+        "__typename": "UserServices"
+      },
+      "emails": [
+        {
+          "address": "devin@sanctuary.computer",
+          "verified": true,
+          "__typename": "UserEmail"
+        }
+      ],
+      "primaryGroup": {
+        "groupId": "6116d78120a45f00095030b0",
+        "__typename": "UserPrimaryGroup"
+      },
+      "onboarding": null,
+      "preferences": {
+        "defaultCalendarView": null,
+        "defaultHomeView": null,
+        "defaultMainPanel": null,
+        "defaultMobileCalendarView": null,
+        "defaultHideTasks": null,
+        "hideTeamEvtCopies": null,
+        "hideMessenger": null,
+        "startDayOfWeekOffset": null,
+        "workingSessionTransparency": null,
+        "workingSessionVisibility": null,
+        "workingSessionCalendar": null,
+        "workingSessionDuration": null,
+        "promptToUpdateStatus": null,
+        "darkMode": false,
+        "autoArchiveThreshold": null,
+        "showDeclinedEvents": false,
+        "usePlannedTimeAsActualTime": null,
+        "rollToTop": null,
+        "includeWeekendInReflection": null,
+        "autoFocus": null,
+        "workloadThreshold": null,
+        "__typename": "UserPreferences"
+      },
+      "contacts": [],
+      "createdAt": "2021-08-13T20:34:32.154Z",
+      "dailyPlanning": {
+        "snoozedUntilDate": "2021-10-21T04:00:00.000Z",
+        "lastDayPlanned": "2021-10-26",
+        "disabledSteps": null,
+        "importEventsWithoutInvitees": null,
+        "__typename": "UserDailyPlanning"
+      },
+      "dailyShutdown": {
+        "snoozedUntilDate": null,
+        "lastDayShutdown": "2021-10-11",
+        "__typename": "UserDailyShutdown"
+      },
+      "daysPlanned": 33,
+      "daysShutdown": 6,
+      "desktopApp": {
+        "darwin": {
+          "status": "downloaded",
+          "deferralDate": null,
+          "lastModified": "2021-08-17T15:13:23.875Z",
+          "__typename": "UserDesktopAppType"
+        },
+        "win32": null,
+        "linux": null,
+        "__typename": "UserDesktopApp"
+      },
+      "mobileApp": {
+        "status": "iOS 14.8: v1.5.13-20210902.0821",
+        "os": "ios",
+        "lastModified": "2021-10-20T20:32:37.885Z",
+        "__typename": "UserMobileApp"
+      },
+      "gcalendar": [
+        {
+          "integrationEnabled": true,
+          "accountId": "devin@sanctuary.computer",
+          "__typename": "UserGoogleCalendar"
+        }
+      ],
+      "lastAnnouncementCheckDate": "2021-10-05T18:09:42.447Z",
+      "lastModified": "2021-08-19T23:38:14.049Z",
+      "nodeId": "6116d76a20a45f00095030af",
+      "notifySettings": {
+        "inviteeResponse": null,
+        "invitedToEvent": null,
+        "eventUpdated": null,
+        "eventCancelled": null,
+        "newComments": null,
+        "shareTasks": null,
+        "taskComment": {
+          "subscribed": true,
+          "channels": ["email"],
+          "__typename": "UserNotifySetting"
+        },
+        "taskStream": {
+          "subscribed": true,
+          "channels": ["email"],
+          "__typename": "UserNotifySetting"
+        },
+        "taskAssignee": {
+          "subscribed": true,
+          "channels": ["email"],
+          "__typename": "UserNotifySetting"
+        },
+        "taskCompletion": {
+          "subscribed": true,
+          "channels": ["email"],
+          "__typename": "UserNotifySetting"
+        },
+        "taskSchedule": {
+          "subscribed": true,
+          "channels": ["email"],
+          "__typename": "UserNotifySetting"
+        },
+        "taskCreation": {
+          "subscribed": true,
+          "channels": ["email"],
+          "__typename": "UserNotifySetting"
+        },
+        "eventReminders": null,
+        "dossier": null,
+        "planYourDay": {
+          "subscribed": true,
+          "channels": ["email", "email"],
+          "__typename": "UserNotifySetting"
+        },
+        "weeklyStats": {
+          "subscribed": true,
+          "channels": ["email"],
+          "__typename": "UserNotifySetting"
+        },
+        "weekReview": {
+          "subscribed": true,
+          "channels": ["email", "email"],
+          "__typename": "UserNotifySetting"
+        },
+        "systemUpdates": {
+          "subscribed": true,
+          "channels": ["email"],
+          "__typename": "UserNotifySetting"
+        },
+        "__typename": "UserNotifySettings"
+      },
+      "profile": {
+        "profilePictureURL": "https://s3-us-west-2.amazonaws.com/sunsama-profile-images/users/devin.halladay/profile_192x192.jpg",
+        "backgroundURL": null,
+        "firstname": "Devin",
+        "lastname": "Halladay",
+        "timezone": "America/New_York",
+        "timezoneWarningDisabled": null,
+        "conferenceNumber": null,
+        "jobTitle": "Designer and Strategist",
+        "briefInfo": null,
+        "companyName": "Manhattan Hydraulics",
+        "companySize": "",
+        "homeCity": null,
+        "role": "Designer and Strategist",
+        "onboardingEventSent": true,
+        "twitterHandle": null,
+        "fbHandle": null,
+        "linkedinHandle": null,
+        "githubHandle": null,
+        "profileThumbs": {
+          "image_24": "https://s3-us-west-2.amazonaws.com/sunsama-profile-images/users/devin.halladay/profile_24x24.jpg",
+          "image_32": "https://s3-us-west-2.amazonaws.com/sunsama-profile-images/users/devin.halladay/profile_32x32.jpg",
+          "image_48": "https://s3-us-west-2.amazonaws.com/sunsama-profile-images/users/devin.halladay/profile_48x48.jpg",
+          "image_72": "https://s3-us-west-2.amazonaws.com/sunsama-profile-images/users/devin.halladay/profile_72x72.jpg",
+          "image_192": "https://s3-us-west-2.amazonaws.com/sunsama-profile-images/users/devin.halladay/profile_192x192.jpg",
+          "__typename": "PictureThumbs"
+        },
+        "useCase": null,
+        "__typename": "UserProfile"
+      },
+      "toursCompleted": [
+        "welcomeVideo",
+        "addTaskTip",
+        "taskPanelTip",
+        "streamsFilterTip",
+        "onboardingContentCleanupTip",
+        "onboardingContentTip",
+        "planDayGuide",
+        "firstKeyboardShortcut",
+        "upvoteEmail",
+        "weeklyReviewRitual",
+        "emailCourse",
+        "weeklyPlanning"
+      ],
+      "username": "devin.halladay",
+      "waitList": null,
+      "weeklyPlanning": {
+        "hour": null,
+        "minute": null,
+        "isoWeekday": null,
+        "lastWeekPlanned": "2021-10-25",
+        "weeksPlanned": 1,
+        "disabled": null,
+        "__typename": "UserWeeklyPlanning"
+      },
+      "weeklyReview": {
+        "hour": null,
+        "minute": null,
+        "isoWeekday": null,
+        "lastWeekReviewed": "2021-10-11",
+        "weeksReviewed": 3,
+        "disabled": null,
+        "__typename": "UserWeeklyReview"
+      },
+      "lastArchiveCheckDate": "2021-10-14T19:27:11.079Z",
+      "integrationRequests": ["todoist", "gmail"],
+      "dayStart": {
+        "hour": 18,
+        "minute": 0,
+        "disabled": false,
+        "__typename": "UserDayStart"
+      },
+      "dayEnd": null,
+      "waitlistId": "qN2fPbOw2ZlF8xH3PRLQnB",
+      "trialPeriod": null,
+      "qualificationAssessment": null,
+      "disappointmentIndex": null,
+      "emailCourses": [
+        {
+          "id": "indistractable-1",
+          "status": "subscribed",
+          "__typename": "UserEmailCourse"
+        },
+        {
+          "id": "daily-shutdown",
+          "status": "completed",
+          "__typename": "UserEmailCourse"
+        },
+        {
+          "id": "indistractable-ideas",
+          "status": "completed",
+          "__typename": "UserEmailCourse"
+        },
+        {
+          "id": "atomic-habits",
+          "status": "completed",
+          "__typename": "UserEmailCourse"
+        }
+      ],
+      "tracking": {
+        "facebook": {
+          "_fbp": "fb.1.1628886676301.382017564",
+          "_fbc": null,
+          "__typename": "UserTrackingFacebook"
+        },
+        "__typename": "UserTracking"
+      },
+      "__typename": "User"
+    }
+  }
+}
