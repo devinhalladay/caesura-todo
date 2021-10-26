@@ -22,9 +22,9 @@ const initialColumns = createDaysForCurrentMonth('2021', '10').reduce(
       id: currentValue.dateString,
       title: 'testset',
       taskIds: [
-        `${currentValue.dateString}-${currentIndex}`,
-        `${currentValue.dateString}-${currentIndex + 1}`,
-        `${currentValue.dateString}-${currentIndex + 2}`,
+        `${currentValue.dateString}-1`,
+        `${currentValue.dateString}-2`,
+        `${currentValue.dateString}-3`,
       ],
     },
   }),
@@ -38,8 +38,8 @@ let initialColumnOrder = createDaysForCurrentMonth('2021', '10').map(
 const initialTasks = createDaysForCurrentMonth('2021', '10').reduce(
   (acc, currentValue, currentIndex) => ({
     ...acc,
-    [`${currentValue.dateString}-${currentIndex}`]: {
-      'id': `${currentValue.dateString}-${currentIndex}`,
+    [`${currentValue.dateString}-1`]: {
+      'id': `${currentValue.dateString}-1`,
       'actualTime': null,
       'completeDate': null,
       'completeOn': null,
@@ -60,8 +60,8 @@ const initialTasks = createDaysForCurrentMonth('2021', '10').reduce(
       'text': 'Clear sink of dishes',
       'timeEstimate': 15,
     },
-    [`${currentValue.dateString}-${currentIndex + 1}`]: {
-      'id': `${currentValue.dateString}-${currentIndex + 1}`,
+    [`${currentValue.dateString}-2`]: {
+      'id': `${currentValue.dateString}-2`,
       'actualTime': null,
       'completeDate': null,
       'completeOn': null,
@@ -82,8 +82,8 @@ const initialTasks = createDaysForCurrentMonth('2021', '10').reduce(
       'text': 'Clear sink of dishes',
       'timeEstimate': 15,
     },
-    [`${currentValue.dateString}-${currentIndex + 2}`]: {
-      'id': `${currentValue.dateString}-${currentIndex + 2}`,
+    [`${currentValue.dateString}-3`]: {
+      'id': `${currentValue.dateString}-3`,
       'actualTime': null,
       'completeDate': null,
       'completeOn': null,
@@ -187,6 +187,62 @@ const Home = () => {
     setData(newState);
   };
 
+  const newTask = (columnId: string) => {
+    let newTaskIds = Array.from(data.columns[columnId].taskIds);
+
+    console.log(newTaskIds);
+    let taskId = `${columnId}-${
+      data.columns[columnId].taskIds.length + 1
+    }`;
+
+    newTaskIds.push(taskId);
+
+    let newTasks = {
+      ...data.tasks,
+      [taskId]: {
+        'id': taskId,
+        'actualTime': null,
+        'completeDate': null,
+        'completeOn': null,
+        'completed': false,
+        'completedBy': null,
+        'createdAt': '2021-10-11T20:05:47.293Z',
+        'createdBy': '6116d75820a45f00095030ae',
+        'dueDate': null,
+        'duration': null,
+        'eventInfo': null,
+        'groupId': '6116d78120a45f00095030b0',
+        'integration': null,
+        'lastModified': '2021-10-25T14:31:12.628Z',
+        'notes': '',
+        'objectiveId': null,
+        'runDate': null,
+        'taskType': 'outcomes',
+        'text': 'Clear sink of dishes',
+        'timeEstimate': 15,
+      },
+    };
+
+    const newColumn = {
+      ...data.columns[columnId],
+      taskIds: newTaskIds,
+    };
+
+    const newState = {
+      ...data,
+      columns: { ...data.columns, [columnId]: newColumn },
+      tasks: { ...initialTasks, ...newTasks },
+    };
+
+    console.log(data);
+
+    console.log(newState);
+
+    setData(newState);
+
+    return;
+  };
+
   return (
     <div className="flex absolute top-0 left-0 w-full h-full">
       <div className="LeftSidebar w-60 flex flex-col bg-gray-100 h-full flex-grow-0 p-4">
@@ -207,6 +263,7 @@ const Home = () => {
 
               return (
                 <Column
+                  newTask={newTask}
                   key={column.id}
                   column={column}
                   tasks={tasks}

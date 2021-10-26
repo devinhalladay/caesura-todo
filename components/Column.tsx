@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import Task from './Task';
 import { Droppable } from 'react-beautiful-dnd';
 
-const Column = ({ column, tasks }) => {
+const Column = ({ column, tasks, newTask }) => {
   const ref = useRef(null);
 
   return (
@@ -15,6 +15,9 @@ const Column = ({ column, tasks }) => {
               className="w-60"
               ref={provided.innerRef}
               {...provided.droppableProps}>
+              <button onClick={() => newTask(column.id)}>
+                New Task
+              </button>
               {tasks.map((task, index) => (
                 <Task key={task.id} task={task} index={index} />
               ))}
