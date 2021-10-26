@@ -6,7 +6,7 @@ const Column = ({ column, tasks }) => {
   const ref = useRef(null);
 
   return (
-    <div>
+    <div className="mr-4">
       <p>{column.title}</p>
       <div>
         <Droppable droppableId={column.id}>

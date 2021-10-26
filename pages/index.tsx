@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import {
   useAuthUser,
   withAuthUser,
@@ -9,110 +10,115 @@ import {
   resetServerContext,
 } from 'react-beautiful-dnd';
 import Column from '../components/Column';
+import {
+  createDaysForCurrentMonth,
+  daysOfWeek,
+} from '../utils/dates';
+
+const initialColumns = createDaysForCurrentMonth('2021', '10').reduce(
+  (acc, currentValue, currentIndex) => ({
+    ...acc,
+    [currentValue.dateString]: {
+      id: currentValue.dateString,
+      title: 'testset',
+      taskIds: [
+        `${currentValue.dateString}-${currentIndex}`,
+        `${currentValue.dateString}-${currentIndex + 1}`,
+        `${currentValue.dateString}-${currentIndex + 2}`,
+      ],
+    },
+  }),
+  {}
+);
+
+let initialColumnOrder = createDaysForCurrentMonth('2021', '10').map(
+  (day, index) => day.dateString
+);
+
+const initialTasks = createDaysForCurrentMonth('2021', '10').reduce(
+  (acc, currentValue, currentIndex) => ({
+    ...acc,
+    [`${currentValue.dateString}-${currentIndex}`]: {
+      'id': `${currentValue.dateString}-${currentIndex}`,
+      'actualTime': null,
+      'completeDate': null,
+      'completeOn': null,
+      'completed': false,
+      'completedBy': null,
+      'createdAt': '2021-10-11T20:05:47.293Z',
+      'createdBy': '6116d75820a45f00095030ae',
+      'dueDate': null,
+      'duration': null,
+      'eventInfo': null,
+      'groupId': '6116d78120a45f00095030b0',
+      'integration': null,
+      'lastModified': '2021-10-25T14:31:12.628Z',
+      'notes': '',
+      'objectiveId': null,
+      'runDate': null,
+      'taskType': 'outcomes',
+      'text': 'Clear sink of dishes',
+      'timeEstimate': 15,
+    },
+    [`${currentValue.dateString}-${currentIndex + 1}`]: {
+      'id': `${currentValue.dateString}-${currentIndex + 1}`,
+      'actualTime': null,
+      'completeDate': null,
+      'completeOn': null,
+      'completed': false,
+      'completedBy': null,
+      'createdAt': '2021-10-11T20:05:47.293Z',
+      'createdBy': '6116d75820a45f00095030ae',
+      'dueDate': null,
+      'duration': null,
+      'eventInfo': null,
+      'groupId': '6116d78120a45f00095030b0',
+      'integration': null,
+      'lastModified': '2021-10-25T14:31:12.628Z',
+      'notes': '',
+      'objectiveId': null,
+      'runDate': null,
+      'taskType': 'outcomes',
+      'text': 'Clear sink of dishes',
+      'timeEstimate': 15,
+    },
+    [`${currentValue.dateString}-${currentIndex + 2}`]: {
+      'id': `${currentValue.dateString}-${currentIndex + 2}`,
+      'actualTime': null,
+      'completeDate': null,
+      'completeOn': null,
+      'completed': false,
+      'completedBy': null,
+      'createdAt': '2021-10-11T20:05:47.293Z',
+      'createdBy': '6116d75820a45f00095030ae',
+      'dueDate': null,
+      'duration': null,
+      'eventInfo': null,
+      'groupId': '6116d78120a45f00095030b0',
+      'integration': null,
+      'lastModified': '2021-10-25T14:31:12.628Z',
+      'notes': '',
+      'objectiveId': null,
+      'runDate': null,
+      'taskType': 'outcomes',
+      'text': 'Clear sink of dishes',
+      'timeEstimate': 15,
+    },
+  }),
+  {}
+);
 
 const initialData = {
-  tasks: {
-    '1': {
-      'id': '1',
-      'actualTime': null,
-      'completeDate': null,
-      'completeOn': null,
-      'completed': false,
-      'completedBy': null,
-      'createdAt': '2021-10-11T20:05:47.293Z',
-      'createdBy': '6116d75820a45f00095030ae',
-      'dueDate': null,
-      'duration': null,
-      'eventInfo': null,
-      'groupId': '6116d78120a45f00095030b0',
-      'integration': null,
-      'lastModified': '2021-10-25T14:31:12.628Z',
-      'notes': '',
-      'objectiveId': null,
-      'runDate': null,
-      'taskType': 'outcomes',
-      'text': 'Clear sink of dishes',
-      'timeEstimate': 15,
-    },
-    '2': {
-      'id': '2',
-      'actualTime': null,
-      'completeDate': null,
-      'completeOn': null,
-      'completed': false,
-      'completedBy': null,
-      'createdAt': '2021-10-11T20:05:47.293Z',
-      'createdBy': '6116d75820a45f00095030ae',
-      'dueDate': null,
-      'duration': null,
-      'eventInfo': null,
-      'groupId': '6116d78120a45f00095030b0',
-      'integration': null,
-      'lastModified': '2021-10-25T14:31:12.628Z',
-      'notes': '',
-      'objectiveId': null,
-      'runDate': null,
-      'taskType': 'outcomes',
-      'text': 'Clear sink of dishes',
-      'timeEstimate': 15,
-    },
-    '3': {
-      'id': '3',
-      'actualTime': null,
-      'completeDate': null,
-      'completeOn': null,
-      'completed': false,
-      'completedBy': null,
-      'createdAt': '2021-10-11T20:05:47.293Z',
-      'createdBy': '6116d75820a45f00095030ae',
-      'dueDate': null,
-      'duration': null,
-      'eventInfo': null,
-      'groupId': '6116d78120a45f00095030b0',
-      'integration': null,
-      'lastModified': '2021-10-25T14:31:12.628Z',
-      'notes': '',
-      'objectiveId': null,
-      'runDate': null,
-      'taskType': 'outcomes',
-      'text': 'Clear sink of dishes',
-      'timeEstimate': 15,
-    },
-    '4': {
-      'id': '4',
-      'actualTime': null,
-      'completeDate': null,
-      'completeOn': null,
-      'completed': false,
-      'completedBy': null,
-      'createdAt': '2021-10-11T20:05:47.293Z',
-      'createdBy': '6116d75820a45f00095030ae',
-      'dueDate': null,
-      'duration': null,
-      'eventInfo': null,
-      'groupId': '6116d78120a45f00095030b0',
-      'integration': null,
-      'lastModified': '2021-10-25T14:31:12.628Z',
-      'notes': '',
-      'objectiveId': null,
-      'runDate': null,
-      'taskType': 'outcomes',
-      'text': 'Clear sink of dishes',
-      'timeEstimate': 15,
-    },
-  },
-  columns: {
-    'column-1': {
-      id: 'column-1',
-      title: 'To do',
-      taskIds: ['1', '3'],
-    },
-  },
-  columnOrder: ['column-1'],
+  tasks: initialTasks,
+  columns: initialColumns,
+  columnOrder: initialColumnOrder,
 };
 
 const Home = () => {
   const AuthUser = useAuthUser();
+
+  console.log(initialData);
+  const currentMonthDays = createDaysForCurrentMonth('2021', '10');
 
   const [data, setData] = useState(initialData);
 
@@ -130,26 +136,53 @@ const Home = () => {
       return;
     }
 
-    const column = data.columns[source.droppableId];
+    const start = data.columns[source.droppableId];
+    const finish = data.columns[destination.droppableId];
 
-    const newTaskIds = Array.from(column.taskIds);
+    if (start === finish) {
+      const newTaskIds = Array.from(start.taskIds);
 
-    newTaskIds.splice(source.index, 1);
-    newTaskIds.splice(destination.index, 0, draggableId);
+      newTaskIds.splice(source.index, 1);
+      newTaskIds.splice(destination.index, 0, draggableId);
 
-    const newColumn = {
-      ...column,
-      taskIds: newTaskIds,
+      const newColumn = {
+        ...start,
+        taskIds: newTaskIds,
+      };
+
+      const newState = {
+        ...data,
+        columns: { ...data.columns, [newColumn.id]: newColumn },
+      };
+
+      setData(newState);
+
+      return;
+    }
+
+    // Move from one list to another
+    const startTaskIds = Array.from(start.taskIds);
+    startTaskIds.splice(source.index, 1);
+    const newStart = {
+      ...start,
+      taskIds: startTaskIds,
+    };
+
+    const finishTaskIds = Array.from(finish.taskIds);
+    finishTaskIds.splice(destination.index, 0, draggableId);
+    const newFinish = {
+      ...finish,
+      taskIds: finishTaskIds,
     };
 
     const newState = {
       ...data,
-      columns: { ...data.columns, [newColumn.id]: newColumn },
+      columns: {
+        ...data.columns,
+        [newStart.id]: newStart,
+        [newFinish.id]: newFinish,
+      },
     };
-
-    console.log(newState);
-
-    console.log(data);
 
     setData(newState);
   };
@@ -165,11 +198,13 @@ const Home = () => {
         </div>
         <div className="flex p-4">
           <DragDropContext onDragEnd={dragEnd}>
-            {data.columnOrder.map((columnId) => {
+            {data.columnOrder.map((columnId, index) => {
               const column = data.columns[columnId];
+
               const tasks = column.taskIds.map(
                 (taskId) => data.tasks[taskId]
               );
+
               return (
                 <Column
                   key={column.id}
