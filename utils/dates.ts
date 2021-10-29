@@ -16,6 +16,19 @@ export const daysOfWeek = [
   "Saturday"
 ];
 
+export function getDateRange(openTime: any, closeTime: any) {
+  let ranges = []
+  let currentDate = dayjs(openTime);
+
+  while (currentDate.isBefore(closeTime)) {
+    currentDate = currentDate.add(1, 'day');
+    ranges.push(currentDate.format('YYYY-MM-DD'));
+  }
+
+  return ranges
+}
+
+
 export function getYearDropdownOptions(currentYear) {
   let minYear = currentYear - 4;
   let maxYear = currentYear + 5;
@@ -60,8 +73,7 @@ export function createDaysForPreviousMonth(year, month, currentMonthDays) {
   return [...Array(visibleNumberOfDaysFromPreviousMonth)].map((_, index) => {
     return {
       dateString: dayjs(
-        `${previousMonth.year()}-${previousMonth.month() + 1}-${
-          previousMonthLastMondayDayOfMonth + index
+        `${previousMonth.year()}-${previousMonth.month() + 1}-${previousMonthLastMondayDayOfMonth + index
         }`
       ).format("YYYY-MM-DD"),
       dayOfMonth: previousMonthLastMondayDayOfMonth + index,

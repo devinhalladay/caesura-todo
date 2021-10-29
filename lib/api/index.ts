@@ -1,6 +1,10 @@
 import { getFirebaseAdmin } from "next-firebase-auth";
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 import { HttpMethod, Task } from "../../types";
+// import { query, where } from "firebase/firestore";
 import Request from "../request";
+import dayjs from "dayjs";
 
 export const Api = {
   url: (path: string) =>
@@ -46,10 +50,20 @@ export const Tasks: Task = {
     date
   }) => {
     const db = getFirebaseAdmin().firestore()
-    try {
-      const tasks = await db.collection("tasks").where("createdBy", "==", userId).get()
+    let tasks = await db.collection("tasks").where("createdBy", "==", userId).get()
 
-      return tasks.docs.length > 0 ? tasks : null
+    // tasks.docs.map(task => {
+    //   console.log(dayjs(date).isSame(task.data().plannedOnDate, 'day'));
+    // })
+
+    tasks = tasks.docs.filter(task => dayjs(date).isSame(task.data().plannedOnDate, 'day'))
+
+    try {
+      // let tasks = await db.collection("tasks")
+      // tasks = tasks.where("plannedOnDate", "==", date)
+      // tasks = tasks.get()
+
+      return tasks.length > 0 ? tasks : null
     } catch (error) {
       console.error(error)
       return null;

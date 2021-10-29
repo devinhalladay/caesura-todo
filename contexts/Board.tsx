@@ -218,10 +218,6 @@ export const taskReducer = (
     }
 
     case TaskAction.COMPLETE_TASK: {
-      // let newTask = { ...state.tasks[action.payload.taskId] }
-      // newTask.completed = true;
-      // newTask.completeDate = dayjs()
-
       const resp = Api.request({
         method: HttpMethod.POST,
         path: `/tasks/update`,
@@ -229,22 +225,29 @@ export const taskReducer = (
           id: action.payload.id,
           updates: action.payload.updates
         },
-      }).then((doc) =>
-        console.log(doc)
-      );
-
-
-      const newState = {
-        ...state,
-        tasks: {
-          ...state.tasks, [action.payload.id]: {
-            ...state.tasks[action.payload.id],
-            ...action.payload.updates
+      }).then((doc) => {
+        const newState = {
+          ...state,
+          tasks: {
+            ...state.tasks, [action.payload.id]: {
+              ...state.tasks[action.payload.id],
+              ...action.payload.updates
+            },
           },
-        },
-      };
+        };
 
-      return newState
+        console.log('NEW STATE');
+
+        console.log(newState);
+        console.log(doc);
+
+
+
+        return newState
+      }).catch((err) => {
+        console.error(err)
+        return err
+      })
     }
 
     case TaskAction.UNCOMPLETE_TASK: {

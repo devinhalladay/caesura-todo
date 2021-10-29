@@ -10,19 +10,19 @@ import { TaskAction } from '../types';
 dayjs.extend(localeData);
 dayjs.extend(isoWeek);
 
-const Column = ({ column, tasks, userId }) => {
+const Column = ({ date, tasks, userId }) => {
   const ref = useRef(null);
 
   const { dispatch, state } = useBoard();
 
-  const date = dayjs(column.id);
-  const dayOfWeek = dayjs.weekdays()[date.day()].toString();
+  // const date = dayjs(column.id);
+  const dayOfWeek = dayjs.weekdays()[dayjs(date).day()].toString();
 
   const handleAddTask = () => {
     dispatch({
       type: TaskAction.ADD_TASK,
       payload: {
-        columnId: column.id,
+        columnId: date,
         task: {
           id: uuid(),
           completed: false,
@@ -43,13 +43,13 @@ const Column = ({ column, tasks, userId }) => {
         {dayOfWeek}
       </p>
       <p className="text-sm text-gray-500 mb-2">
-        {date.format('MMMM DD')}
+        {dayjs(date).format('MMMM DD')}
       </p>
       <div className="h-2 relative w-full bg-gray-200 rounded-full overflow-hidden mb-4">
         <span className="absolute top-0 left-0 h-full w-10 bg-green-500"></span>
       </div>
       <div>
-        <Droppable droppableId={column.id}>
+        <Droppable droppableId={date}>
           {(provided) => (
             <div
               className="w-60 cursor-pointer"

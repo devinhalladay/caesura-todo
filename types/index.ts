@@ -52,6 +52,7 @@ export type Task = {
   text: string,
   completed: boolean,
   createdBy: string,
+  plannedOnDate: Date | string,
   actualTime?: number,
   completeDate?: string | Dayjs | Date | null,
   dueDate?: Date,
@@ -59,6 +60,7 @@ export type Task = {
   notes?: string,
   objectiveId?: string,
   timeEstimate?: number,
+
   // runDate: null,
   // taskType: outcomes,
 }

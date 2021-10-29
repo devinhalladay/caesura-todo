@@ -1,7 +1,6 @@
 import { getFirebaseAdmin } from 'next-firebase-auth'
 import { v4 as uuid } from 'uuid';
 
-
 import dayjs from 'dayjs';
 import {
   useAuthUser,
@@ -17,6 +16,7 @@ import Column from '../components/Column';
 import {
   createDaysForCurrentMonth,
   daysOfWeek,
+  getDateRange,
 } from '../utils/dates';
 import DatePicker from 'react-datepicker';
 import { useBoard } from '../contexts/Board';
@@ -25,15 +25,18 @@ import { TaskAction, Task } from '../types';
 import { Api, Tasks } from '../lib/api';
 
 type Home = {
-  tasks: Task
+  // tasks: Task,
+  tasksByDate: Record<Task['plannedOnDate'], Task>,
+  dates: string[]
 }
 
-const Home = ({tasks}: Home) => {
-  console.log(tasks);
-
+const Home = ({tasksByDate, dates}: Home) => {
   const AuthUser = useAuthUser();
-  console.log(uuid());
   const { state, dispatch } = useBoard();
+
+  console.log(tasksByDate);
+
+
 
   const currentMonthDays = createDaysForCurrentMonth('2021', '10');
 
@@ -61,18 +64,15 @@ const Home = ({tasks}: Home) => {
         </div>
         <div className="flex p-4">
           <DragDropContext onDragEnd={dragEnd}>
-            {state.columnOrder.map((columnId, index) => {
-              const column = state.columns[columnId];
-
-              // const tasks = column.taskIds.map(
-              //   (taskId) => state.tasks[taskId]
-              // );
+            {dates.map((date, index) => {
+              console.log(date);
 
               return (
                 <Column
-                  key={column.id}
-                  column={column}
-                  tasks={tasks}
+                  key={date}
+                  // column={column}
+                  date={date}
+                  tasks={tasksByDate[date]}
                   userId={AuthUser.id}
                 />
               );
@@ -88,19 +88,36 @@ export const getServerSideProps = withAuthUserTokenSSR()(
   async ({ AuthUser }) => {
     resetServerContext();
 
-    console.log(AuthUser.id);
+    const dates = getDateRange(dayjs().subtract(8, 'day'), dayjs().add(7, 'day'));
 
-    const tasks = await Tasks.getTasksByDay({
-      userId: AuthUser.id,
-      date: null
-    })
-  //   const db = getFirebaseAdmin().firestore()
-  // const tasks = await db.collection("tasks").get()
+    let allTasks = Promise.all(
+      dates.map(async (date) =>
+        await Tasks.getTasksByDay({
+          userId: AuthUser.id,
+          date: dayjs(date).format('YYYY-MM-DD')
+        })
+    ))
+
+    let tasks = await allTasks;
+
+    const tasksByDate = dates.reduce((acc, date, index) => {
+      let currentTasks = tasks[index]
+      if (currentTasks === null) {
+        currentTasks = []
+      } else {
+        currentTasks = currentTasks.map(task => {
+          return task.data()
+        })
+      }
+      return {...acc, [date]: currentTasks};
+    }, {});
 
     return { props: {
-      tasks: tasks.docs.map((a) => {
-       return { ...a.data(), key: a.id }
-      }),
+      dates: dates,
+      tasksByDate: tasksByDate,
+      // tasks: tasks.map((a) => {
+      //  return { ...a.data(), key: a.id }
+      // }),
 
     } };
   }
