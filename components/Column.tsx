@@ -10,12 +10,9 @@ import { TaskAction } from '../types';
 dayjs.extend(localeData);
 dayjs.extend(isoWeek);
 
-const Column = ({ date, tasks, userId }) => {
-  const ref = useRef(null);
+const Column = ({ date, tasks, userId, innerRef }) => {
+  const { dispatch } = useBoard();
 
-  const { dispatch, state } = useBoard();
-
-  // const date = dayjs(column.id);
   const dayOfWeek = dayjs.weekdays()[dayjs(date).day()].toString();
 
   const handleAddTask = () => {
@@ -38,7 +35,7 @@ const Column = ({ date, tasks, userId }) => {
   };
 
   return (
-    <div className="mr-4">
+    <div className="mr-4" ref={innerRef}>
       <p className="font-sans-serif text-2xl font-bold">
         {dayOfWeek}
       </p>

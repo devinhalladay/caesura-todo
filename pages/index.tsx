@@ -1,13 +1,12 @@
 import { getFirebaseAdmin } from 'next-firebase-auth'
-import { v4 as uuid } from 'uuid';
-
 import dayjs from 'dayjs';
+import { v4 as uuid } from 'uuid';
 import {
   useAuthUser,
   withAuthUser,
   withAuthUserTokenSSR,
 } from 'next-firebase-auth';
-import { useState } from 'react';
+import { createRef, useMemo, useRef, useState, useEffect } from 'react';
 import {
   DragDropContext,
   resetServerContext,
@@ -20,7 +19,6 @@ import {
 } from '../utils/dates';
 import DatePicker from 'react-datepicker';
 import { useBoard } from '../contexts/Board';
-import { useEffect } from 'hoist-non-react-statics/node_modules/@types/react';
 import { TaskAction, Task } from '../types';
 import { Api, Tasks } from '../lib/api';
 
@@ -30,15 +28,23 @@ type Home = {
   dates: string[]
 }
 
-const Home = ({tasksByDate, dates}: Home) => {
+const Home = ({ tasksByDate, dates }: Home) => {
   const AuthUser = useAuthUser();
-  const { state, dispatch } = useBoard();
+  const { dispatch } = useBoard();
 
-  console.log(tasksByDate);
+  let columnRefs = useRef({});
+  const boardRef = useRef()
 
+  columnRefs.current = dates.reduce((newRefs, date, i) => {
+    newRefs[date] = createRef();
+    return newRefs
+  }, {})
 
-
-  const currentMonthDays = createDaysForCurrentMonth('2021', '10');
+  const executeScroll = (date) => {
+    const x = columnRefs.current[date].current.getBoundingClientRect().left + boardRef.current.scrollLeft;
+    const offset = (columnRefs.current[date].current.offsetWidth * -1) - 32
+    boardRef.current.scrollTo({ left: x + offset, behavior: 'smooth' });
+  }
 
   const dragEnd = (result) => {
     dispatch({
@@ -55,22 +61,25 @@ const Home = ({tasksByDate, dates}: Home) => {
         <DatePicker
           selected={startDate}
           onChange={(date) => setStartDate(date)}
+          onSelect={(date) => {
+            let formattedDate = dayjs(date).format('YYYY-MM-DD')
+            executeScroll(formattedDate)
+          }}
           inline
         />
       </div>
-      <div className="Board overflow-x-scroll flex flex-col w-full flex-auto h-full bg-gray-50 max-w-full">
-        <div className="Board__Nav flex flex-col border-b border-gray-400 p-4">
+      <div className="Board relative overflow-x-scroll flex flex-col w-full flex-auto h-full bg-gray-50 max-w-full" ref={boardRef}>
+        <div className="Board__Nav sticky top-0 left-0 w-full h-14 flex items-center flex-col border-b border-gray-400 p-4">
           Board nav
         </div>
-        <div className="flex p-4">
+        <div className="flex p-4 mt-14">
           <DragDropContext onDragEnd={dragEnd}>
-            {dates.map((date, index) => {
-              console.log(date);
-
+            {dates.map((date, i) => {
               return (
                 <Column
                   key={date}
                   // column={column}
+                  innerRef={columnRefs.current[date]}
                   date={date}
                   tasks={tasksByDate[date]}
                   userId={AuthUser.id}
@@ -96,7 +105,7 @@ export const getServerSideProps = withAuthUserTokenSSR()(
           userId: AuthUser.id,
           date: dayjs(date).format('YYYY-MM-DD')
         })
-    ))
+      ))
 
     let tasks = await allTasks;
 
@@ -109,17 +118,19 @@ export const getServerSideProps = withAuthUserTokenSSR()(
           return task.data()
         })
       }
-      return {...acc, [date]: currentTasks};
+      return { ...acc, [date]: currentTasks };
     }, {});
 
-    return { props: {
-      dates: dates,
-      tasksByDate: tasksByDate,
-      // tasks: tasks.map((a) => {
-      //  return { ...a.data(), key: a.id }
-      // }),
+    return {
+      props: {
+        dates: dates,
+        tasksByDate: tasksByDate,
+        // tasks: tasks.map((a) => {
+        //  return { ...a.data(), key: a.id }
+        // }),
 
-    } };
+      }
+    };
   }
 );
 
