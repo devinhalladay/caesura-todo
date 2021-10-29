@@ -1,0 +1,24 @@
+"UserProfile": {
+    "fields": {
+      "profilePictureURL": {},
+      "backgroundURL": {},
+      "firstname": {},
+      "lastname": {},
+      "timezone": {},
+      "timezoneWarningDisabled": {},
+      "conferenceNumber": {},
+      "jobTitle": {},
+      "briefInfo": {},
+      "companyName": {},
+      "companySize": {},
+      "homeCity": {},
+      "role": {},
+      "onboardingEventSent": {},
+      "twitterHandle": {},
+      "fbHandle": {},
+      "linkedinHandle": {},
+      "githubHandle": {},
+      "profileThumbs": {},
+      "useCase": {}
+    }
+  },

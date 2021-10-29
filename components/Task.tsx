@@ -2,9 +2,19 @@ import { useRef, useState, useEffect, createRef } from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import checkmark from '../assets/icons/check.svg';
 import ContentEditable from 'react-contenteditable';
+import { useBoard } from '../contexts/Board';
+import { Task as TaskType, TaskAction } from '../types';
+import dayjs from 'dayjs';
 
-const Task = ({ task, index }) => {
+interface TaskProps {
+  task: TaskType,
+  index: number
+}
+
+const Task = ({ task, index }: TaskProps) => {
   const [windowReady, setWindowReady] = useState(false);
+
+  const { dispatch } = useBoard();
 
   const text = useRef(task.text);
   const textEl = createRef();
@@ -17,6 +27,28 @@ const Task = ({ task, index }) => {
   const handleBlur = () => {
     console.log(text.current);
   };
+
+  const handleCheckClick = () => {
+    if (task.completed) {
+      dispatch({
+        type: TaskAction.UNCOMPLETE_TASK,
+        payload: {
+          id: task.id,
+        }
+      })
+    } else {
+      dispatch({
+        type: TaskAction.COMPLETE_TASK,
+        payload: {
+          id: task.id,
+          updates: {
+            completed: true,
+            completedDate: dayjs()
+          }
+        }
+      })
+    }
+  }
 
   useEffect(() => {
     setWindowReady(true);
@@ -49,7 +81,7 @@ const Task = ({ task, index }) => {
             )}
           </div>
           <div className="w-full">
-            <button className="border border-gray-300 flex items-center justify-center h-5 w-5 rounded-full transition-all hover:border-green-500 hover:border-2 text-gray-300 hover:text-green-500 stroke-4 hover:stroke-6">
+            <button className={`border ${!task.completed ? 'border-gray-300' : 'border-green-500'} flex items-center justify-center h-5 w-5 rounded-full transition-all hover:border-green-500 hover:border-2 ${!task.completed ? 'text-gray-300' : 'text-green-500'} hover:text-green-500 stroke-4 hover:stroke-6`} onClick={handleCheckClick}>
               <svg
                 className=""
                 width="14"

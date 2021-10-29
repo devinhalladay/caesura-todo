@@ -1,0 +1,274 @@
+{"Task": {
+    "fields": {
+      "_id": {},
+      "groupId": {},
+      "taskType": {},
+      "streamIds": {},
+      "eventInfo": {},
+      "seededEventIds": {},
+      "private": {},
+      "assigneeId": {},
+      "createdBy": {},
+      "integration": {},
+      "deleted": {},
+      "text": {},
+      "notes": {},
+      "notesMarkdown": {},
+      "notesChecksum": {},
+      "editorVersion": {},
+      "collabSnapshot": {},
+      "completed": {},
+      "completedBy": {},
+      "completeDate": {},
+      "completeOn": {},
+      "duration": {},
+      "runDate": {},
+      "snooze": {},
+      "dueDate": {},
+      "comments": {},
+      "orderings": { "merge": false },
+      "subtasks": { "merge": false },
+      "subtasksCollapsed": {},
+      "sequence": {},
+      "followers": {},
+      "timeEstimate": {},
+      "actualTime": {},
+      "createdAt": {},
+      "lastModified": {},
+      "objectiveId": {},
+      "isPending": {}
+    }
+  },
+  "TaskRunDate": {
+    "fields": { "startDate": {}, "endDate": {} },
+    "keyFields": false
+  },
+  "TaskSnooze": {
+    "fields": { "userId": {}, "date": {}, "until": {} },
+    "keyFields": false
+  },
+  "TaskComment": {
+    "fields": {
+      "userId": {},
+      "text": {},
+      "markdown": {},
+      "editorVersion": {},
+      "groupId": {},
+      "createdAt": {},
+      "editedAt": {},
+      "deleted": {},
+      "file": {},
+      "fileMetadata": {}
+    },
+    "keyFields": false
+  },
+
+  "TaskOrdering": {
+    "fields": {
+      "ordinal": {},
+      "panelDate": {},
+      "channelId": {},
+      "userId": {}
+    },
+    "keyFields": false
+  },
+  "TaskSubtask": {
+    "fields": {
+      "_id": {},
+      "title": {},
+      "completedDate": {},
+      "completedBy": {},
+      "timeEstimate": {},
+      "actualTime": {}
+    },
+    "keyFields": false
+  },
+  "TaskActualTime": {
+    "fields": {
+      "userId": {},
+      "startDate": {},
+      "endDate": {},
+      "duration": {},
+      "isTimerEntry": {}
+    },
+    "keyFields": false
+  },
+  "TaskSequence": {
+    "fields": {
+      "date": {},
+      "id": {},
+      "expiresDate": {},
+      "ruleString": {},
+      "searchable": {},
+      "forked": {},
+      "final": {},
+      "estimatedStart": {}
+    },
+    "keyFields": false
+  },
+  "TaskSequenceEstimatedStart": {
+    "fields": { "hour": {}, "minute": {} }
+  },
+
+  "Objective": {
+    "fields": {
+      "_id": {},
+      "createdAt": {},
+      "completed": {},
+      "completedAt": {},
+      "deleted": {},
+      "lastModified": {},
+      "groupId": {},
+      "ordinal": {},
+      "parentObjectiveId": {},
+      "period": {},
+      "streamId": {},
+      "taskIds": {},
+      "text": {},
+      "timeEstimate": {},
+      "userId": {},
+      "isPending": {}
+    }
+  },
+  "ObjectivePeriod": {
+    "fields": { "interval": {}, "start": {}, "end": {} },
+    "keyFields": false
+  },
+
+
+  "Query": {
+    "fields": {
+      "calendarEvent": {},
+      "calendarEventsByCalendarId": { "merge": false },
+      "tasksByDay": {},
+      "tasksBacklog": {},
+      "tasksByIntegration": { "merge": false },
+      "tasksByCalendarEvent": { "merge": false },
+      "taskActivitiesByTaskId": { "merge": false },
+      "objectivesByPeriod": {}
+    }
+  },
+
+
+}
+
+
+
+// interface RootObject {
+// Task: Task;
+// }
+
+// interface Task {
+// id: string;
+// groupId: string;
+// taskType: string;
+// streamIds: Id;
+// eventInfo: Id;
+// seededEventIds: Id;
+// private: Id;
+// assigneeId: Id;
+// createdBy: Id;
+// integration: Id;
+// deleted: Id;
+// text: Id;
+// notes: Id;
+// notesMarkdown: Id;
+// notesChecksum: Id;
+// editorVersion: Id;
+// collabSnapshot: Id;
+// completed: Id;
+// completedBy: Id;
+// completeDate: Id;
+// completeOn: Id;
+// duration: Id;
+// runDate: Id;
+// snooze: Id;
+// dueDate: Id;
+// comments: Id;
+// orderings: Orderings;
+// subtasks: Orderings;
+// subtasksCollapsed: Id;
+// sequence: Id;
+// followers: Id;
+// timeEstimate: Id;
+// actualTime: Id;
+// createdAt: Id;
+// lastModified: Id;
+// objectiveId: Id;
+// isPending: Id;
+// }
+
+{
+
+"Task": {
+  "fields": {
+    "_id": {},
+    "groupId": {},
+    "taskType": {},
+    "streamIds": {},
+    "eventInfo": {},
+    "seededEventIds": {},
+    "private": {},
+    "assigneeId": {},
+    "createdBy": {},
+    "integration": {},
+    "deleted": {},
+    "text": {},
+    "notes": {},
+    "notesMarkdown": {},
+    "notesChecksum": {},
+    "editorVersion": {},
+    "collabSnapshot": {},
+    "completed": {},
+    "completedBy": {},
+    "completeDate": {},
+    "completeOn": {},
+    "duration": {},
+    "runDate": {},
+    "snooze": {},
+    "dueDate": {},
+    "comments": {},
+    "orderings": {},
+    "subtasks": {},
+    "subtasksCollapsed": {},
+    "sequence": {},
+    "followers": {},
+    "timeEstimate": {},
+    "actualTime": {},
+    "createdAt": {},
+    "lastModified": {},
+    "objectiveId": {},
+    "isPending": {}
+  }
+},
+"TaskSnooze": { "fields": { "userId": {}, "date": {}, "until": {} } },
+"TaskActualTime": {
+  "fields": {
+    "userId": {},
+    "startDate": {},
+    "endDate": {},
+    "duration": {},
+    "isTimerEntry": {}
+  }
+},
+"TaskSubtask": {
+  "fields": {
+    "_id": {},
+    "title": {},
+    "completedDate": {},
+    "completedBy": {},
+    "timeEstimate": {},
+    "actualTime": {}
+  }
+},
+"TaskEventInfo": {
+  "fields": { "eventId": {}, "title": {}, "clone": {} }
+},
+"TaskOrdering": {
+  "fields": {
+    "ordinal": {},
+    "panelDate": {},
+    "channelId": {},
+    "userId": {}
+  }
+},}

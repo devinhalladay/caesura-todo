@@ -1,17 +1,41 @@
 import dayjs from 'dayjs';
 import { useRef } from 'react';
+import {v4 as uuid} from 'uuid';
 import Task from './Task';
 import { Droppable } from 'react-beautiful-dnd';
 import localeData from 'dayjs/plugin/localeData';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import { useBoard } from '../contexts/Board';
+import { TaskAction } from '../types';
 dayjs.extend(localeData);
 dayjs.extend(isoWeek);
 
-const Column = ({ column, tasks, newTask }) => {
+const Column = ({ column, tasks, userId }) => {
   const ref = useRef(null);
+
+  const { dispatch, state } = useBoard();
 
   const date = dayjs(column.id);
   const dayOfWeek = dayjs.weekdays()[date.day()].toString();
+
+  const handleAddTask = () => {
+    dispatch({
+      type: TaskAction.ADD_TASK,
+      payload: {
+        columnId: column.id,
+        task: {
+          id: uuid(),
+          completed: false,
+          createdBy: userId,
+          isPending: false,
+          spaceId: null,
+          taskType: "outcome",
+          text: "First task created through next.js API!"
+        },
+        createdBy: userId
+      },
+    });
+  };
 
   return (
     <div className="mr-4">
@@ -33,7 +57,7 @@ const Column = ({ column, tasks, newTask }) => {
               {...provided.droppableProps}>
               <div
                 className="text-sm border mb-2 shadow-sm hover:shadow-md rounded-md p-3 flex bg-white font-sans-serif transition-all duration-300"
-                onClick={() => newTask(column.id)}>
+                onClick={handleAddTask}>
                 <button className="border mr-2 border-gray-300 flex items-center justify-center h-5 w-5 rounded-full transition-all  hover:border-2 text-gray-300  stroke-4 hover:stroke-6">
                   <svg
                     width="14"

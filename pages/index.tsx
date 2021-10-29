@@ -1,3 +1,7 @@
+import { getFirebaseAdmin } from 'next-firebase-auth'
+import { v4 as uuid } from 'uuid';
+
+
 import dayjs from 'dayjs';
 import {
   useAuthUser,
@@ -17,77 +21,27 @@ import {
 import DatePicker from 'react-datepicker';
 import { useBoard } from '../contexts/Board';
 import { useEffect } from 'hoist-non-react-statics/node_modules/@types/react';
+import { TaskAction, Task } from '../types';
+import { Api, Tasks } from '../lib/api';
 
-const Home = () => {
+type Home = {
+  tasks: Task
+}
+
+const Home = ({tasks}: Home) => {
+  console.log(tasks);
+
   const AuthUser = useAuthUser();
-
-  const { state, setState, createTask } = useBoard();
+  console.log(uuid());
+  const { state, dispatch } = useBoard();
 
   const currentMonthDays = createDaysForCurrentMonth('2021', '10');
 
   const dragEnd = (result) => {
-    const { destination, source, draggableId } = result;
-
-    if (!destination) {
-      return;
-    }
-
-    if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
-    ) {
-      return;
-    }
-
-    const start = state.columns[source.droppableId];
-    const finish = state.columns[destination.droppableId];
-
-    if (start === finish) {
-      const newTaskIds = Array.from(start.taskIds);
-
-      newTaskIds.splice(source.index, 1);
-      newTaskIds.splice(destination.index, 0, draggableId);
-
-      const newColumn = {
-        ...start,
-        taskIds: newTaskIds,
-      };
-
-      const newState = {
-        ...state,
-        columns: { ...state.columns, [newColumn.id]: newColumn },
-      };
-
-      setState(newState);
-
-      return;
-    }
-
-    // Move from one list to another
-    const startTaskIds = Array.from(start.taskIds);
-    startTaskIds.splice(source.index, 1);
-    const newStart = {
-      ...start,
-      taskIds: startTaskIds,
-    };
-
-    const finishTaskIds = Array.from(finish.taskIds);
-    finishTaskIds.splice(destination.index, 0, draggableId);
-    const newFinish = {
-      ...finish,
-      taskIds: finishTaskIds,
-    };
-
-    const newState = {
-      ...state,
-      columns: {
-        ...state.columns,
-        [newStart.id]: newStart,
-        [newFinish.id]: newFinish,
-      },
-    };
-
-    setState(newState);
+    dispatch({
+      type: TaskAction.REORDER_TASK,
+      payload: result,
+    });
   };
 
   const [startDate, setStartDate] = useState(new Date());
@@ -110,16 +64,16 @@ const Home = () => {
             {state.columnOrder.map((columnId, index) => {
               const column = state.columns[columnId];
 
-              const tasks = column.taskIds.map(
-                (taskId) => state.tasks[taskId]
-              );
+              // const tasks = column.taskIds.map(
+              //   (taskId) => state.tasks[taskId]
+              // );
 
               return (
                 <Column
-                  newTask={createTask}
                   key={column.id}
                   column={column}
                   tasks={tasks}
+                  userId={AuthUser.id}
                 />
               );
             })}
@@ -134,7 +88,21 @@ export const getServerSideProps = withAuthUserTokenSSR()(
   async ({ AuthUser }) => {
     resetServerContext();
 
-    return { props: {} };
+    console.log(AuthUser.id);
+
+    const tasks = await Tasks.getTasksByDay({
+      userId: AuthUser.id,
+      date: null
+    })
+  //   const db = getFirebaseAdmin().firestore()
+  // const tasks = await db.collection("tasks").get()
+
+    return { props: {
+      tasks: tasks.docs.map((a) => {
+       return { ...a.data(), key: a.id }
+      }),
+
+    } };
   }
 );
 
