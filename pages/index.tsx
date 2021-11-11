@@ -1,26 +1,23 @@
-import { getFirebaseAdmin } from 'next-firebase-auth'
 import dayjs from 'dayjs';
-import { v4 as uuid } from 'uuid';
+import 'firebase/firestore';
 import {
   useAuthUser,
   withAuthUser,
-  withAuthUserTokenSSR,
+  withAuthUserTokenSSR
 } from 'next-firebase-auth';
-import { createRef, useMemo, useRef, useState, useEffect } from 'react';
+import { createRef, useRef, useState } from 'react';
 import {
   DragDropContext,
-  resetServerContext,
+  resetServerContext
 } from 'react-beautiful-dnd';
-import Column from '../components/Column';
-import {
-  createDaysForCurrentMonth,
-  daysOfWeek,
-  getDateRange,
-} from '../utils/dates';
 import DatePicker from 'react-datepicker';
+import Column from '../components/Column';
 import { useBoard } from '../contexts/Board';
-import { TaskAction, Task } from '../types';
-import { Api, Tasks } from '../lib/api';
+import { Tasks } from '../lib/api';
+import { Task, TaskAction } from '../types';
+import {
+  getDateRange
+} from '../utils/dates';
 
 type Home = {
   // tasks: Task,
@@ -69,7 +66,7 @@ const Home = ({ tasksByDate, dates }: Home) => {
         />
       </div>
       <div className="Board relative overflow-x-scroll flex flex-col w-full flex-auto h-full bg-gray-50 max-w-full" ref={boardRef}>
-        <div className="Board__Nav sticky top-0 left-0 w-full h-14 flex items-center flex-col border-b border-gray-400 p-4">
+        <div className="Board__Nav sticky top-0 left-0 w-full h-14 flex flex-col border-b border-gray-400 p-4">
           Board nav
         </div>
         <div className="flex p-4 mt-14">
@@ -109,6 +106,9 @@ export const getServerSideProps = withAuthUserTokenSSR()(
 
     let tasks = await allTasks;
 
+    console.log(tasks);
+
+
     const tasksByDate = dates.reduce((acc, date, index) => {
       let currentTasks = tasks[index]
       if (currentTasks === null) {
@@ -125,11 +125,7 @@ export const getServerSideProps = withAuthUserTokenSSR()(
       props: {
         dates: dates,
         tasksByDate: tasksByDate,
-        // tasks: tasks.map((a) => {
-        //  return { ...a.data(), key: a.id }
-        // }),
-
-      }
+      },
     };
   }
 );

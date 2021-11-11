@@ -15,7 +15,7 @@
     "firebase": "^8.9.1",
     "firebase-admin": "^9.11.0",
     "humps": "^2.0.1",
-    "next": "latest",
+    "next": "^12.0.3",
     "next-firebase-auth": "^0.13.4",
     "ramda": "^0.27.1",
     "react": "^17.0.2",

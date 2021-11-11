@@ -7,31 +7,39 @@ import localeData from 'dayjs/plugin/localeData';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { useBoard } from '../contexts/Board';
 import { TaskAction } from '../types';
+import { useRouter } from 'next/router';
 dayjs.extend(localeData);
 dayjs.extend(isoWeek);
 
 const Column = ({ date, tasks, userId, innerRef }) => {
   const { dispatch } = useBoard();
 
+  const router = useRouter();
+  const refreshData = () => {
+      router.replace(router.asPath);
+    }
+
   const dayOfWeek = dayjs.weekdays()[dayjs(date).day()].toString();
 
   const handleAddTask = () => {
     dispatch({
-      type: TaskAction.ADD_TASK,
+      type: TaskAction.STAGE_TASK,
       payload: {
         columnId: date,
         task: {
           id: uuid(),
           completed: false,
           createdBy: userId,
-          isPending: false,
+          isPending: true,
           spaceId: null,
           taskType: "outcome",
-          text: "First task created through next.js API!"
+          text: "",
+          plannedOnDate: date
         },
         createdBy: userId
       },
     });
+    refreshData()
   };
 
   return (

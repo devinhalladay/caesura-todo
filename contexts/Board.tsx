@@ -148,9 +148,6 @@ export const taskReducer = (
 ): InitialStateType => {
   switch (action.type) {
     case TaskAction.ADD_TASK: {
-      console.log(action);
-      console.log(state);
-
       const resp = Api.request({
         method: HttpMethod.POST,
         path: `/tasks/create`,
@@ -158,14 +155,21 @@ export const taskReducer = (
           createdBy: action.payload.task.createdBy,
           task: action.payload.task
         },
+      }).then((r) => {console.log('ACTION DONE AND PROMISE RESOLVED:', r.docs);
+      }).catch((err) => {
+        console.error('ACTION FAILED:', err);
       })
 
-      console.log('RESPONSE FROM API');
+      const newState = {
+        ...state,
+        tasks: {
+          ...state.tasks, [action.payload.task.id]: {
+            ...action.payload.task,
+          },
+        },
+      };
 
-      console.log(resp);
-
-
-      return state;
+      return newState;
 
       // const { columnId } = action.payload;
       // let newTaskIds = Array.from(state.columns[columnId].taskIds);
@@ -176,32 +180,40 @@ export const taskReducer = (
 
       // newTaskIds.unshift(taskId);
 
-      // let newTasks = {
-      //   ...state.tasks,
-      //   [taskId]: {
-      //     isPending: true,
-      //     'id': taskId,
-      //     'actualTime': null,
-      //     'completeDate': null,
-      //     'completeOn': null,
-      //     'completed': false,
-      //     'completedBy': null,
-      //     'createdAt': '2021-10-11T20:05:47.293Z',
-      //     'createdBy': '6116d75820a45f00095030ae',
-      //     'dueDate': null,
-      //     'duration': null,
-      //     'eventInfo': null,
-      //     'groupId': '6116d78120a45f00095030b0',
-      //     'integration': null,
-      //     'lastModified': '2021-10-25T14:31:12.628Z',
-      //     'notes': '',
-      //     'objectiveId': null,
-      //     'runDate': null,
-      //     'taskType': 'outcomes',
-      //     'text': '',
-      //     'timeEstimate': 15,
-      //   },
+      // const newColumn = {
+      //   ...state.columns[columnId],
+      //   taskIds: newTaskIds,
       // };
+
+      // const newState = {
+      //   ...state,
+      //   columns: { ...state.columns, [columnId]: newColumn },
+      //   tasks: { ...state.tasks, ...newTasks },
+      // };
+
+      // return newState;
+    }
+
+    case TaskAction.STAGE_TASK: {
+      const newState = {
+        ...state,
+        tasks: {
+          ...state.tasks, [action.payload.task.id]: {
+            ...action.payload.task,
+          },
+        },
+      };
+
+      return newState;
+
+      // const { columnId } = action.payload;
+      // let newTaskIds = Array.from(state.columns[columnId].taskIds);
+
+      // // console.log(newTaskIds);
+      // let taskId = `${columnId}-${state.columns[columnId].taskIds.length + 1
+      //   }`;
+
+      // newTaskIds.unshift(taskId);
 
       // const newColumn = {
       //   ...state.columns[columnId],
@@ -231,7 +243,7 @@ export const taskReducer = (
           tasks: {
             ...state.tasks, [action.payload.id]: {
               ...state.tasks[action.payload.id],
-              ...action.payload.updates
+              ...action.payload.updates,
             },
           },
         };
@@ -241,9 +253,55 @@ export const taskReducer = (
         console.log(newState);
         console.log(doc);
 
+        return newState
+      }).catch((err) => {
+        console.error(err)
+        return err
+      })
+    }
 
+    case TaskAction.UPDATE_TASK: {
+      const resp = Api.request({
+        method: HttpMethod.POST,
+        path: `/tasks/update`,
+        body: {
+          id: action.payload.id,
+          updates: action.payload.updates
+        },
+      }).then((doc) => {
+        const newState = {
+          ...state,
+          tasks: {
+            ...state.tasks, [action.payload.id]: {
+              ...state.tasks[action.payload.id],
+              ...action.payload.updates,
+            },
+          },
+        };
+
+        console.log('NEW STATE');
+
+        console.log(newState);
+        console.log(doc);
 
         return newState
+      }).catch((err) => {
+        console.error(err)
+        return err
+      })
+    }
+
+    case TaskAction.REFETCH_TASK: {
+      const resp = Api.request({
+        method: HttpMethod.GET,
+        path: `/tasks`,
+        body: {
+          id: action.payload.id,
+        },
+      }).then((doc) => {
+        console.log(doc);
+
+        return state
       }).catch((err) => {
         console.error(err)
         return err
@@ -279,18 +337,6 @@ export const taskReducer = (
       };
 
       return newState
-
-      // let newTask = { ...state.tasks[action.payload.taskId] }
-      // newTask.completed = false;
-      // newTask.completeDate = null;
-
-      // return {
-      //   ...state,
-      //   tasks: {
-      //     ...state.tasks,
-      //     [newTask.id]: newTask
-      //   },
-      // };
     }
 
     case TaskAction.REMOVE_TASK:

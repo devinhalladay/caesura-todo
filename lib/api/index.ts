@@ -1,8 +1,6 @@
 import { getFirebaseAdmin } from "next-firebase-auth";
-import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { HttpMethod, Task } from "../../types";
-// import { query, where } from "firebase/firestore";
 import Request from "../request";
 import dayjs from "dayjs";
 
@@ -13,14 +11,7 @@ export const Api = {
     const base = {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      // 'X-Shopify-Domain': process.env.SHOPIFY_DOMAIN,
-      // 'X-Shopify-Storefront-Access-Token':
-      //   process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN,
     };
-    // const authToken = await AuthTokens.get();
-    // if (authToken !== null) {
-    //   base['X-Shopify-Customer-Access-Token'] = authToken;
-    // }
     return base;
   },
   async request(options: {
@@ -40,8 +31,8 @@ export const Api = {
 };
 
 type Task = {
-  getTasksByDay: (options: {userId: string, date: Date | string}) => Promise<Task[]> | null;
-  createTask: (options: {task: Task}) => Promise<Task>
+  getTasksByDay: (options: { userId: string, date: Date | string }) => Promise<Task[]> | null;
+  createTask: (options: { task: Task }) => Promise<Task>
 }
 
 export const Tasks: Task = {
@@ -52,6 +43,12 @@ export const Tasks: Task = {
     const db = getFirebaseAdmin().firestore()
     let tasks = await db.collection("tasks").where("createdBy", "==", userId).get()
 
+    // db.collection("tasks").where("createdBy", "==", userId).onSnapshot((querySnapshot) => {
+    //   querySnapshot.forEach((doc) => {
+    //     tasks.push(doc.data());
+    //   });
+    // });
+
     // tasks.docs.map(task => {
     //   console.log(dayjs(date).isSame(task.data().plannedOnDate, 'day'));
     // })
@@ -59,10 +56,6 @@ export const Tasks: Task = {
     tasks = tasks.docs.filter(task => dayjs(date).isSame(task.data().plannedOnDate, 'day'))
 
     try {
-      // let tasks = await db.collection("tasks")
-      // tasks = tasks.where("plannedOnDate", "==", date)
-      // tasks = tasks.get()
-
       return tasks.length > 0 ? tasks : null
     } catch (error) {
       console.error(error)
@@ -70,30 +63,6 @@ export const Tasks: Task = {
     }
   },
 }
-
-  // createTask: (task: Task) => {
-  //   const db = getFirebaseAdmin().firestore()
-
-  //   db.collection("tasks").doc(task.id).set(task)
-  //   .then((doc) => {
-  //     console.log("Document successfully written!");
-  //     console.log(doc);
-
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error writing document: ", error);
-  //   });
-
-    // return Api.request({
-    //   method: HttpMethod.POST,
-    //   path: `/tasks/create`,
-    //   body: {
-    //     userId: task.createdBy,
-    //     task: task
-    //   },
-    // })
-  // }
-// }
 
 // export const createEvent = () => {
 // 	let title = document.getElementById("titleInput").value;
