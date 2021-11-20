@@ -185,6 +185,9 @@ export const taskReducer = async (
         tasks: action.payload,
       };
 
+      console.log('SETTING TASKS', action.payload);
+
+
       return newState;
     }
 

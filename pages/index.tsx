@@ -20,18 +20,14 @@ import {
 } from '../utils/dates';
 
 type Home = {
-  // tasks: Task,
-  tasksByDate: Record<Task['plannedOnDate'], Task[]>,
   dates: string[],
-  allTasks: Task[],
-  taskList: Task[],
+  tasksData: Record<Task['plannedOnDate'], Task[]>,
 }
 
-const Home = ({ tasksByDate, dates, allTasks, taskList }: Home) => {
+const Home = ({ dates, tasksData }: Home) => {
   const AuthUser = useAuthUser();
   const { state: { tasks }, dispatch } = useBoard();
 
-  console.log('TASK LIST', taskList);
 
   let columnRefs = useRef({});
   const boardRef = useRef()
@@ -42,11 +38,9 @@ const Home = ({ tasksByDate, dates, allTasks, taskList }: Home) => {
   }, {})
 
   useEffect(() => {
-    console.log('TASKS', tasks);
-    dispatch({ type: TaskAction.SET_TASKS, tasksByDate });
-    console.log(tasks);
-
-  }, [tasks]);
+    console.log('TASKS', tasksData);
+    dispatch({ type: TaskAction.SET_TASKS, payload: tasksData });
+  });
 
   const executeScroll = (date) => {
     const x = columnRefs.current[date].current.getBoundingClientRect().left + boardRef.current.scrollLeft;
@@ -89,7 +83,7 @@ const Home = ({ tasksByDate, dates, allTasks, taskList }: Home) => {
                   // column={column}
                   innerRef={columnRefs.current[date]}
                   date={date}
-                  tasks={tasks[date]}
+                  tasks={tasksData[date]}
                   userId={AuthUser.id}
                 />
               );
@@ -107,55 +101,35 @@ export const getServerSideProps = withAuthUserTokenSSR()(
 
     const dates = getDateRange(dayjs().subtract(8, 'day'), dayjs().add(7, 'day'));
 
-    let taskList = await Tasks.getAll({
+    let tasks = await Tasks.getTasksByDay({
       userId: AuthUser.id,
     });
 
-    console.log('TASK LISTTTTT==========');
+    // if (tasks) {
+    //   console.log(tasks);
 
-    // console.log(taskList);
+    //   tasks = tasks.reduce((acc, task) => {
+    //     if (!acc[task.plannedOnDate]) {
+    //       acc[task.plannedOnDate] = {};
+    //     };
 
-    let allTasks = Promise.all(
-      dates.map(async (date) =>
-        await Tasks.getTasksByDay({
-          userId: AuthUser.id,
-          date: dayjs(date).format('YYYY-MM-DD')
-        })
-      ))
+    //     return acc
+    //   }, {});
+    // }
 
-    let tasks = await allTasks;
+    console.log('TASKS');
+    console.log(tasks);
 
-    // console.log(tasks.flat());
-
-    const tasksByDate = dates.reduce((acc, date, index) => {
-      let currentTasks = tasks[index]
-      if (currentTasks === null) {
-        currentTasks = []
-      } else {
-        currentTasks = currentTasks.map(task => {
-          return task.data()
-        })
+    dates.forEach((date) => {
+      if (!tasks[date]) {
+        tasks[date] = {};
       }
-      return { ...acc, [date]: currentTasks };
-    }, {});
-
-    const flatTasks = tasks.flat().filter((task) => task !== null).reduce((acc, task, index) => {
-      return {
-        ...acc,
-        [task.id]: task.data(),
-      }
-    }, {})
-
-    console.log(flatTasks);
-
-
+    });
 
     return {
       props: {
         dates: dates,
-        tasksByDate: tasksByDate,
-        taskList: taskList
-        // allTasks: flatTasks,
+        tasksData: tasks,
       },
     };
   }

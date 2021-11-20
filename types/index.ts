@@ -71,7 +71,7 @@ export type TaskIntent =
     payload: object
   } | {
     type: TaskAction.SET_TASKS,
-    payload: any
+    payload: Record<Task['plannedOnDate'], Record<Task['id'], Task>>
   }
 
 export type Task = {

@@ -1,16 +1,15 @@
 import { getFirebaseAdmin } from "next-firebase-auth";
-import 'firebase/firestore';
+import "firebase/firestore";
 import { HttpMethod, Task } from "../../types";
 import Request from "../request";
 import dayjs from "dayjs";
 
 export const Api = {
-  url: (path: string) =>
-    `/api${path}`,
+  url: (path: string) => `/api${path}`,
   headers: async () => {
     const base = {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Content-Type": "application/json",
     };
     return base;
   },
@@ -31,10 +30,13 @@ export const Api = {
 };
 
 type TasksTypes = {
-  getTasksByDay: (options: { userId: string, date: Date | string }) => Promise<Task[]> | null;
+  getTasksByDay: (options: {
+    userId: string;
+    date: Date | string;
+  }) => Promise<Task[]> | null;
   getAll: (options: { userId: string }) => Promise<Task[]> | null;
-  addTask: (task: Task) => Promise<Task>
-}
+  addTask: (task: Task) => Promise<Task>;
+};
 
 export const Tasks: TasksTypes = {
   addTask: async (task: Task) => {
@@ -43,18 +45,19 @@ export const Tasks: TasksTypes = {
       path: `/tasks/create`,
       body: {
         createdBy: task.createdBy,
-        task: task
+        task: task,
       },
-    })
+    });
 
-    return res
+    return res;
   },
 
-  getAll: async ({
-    userId,
-  }) => {
-    const db = getFirebaseAdmin().firestore()
-    let tasks = await db.collection("tasks").where("createdBy", "==", userId).get()
+  getAll: async ({ userId }) => {
+    const db = getFirebaseAdmin().firestore();
+    let tasks = await db
+      .collection("tasks")
+      .where("createdBy", "==", userId)
+      .get();
     // tasks = tasks.docs.map(doc => doc.data());
 
     // Reduce tasks.docs to an object with the id as the key and the task as the value
@@ -62,84 +65,45 @@ export const Tasks: TasksTypes = {
       const data = doc.data();
       acc[data.id] = data;
       return acc;
-    }, {})
-
-    console.log(tasksKeyedById);
-
-
-    // db.collection("tasks").where("createdBy", "==", userId).onSnapshot((querySnapshot) => {
-    //   querySnapshot.forEach((doc) => {
-    //     tasks.push(doc.data());
-    //   });
-    // });
-
-    // tasks.docs.map(task => {
-    //   console.log(dayjs(date).isSame(task.data().plannedOnDate, 'day'));
-    // })
+    }, {});
 
     try {
-      return tasksKeyedById
+      return tasksKeyedById;
     } catch (error) {
-      console.error(error)
+      console.error(error);
       return null;
     }
   },
 
-  getTasksByDay: async ({
-    userId,
-    date
-  }) => {
-    const db = getFirebaseAdmin().firestore()
-    let tasks = await db.collection("tasks").where("createdBy", "==", userId).get()
+  getTasksByDay: async ({ userId, date }) => {
+    const db = getFirebaseAdmin().firestore();
+    let snapshot = await db
+      .collection("tasks")
+      .where("createdBy", "==", userId)
+      .get();
 
-    // db.collection("tasks").where("createdBy", "==", userId).onSnapshot((querySnapshot) => {
-    //   querySnapshot.forEach((doc) => {
-    //     tasks.push(doc.data());
-    //   });
-    // });
+    let collection = snapshot.docs.reduce((acc, task) => {
+      const data = task.data();
 
-    // tasks.docs.map(task => {
-    //   console.log(dayjs(date).isSame(task.data().plannedOnDate, 'day'));
-    // })
+      if (!acc[data.plannedOnDate]) {
+        acc[data.plannedOnDate] = {};
+      }
 
-    tasks = tasks.docs.filter(task => dayjs(date).isSame(task.data().plannedOnDate, 'day'))
+      acc[data.plannedOnDate][data.id] = data;
+
+      return acc;
+    }, {});
+
+    // console.log('COLLECTION');
+    // console.log(collection);
+
+
 
     try {
-      return tasks.length > 0 ? tasks : null
+      return collection;
     } catch (error) {
-      console.error(error)
+      console.error(error);
       return null;
     }
   },
-}
-
-// export const createEvent = () => {
-// 	let title = document.getElementById("titleInput").value;
-// 	let startDate = document.getElementById("startDateInput").value;
-// 	let startTime = document.getElementById("startTimeInput").value;
-// 	let endDate = document.getElementById("endDateInput").value;
-// 	let endTime = document.getElementById("endTimeInput").value;
-// 	let calendarEventInput = document.getElementById("calendarEventInput").value;
-
-// 	const newEventObj = {
-// 		title: title,
-// 		start: Date,
-// 		end: Date,
-// 		calendar: calendarEventInput
-// 	};
-
-// 	usersRef
-// 		.doc(userId)
-// 		.collection("events")
-// 		.add(newEventObj)
-// 		.then(function(docRef) {
-// 			addEventDone.classList.remove("hide");
-// 			loadingSpinner.classList.remove("d-flex");
-// 			loadingSpinner.classList.add("hide");
-// 			form.reset();
-// 			console.log("Document written with ID: ", docRef.id);
-// 		})
-// 		.catch(function(error) {
-// 			console.error("Error adding document: ", error);
-// 		});
-// }
+};

@@ -6,7 +6,7 @@ import { Droppable } from 'react-beautiful-dnd';
 import localeData from 'dayjs/plugin/localeData';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { useBoard } from '../contexts/Board';
-import { TaskAction } from '../types';
+import { Task as TaskType, TaskAction } from '../types';
 import { useRouter } from 'next/router';
 import { Tasks } from '../lib/api';
 dayjs.extend(localeData);
@@ -16,6 +16,7 @@ const Column = ({ date, tasks, userId, innerRef }) => {
   const { dispatch } = useBoard();
 
   const router = useRouter();
+
   const refreshData = () => {
     router.replace(router.asPath);
   }
@@ -90,7 +91,7 @@ const Column = ({ date, tasks, userId, innerRef }) => {
                 </button>
                 <span>Add a task</span>
               </div>
-              {tasks.map((task, index) => (
+              {Object.values(tasks).map((task, index) => (
                 <Task key={task.id} task={task} index={index} />
               ))}
               {provided.placeholder}
