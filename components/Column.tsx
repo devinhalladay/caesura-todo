@@ -15,12 +15,6 @@ dayjs.extend(isoWeek);
 const Column = ({ date, tasks, userId, innerRef }) => {
   const { dispatch } = useBoard();
 
-  const router = useRouter();
-
-  const refreshData = () => {
-    router.replace(router.asPath);
-  }
-
   const dayOfWeek = dayjs.weekdays()[dayjs(date).day()].toString();
 
   const handleAddTask = () => {

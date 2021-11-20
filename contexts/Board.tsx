@@ -1,24 +1,24 @@
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 import React, {
   createContext,
   Dispatch,
   useContext,
   useReducer,
   useState,
-} from 'react';
+} from "react";
 import useOptimisticReducer from "use-optimistic-reducer";
-import { Api } from '../lib/api'
-import { v4 as uuid } from 'uuid';
-import { HttpMethod, Task, TaskAction, TaskIntent } from '../types';
-import { createDaysForCurrentMonth } from '../utils/dates';
-import { Optimistic } from 'use-optimistic-reducer/build/types';
+import { Api } from "../lib/api";
+import { v4 as uuid } from "uuid";
+import { HttpMethod, Task, TaskAction, TaskIntent } from "../types";
+import { createDaysForCurrentMonth } from "../utils/dates";
+import { Optimistic } from "use-optimistic-reducer/build/types";
 
-const initialColumns = createDaysForCurrentMonth('2021', '10').reduce(
+const initialColumns = createDaysForCurrentMonth("2021", "10").reduce(
   (acc, currentValue, currentIndex) => ({
     ...acc,
     [currentValue.dateString]: {
       id: currentValue.dateString,
-      title: 'testset',
+      title: "testset",
       taskIds: [
         `${currentValue.dateString}-1`,
         `${currentValue.dateString}-2`,
@@ -29,11 +29,11 @@ const initialColumns = createDaysForCurrentMonth('2021', '10').reduce(
   {}
 );
 
-let initialColumnOrder = createDaysForCurrentMonth('2021', '10').map(
+let initialColumnOrder = createDaysForCurrentMonth("2021", "10").map(
   (day, index) => day.dateString
 );
 
-const initialTasks = {}
+const initialTasks = {};
 
 /**
  * This will be used to combine UI actions into a single type.
@@ -46,7 +46,7 @@ type AllActionType = {
 };
 
 type InitialStateType = {
-  tasks: Record<Task['id'], Task[]>;
+  tasks: Record<Task["id"], Task[]>;
   columns: object;
   columnOrder: string[];
 };
@@ -80,92 +80,35 @@ export const taskReducer = async (
 ): Promise<InitialStateType> => {
   switch (action.type) {
     case TaskAction.ADD_TASK: {
-      console.log('adding task');
+      console.log("adding task");
 
       const { task } = action.payload;
 
-      const newState = {
-        ...state,
-        tasks: {
-          ...state.tasks,
-          [task.id]: {
-            ...task,
-            isPending: false
-          }
-        },
-      };
+      const newState = state;
+      newState.tasks[task.plannedOnDate][task.id] = task;
 
       await Api.request({
         method: HttpMethod.POST,
         path: `/tasks/create`,
         body: {
           createdBy: task.createdBy,
-          task: task
+          task: task,
         },
       })
-
-
-
-
         .then((r) => {
-          console.log('ACTION DONE AND PROMISE RESOLVED:', r.docs);
-        }).catch((err) => {
-          console.error('ACTION FAILED:', err);
+          console.log("ACTION DONE AND PROMISE RESOLVED:", r.docs);
         })
-
-
-
-      // const newState = {
-      //   ...state,
-      //   tasks: {
-      //     ...state.tasks, [action.payload.task.id]: {
-      //       ...action.payload.task,
-      //     },
-      //   },
-      // };
-
-
-      // const { columnId } = action.payload;
-      // let newTaskIds = Array.from(state.columns[columnId].taskIds);
-
-      // // console.log(newTaskIds);
-      // let taskId = `${columnId}-${state.columns[columnId].taskIds.length + 1
-      //   }`;
-
-      // newTaskIds.unshift(taskId);
-
-      // const newColumn = {
-      //   ...state.columns[columnId],
-      //   taskIds: newTaskIds,
-      // };
-
-      // const newState = {
-      //   ...state,
-      //   columns: { ...state.columns, [columnId]: newColumn },
-      //   tasks: { ...state.tasks, ...newTasks },
-      // };
-
-      // return newState;
+        .catch((err) => {
+          console.error("ACTION FAILED:", err);
+        });
     }
 
     case TaskAction.STAGE_TASK: {
-      console.log('adding task');
-      console.log(action.payload.task);
-      console.log(state);
-
       const { task } = action.payload;
 
-      console.log(task);
+      const newState = state;
 
-      const newState = {
-        ...state,
-        tasks: {
-          ...state.tasks,
-          [task.id]: task
-        }
-      };
-
-      console.log(newState);
+      newState.tasks[task.plannedOnDate][task.id] = task;
 
       return newState;
     }
@@ -185,8 +128,7 @@ export const taskReducer = async (
         tasks: action.payload,
       };
 
-      console.log('SETTING TASKS', action.payload);
-
+      console.log("SETTING TASKS", action.payload);
 
       return newState;
     }
@@ -197,61 +139,60 @@ export const taskReducer = async (
         path: `/tasks/update`,
         body: {
           id: action.payload.id,
-          updates: action.payload.updates
+          updates: action.payload.updates,
         },
-      }).then((doc) => {
-        const newState = {
-          ...state,
-          tasks: {
-            ...state.tasks, [action.payload.id]: {
-              ...state.tasks[action.payload.id],
-              ...action.payload.updates,
-            },
-          },
-        };
-
-        console.log('NEW STATE');
-
-        console.log(newState);
-        console.log(doc);
-
-        return newState
-      }).catch((err) => {
-        console.error(err)
-        return err
       })
+        .then((doc) => {
+          const newState = {
+            ...state,
+            tasks: {
+              ...state.tasks,
+              [action.payload.id]: {
+                ...state.tasks[action.payload.id],
+                ...action.payload.updates,
+              },
+            },
+          };
+
+          console.log("NEW STATE");
+
+          console.log(newState);
+          console.log(doc);
+
+          return newState;
+        })
+        .catch((err) => {
+          console.error(err);
+          return err;
+        });
     }
 
     case TaskAction.UPDATE_TASK: {
-      const resp = Api.request({
+      await Api.request({
         method: HttpMethod.POST,
         path: `/tasks/update`,
         body: {
           id: action.payload.id,
-          updates: action.payload.updates
+          updates: action.payload.task,
         },
-      }).then((doc) => {
-        const newState = {
-          ...state,
-          tasks: {
-            ...state.tasks,
-            [state.tasks[action.payload.date].plannedOnDate.toString()]: [
-              ...state.tasks[action.payload.id],
-              ...action.payload.updates,
-            ],
-          },
-        };
-
-        console.log('NEW STATE');
-
-        console.log(newState);
-        console.log(doc);
-
-        return newState
-      }).catch((err) => {
-        console.error(err)
-        return err
       })
+        .then((doc) => {
+          const newState = state;
+          const task = action.payload.task;
+
+          newState.tasks[task.plannedOnDate][task.id] = task;
+
+          console.log("NEW STATE");
+
+          console.log(newState);
+          console.log(doc);
+
+          return newState;
+        })
+        .catch((err) => {
+          console.error(err);
+          return err;
+        });
     }
 
     case TaskAction.REFETCH_TASK: {
@@ -261,14 +202,16 @@ export const taskReducer = async (
         body: {
           id: action.payload.id,
         },
-      }).then((doc) => {
-        console.log(doc);
-
-        return state
-      }).catch((err) => {
-        console.error(err)
-        return err
       })
+        .then((doc) => {
+          console.log(doc);
+
+          return state;
+        })
+        .catch((err) => {
+          console.error(err);
+          return err;
+        });
     }
 
     case TaskAction.UNCOMPLETE_TASK: {
@@ -280,18 +223,17 @@ export const taskReducer = async (
           updates: {
             completed: false,
             completedDate: null,
-          }
+          },
         },
-      }).then((doc) =>
-        console.log(doc)
-      );
+      }).then((doc) => console.log(doc));
 
       console.log(resp);
 
       const newState = {
         ...state,
         tasks: {
-          ...state.tasks, [action.payload.id]: {
+          ...state.tasks,
+          [action.payload.id]: {
             ...state.tasks[action.payload.id],
             completed: false,
             completedDate: null,
@@ -299,7 +241,7 @@ export const taskReducer = async (
         },
       };
 
-      return newState
+      return newState;
     }
 
     case TaskAction.REMOVE_TASK:
@@ -383,16 +325,17 @@ export const taskReducer = async (
  * a specific piece of state. This keeps things a little cleaner
  * in the BoardProvider code.
  */
-const mainReducer = (
-  state: InitialStateType,
-  action: AllActionType,
-) => ({
+const mainReducer = (state: InitialStateType, action: AllActionType) => ({
   ...state,
   ...taskReducer(state, action),
 });
 
-export const BoardProvider: React.FC = ({ children }) => {
-  const [state, dispatch] = useOptimisticReducer(mainReducer, initialState);
+export const BoardProvider: React.FC = ({ children, value }) => {
+  console.log(value);
+
+  const _initialState = initialState;
+  _initialState.tasks = value.tasks
+  const [state, dispatch] = useOptimisticReducer(mainReducer, _initialState);
 
   // const registerSheetIntent = (type: SheetIntent) =>
   //   dispatch({ type: type });
@@ -410,7 +353,7 @@ export const useBoard = () => {
   const ctx = useContext(BoardContext);
   if (!ctx) {
     throw new Error(
-      'useBoard can only be used in the context of a BoardProvider.'
+      "useBoard can only be used in the context of a BoardProvider."
     );
   }
   return ctx;

@@ -24,10 +24,9 @@ type Home = {
   tasksData: Record<Task['plannedOnDate'], Task[]>,
 }
 
-const Home = ({ dates, tasksData }: Home) => {
+const Home = ({ dates }: Home) => {
   const AuthUser = useAuthUser();
   const { state: { tasks }, dispatch } = useBoard();
-
 
   let columnRefs = useRef({});
   const boardRef = useRef()
@@ -36,11 +35,6 @@ const Home = ({ dates, tasksData }: Home) => {
     newRefs[date] = createRef();
     return newRefs
   }, {})
-
-  useEffect(() => {
-    console.log('TASKS', tasksData);
-    dispatch({ type: TaskAction.SET_TASKS, payload: tasksData });
-  });
 
   const executeScroll = (date) => {
     const x = columnRefs.current[date].current.getBoundingClientRect().left + boardRef.current.scrollLeft;
@@ -83,7 +77,7 @@ const Home = ({ dates, tasksData }: Home) => {
                   // column={column}
                   innerRef={columnRefs.current[date]}
                   date={date}
-                  tasks={tasksData[date]}
+                  tasks={tasks[date]}
                   userId={AuthUser.id}
                 />
               );
@@ -105,21 +99,6 @@ export const getServerSideProps = withAuthUserTokenSSR()(
       userId: AuthUser.id,
     });
 
-    // if (tasks) {
-    //   console.log(tasks);
-
-    //   tasks = tasks.reduce((acc, task) => {
-    //     if (!acc[task.plannedOnDate]) {
-    //       acc[task.plannedOnDate] = {};
-    //     };
-
-    //     return acc
-    //   }, {});
-    // }
-
-    console.log('TASKS');
-    console.log(tasks);
-
     dates.forEach((date) => {
       if (!tasks[date]) {
         tasks[date] = {};
@@ -129,7 +108,7 @@ export const getServerSideProps = withAuthUserTokenSSR()(
     return {
       props: {
         dates: dates,
-        tasksData: tasks,
+        tasks: tasks,
       },
     };
   }

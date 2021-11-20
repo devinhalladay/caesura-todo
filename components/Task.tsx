@@ -34,26 +34,24 @@ const Task = ({ task, index }: TaskProps) => {
 
   // const firebase = getFirebaseAdmin().firestore()
 
-  const handleChange = (e) => {
+  const handleChange = debounce((e) => {
     text.current = e.target.value;
-    console.log(e);
 
-    dispatch({
-      type: TaskAction.UPDATE_TASK,
-      payload: {
-        id: task.id,
-        updates: {
-          text: text.current,
-          isPending: task.isPending,
+    if (!task.isPending) {
+      dispatch({
+        type: TaskAction.UPDATE_TASK,
+        payload: {
+          id: task.id,
+          updates: {
+            text: text.current,
+            isPending: task.isPending,
+          },
         },
-      },
-    });
-  };
+      });
+    }
+  });
 
   const handleBlur = (e) => {
-    // text.current = e.target.value;
-    console.log(text.current);
-
     if (task.isPending && text.current.length > 0) {
       dispatch({
         type: TaskAction.ADD_TASK,
@@ -62,6 +60,7 @@ const Task = ({ task, index }: TaskProps) => {
           task: {
             ...task,
             text: text.current,
+            isPending: false,
           },
         },
       });
@@ -123,11 +122,9 @@ const Task = ({ task, index }: TaskProps) => {
           </div>
           <div className="w-full">
             <button
-              className={`border ${
-                !task.completed ? "border-gray-300" : "border-green-500"
-              } flex items-center justify-center h-5 w-5 rounded-full transition-all hover:border-green-500 hover:border-2 ${
-                !task.completed ? "text-gray-300" : "text-green-500"
-              } hover:text-green-500 stroke-4 hover:stroke-6`}
+              className={`border ${!task.completed ? "border-gray-300" : "border-green-500"
+                } flex items-center justify-center h-5 w-5 rounded-full transition-all hover:border-green-500 hover:border-2 ${!task.completed ? "text-gray-300" : "text-green-500"
+                } hover:text-green-500 stroke-4 hover:stroke-6`}
               onClick={handleCheckClick}
             >
               <svg
