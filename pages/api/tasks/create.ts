@@ -8,7 +8,7 @@ export default async function createEvent(req, res) {
     .then((doc) => {
       console.log("Document successfully written!");
       console.log(doc);
-      res.status(200).json({ doc })
+      res.json({ doc }).status(200);
       // return doc
     })
     .catch((err) => {

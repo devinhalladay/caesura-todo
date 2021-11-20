@@ -34,22 +34,38 @@ const Task = ({ task, index }: TaskProps) => {
 
   // const firebase = getFirebaseAdmin().firestore()
 
-  const handleChange = debounce((e) => {
+  const handleChange = (e) => {
     text.current = e.target.value;
+    console.log(e);
+
     dispatch({
       type: TaskAction.UPDATE_TASK,
       payload: {
         id: task.id,
         updates: {
           text: text.current,
-          isPending: false,
+          isPending: task.isPending,
         },
       },
     });
-  });
+  };
 
-  const handleBlur = () => {
+  const handleBlur = (e) => {
+    // text.current = e.target.value;
     console.log(text.current);
+
+    if (task.isPending && text.current.length > 0) {
+      dispatch({
+        type: TaskAction.ADD_TASK,
+        payload: {
+          id: task.id,
+          task: {
+            ...task,
+            text: text.current,
+          },
+        },
+      });
+    }
   };
 
   const handleCheckClick = () => {

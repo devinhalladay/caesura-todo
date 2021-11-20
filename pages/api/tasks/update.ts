@@ -4,6 +4,8 @@ export default async function udpateEvent(req, res) {
   const {id, updates} = req.body;
   const db = getFirebaseAdmin().firestore()
 
+  console.log(updates);
+
   db.collection("tasks").doc(id).update(updates)
     .then((doc) => {
       console.log("Document successfully written!");

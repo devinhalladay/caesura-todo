@@ -5,7 +5,7 @@ import {
   withAuthUser,
   withAuthUserTokenSSR
 } from 'next-firebase-auth';
-import { createRef, useRef, useState } from 'react';
+import { createRef, useEffect, useRef, useState } from 'react';
 import {
   DragDropContext,
   resetServerContext
@@ -22,15 +22,23 @@ import {
 type Home = {
   // tasks: Task,
   tasksByDate: Record<Task['plannedOnDate'], Task>,
-  dates: string[]
+  dates: string[],
+  allTasks: Task[],
 }
 
-const Home = ({ tasksByDate, dates }: Home) => {
+const Home = ({ tasksByDate, dates, allTasks }: Home) => {
   const AuthUser = useAuthUser();
-  const { dispatch } = useBoard();
+  const { state: { tasks }, dispatch } = useBoard();
 
   let columnRefs = useRef({});
   const boardRef = useRef()
+
+  useEffect(() => {
+    dispatch({
+      type: TaskAction.UPDATE_ALL_TASKS,
+      payload: tasksByDate
+    })
+  }, [])
 
   columnRefs.current = dates.reduce((newRefs, date, i) => {
     newRefs[date] = createRef();
@@ -78,7 +86,7 @@ const Home = ({ tasksByDate, dates }: Home) => {
                   // column={column}
                   innerRef={columnRefs.current[date]}
                   date={date}
-                  tasks={tasksByDate[date]}
+                  tasks={tasks[date] ? tasks[date] : tasksByDate[date]}
                   userId={AuthUser.id}
                 />
               );
@@ -106,8 +114,7 @@ export const getServerSideProps = withAuthUserTokenSSR()(
 
     let tasks = await allTasks;
 
-    console.log(tasks);
-
+    console.log(tasks.flat());
 
     const tasksByDate = dates.reduce((acc, date, index) => {
       let currentTasks = tasks[index]
@@ -121,10 +128,21 @@ export const getServerSideProps = withAuthUserTokenSSR()(
       return { ...acc, [date]: currentTasks };
     }, {});
 
+    const flatTasks = tasks.flat().filter((task) => task !== null).reduce((acc, task, index) => {
+      return {
+        ...acc,
+        [task.id]: task.data(),
+      }
+    }, {})
+
+    console.log(flatTasks);
+
+
     return {
       props: {
         dates: dates,
         tasksByDate: tasksByDate,
+        // allTasks: flatTasks,
       },
     };
   }

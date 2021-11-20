@@ -6,6 +6,7 @@ import React, {
   useReducer,
   useState,
 } from 'react';
+import useOptimisticReducer from "use-optimistic-reducer";
 import { Api } from '../lib/api'
 import { v4 as uuid } from 'uuid';
 import { HttpMethod, Task, TaskAction, TaskIntent } from '../types';
@@ -31,78 +32,80 @@ let initialColumnOrder = createDaysForCurrentMonth('2021', '10').map(
   (day, index) => day.dateString
 );
 
-const initialTasks = createDaysForCurrentMonth('2021', '10').reduce(
-  (acc, currentValue, currentIndex) => ({
-    ...acc,
-    [`${currentValue.dateString}-1`]: {
-      'id': `${currentValue.dateString}-1`,
-      'actualTime': null,
-      'completeDate': null,
-      'completeOn': null,
-      'completed': false,
-      'completedBy': null,
-      'createdAt': '2021-10-11T20:05:47.293Z',
-      'createdBy': '6116d75820a45f00095030ae',
-      'dueDate': null,
-      'duration': null,
-      'eventInfo': null,
-      'groupId': '6116d78120a45f00095030b0',
-      'integration': null,
-      'lastModified': '2021-10-25T14:31:12.628Z',
-      'notes': '',
-      'objectiveId': null,
-      'runDate': null,
-      'taskType': 'outcomes',
-      'text': 'Clear sink of dishes',
-      'timeEstimate': 15,
-    },
-    [`${currentValue.dateString}-2`]: {
-      'id': `${currentValue.dateString}-2`,
-      'actualTime': null,
-      'completeDate': null,
-      'completeOn': null,
-      'completed': false,
-      'completedBy': null,
-      'createdAt': '2021-10-11T20:05:47.293Z',
-      'createdBy': '6116d75820a45f00095030ae',
-      'dueDate': null,
-      'duration': null,
-      'eventInfo': null,
-      'groupId': '6116d78120a45f00095030b0',
-      'integration': null,
-      'lastModified': '2021-10-25T14:31:12.628Z',
-      'notes': '',
-      'objectiveId': null,
-      'runDate': null,
-      'taskType': 'outcomes',
-      'text': 'Clear sink of dishes',
-      'timeEstimate': 15,
-    },
-    [`${currentValue.dateString}-3`]: {
-      'id': `${currentValue.dateString}-3`,
-      'actualTime': null,
-      'completeDate': null,
-      'completeOn': null,
-      'completed': false,
-      'completedBy': null,
-      'createdAt': '2021-10-11T20:05:47.293Z',
-      'createdBy': '6116d75820a45f00095030ae',
-      'dueDate': null,
-      'duration': null,
-      'eventInfo': null,
-      'groupId': '6116d78120a45f00095030b0',
-      'integration': null,
-      'lastModified': '2021-10-25T14:31:12.628Z',
-      'notes': '',
-      'objectiveId': null,
-      'runDate': null,
-      'taskType': 'outcomes',
-      'text': 'Clear sink of dishes',
-      'timeEstimate': 15,
-    },
-  }),
-  {}
-);
+// const initialTasks = createDaysForCurrentMonth('2021', '10').reduce(
+//   (acc, currentValue, currentIndex) => ({
+//     ...acc,
+//     [`${currentValue.dateString}-1`]: {
+//       'id': `${currentValue.dateString}-1`,
+//       'actualTime': null,
+//       'completeDate': null,
+//       'completeOn': null,
+//       'completed': false,
+//       'completedBy': null,
+//       'createdAt': '2021-10-11T20:05:47.293Z',
+//       'createdBy': '6116d75820a45f00095030ae',
+//       'dueDate': null,
+//       'duration': null,
+//       'eventInfo': null,
+//       'groupId': '6116d78120a45f00095030b0',
+//       'integration': null,
+//       'lastModified': '2021-10-25T14:31:12.628Z',
+//       'notes': '',
+//       'objectiveId': null,
+//       'runDate': null,
+//       'taskType': 'outcomes',
+//       'text': 'Clear sink of dishes',
+//       'timeEstimate': 15,
+//     },
+//     [`${currentValue.dateString}-2`]: {
+//       'id': `${currentValue.dateString}-2`,
+//       'actualTime': null,
+//       'completeDate': null,
+//       'completeOn': null,
+//       'completed': false,
+//       'completedBy': null,
+//       'createdAt': '2021-10-11T20:05:47.293Z',
+//       'createdBy': '6116d75820a45f00095030ae',
+//       'dueDate': null,
+//       'duration': null,
+//       'eventInfo': null,
+//       'groupId': '6116d78120a45f00095030b0',
+//       'integration': null,
+//       'lastModified': '2021-10-25T14:31:12.628Z',
+//       'notes': '',
+//       'objectiveId': null,
+//       'runDate': null,
+//       'taskType': 'outcomes',
+//       'text': 'Clear sink of dishes',
+//       'timeEstimate': 15,
+//     },
+//     [`${currentValue.dateString}-3`]: {
+//       'id': `${currentValue.dateString}-3`,
+//       'actualTime': null,
+//       'completeDate': null,
+//       'completeOn': null,
+//       'completed': false,
+//       'completedBy': null,
+//       'createdAt': '2021-10-11T20:05:47.293Z',
+//       'createdBy': '6116d75820a45f00095030ae',
+//       'dueDate': null,
+//       'duration': null,
+//       'eventInfo': null,
+//       'groupId': '6116d78120a45f00095030b0',
+//       'integration': null,
+//       'lastModified': '2021-10-25T14:31:12.628Z',
+//       'notes': '',
+//       'objectiveId': null,
+//       'runDate': null,
+//       'taskType': 'outcomes',
+//       'text': 'Clear sink of dishes',
+//       'timeEstimate': 15,
+//     },
+//   }),
+//   {}
+// );
+
+const initialTasks = {}
 
 /**
  * This will be used to combine UI actions into a single type.
@@ -142,34 +145,62 @@ export const BoardContext = createContext<{
 });
 
 /** Controls the state of a task. */
-export const taskReducer = (
+export const taskReducer = async (
   state: InitialStateType,
   action: TaskIntent
-): InitialStateType => {
+): Promise<InitialStateType> => {
   switch (action.type) {
     case TaskAction.ADD_TASK: {
-      const resp = Api.request({
-        method: HttpMethod.POST,
-        path: `/tasks/create`,
-        body: {
-          createdBy: action.payload.task.createdBy,
-          task: action.payload.task
-        },
-      }).then((r) => {console.log('ACTION DONE AND PROMISE RESOLVED:', r.docs);
-      }).catch((err) => {
-        console.error('ACTION FAILED:', err);
-      })
+      console.log('adding task');
+
+      const { task } = action.payload;
+      console.log(task);
 
       const newState = {
         ...state,
         tasks: {
-          ...state.tasks, [action.payload.task.id]: {
-            ...action.payload.task,
-          },
+          ...state.tasks,
+          [task.plannedOnDate]: [
+            ...state.tasks[task.plannedOnDate.toString()],
+            {
+              ...task,
+              isPending: false
+            }
+          ]
         },
       };
 
-      return newState;
+
+
+      await Api.request({
+        method: HttpMethod.POST,
+        path: `/tasks/create`,
+        body: {
+          createdBy: task.createdBy,
+          task: task
+        },
+      })
+
+
+
+
+        .then((r) => {
+          console.log('ACTION DONE AND PROMISE RESOLVED:', r.docs);
+        }).catch((err) => {
+          console.error('ACTION FAILED:', err);
+        })
+
+
+
+      // const newState = {
+      //   ...state,
+      //   tasks: {
+      //     ...state.tasks, [action.payload.task.id]: {
+      //       ...action.payload.task,
+      //     },
+      //   },
+      // };
+
 
       // const { columnId } = action.payload;
       // let newTaskIds = Array.from(state.columns[columnId].taskIds);
@@ -195,38 +226,37 @@ export const taskReducer = (
     }
 
     case TaskAction.STAGE_TASK: {
+      console.log('adding task');
+      console.log(action.payload.task);
+      console.log(state);
+
+      const { task } = action.payload;
+
       const newState = {
         ...state,
         tasks: {
-          ...state.tasks, [action.payload.task.id]: {
-            ...action.payload.task,
-          },
+          ...state.tasks,
+          [task.plannedOnDate]: [
+            ...state.tasks[task.plannedOnDate.toString()],
+            task,
+          ]
+        },
+      };
+
+      console.log(newState);
+
+      return newState;
+    }
+
+    case TaskAction.UPDATE_ALL_TASKS: {
+      const newState = {
+        ...state,
+        tasks: {
+          ...action.payload,
         },
       };
 
       return newState;
-
-      // const { columnId } = action.payload;
-      // let newTaskIds = Array.from(state.columns[columnId].taskIds);
-
-      // // console.log(newTaskIds);
-      // let taskId = `${columnId}-${state.columns[columnId].taskIds.length + 1
-      //   }`;
-
-      // newTaskIds.unshift(taskId);
-
-      // const newColumn = {
-      //   ...state.columns[columnId],
-      //   taskIds: newTaskIds,
-      // };
-
-      // const newState = {
-      //   ...state,
-      //   columns: { ...state.columns, [columnId]: newColumn },
-      //   tasks: { ...state.tasks, ...newTasks },
-      // };
-
-      // return newState;
     }
 
     case TaskAction.COMPLETE_TASK: {
@@ -272,10 +302,11 @@ export const taskReducer = (
         const newState = {
           ...state,
           tasks: {
-            ...state.tasks, [action.payload.id]: {
+            ...state.tasks,
+            [state.tasks[action.payload.date].plannedOnDate.toString()]: [
               ...state.tasks[action.payload.id],
               ...action.payload.updates,
-            },
+            ],
           },
         };
 

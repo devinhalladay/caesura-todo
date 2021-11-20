@@ -16,11 +16,12 @@ export enum TaskAction {
   ADD_TASK = 'ADD_TASK',
   UPDATE_TASK = 'UPDATE_TASK',
   STAGE_TASK = 'STAGE_TASK',
+  UPDATE_ALL_TASKS = 'UPDATE_ALL_TASKS',
   COMPLETE_TASK = 'COMPLETE_TASK',
   REMOVE_TASK = 'REMOVE_TASK',
   REORDER_TASK = 'REORDER_TASK',
   UNCOMPLETE_TASK = 'UNCOMPLETE_TASK',
-  REFETCH_TASK = 'REFETCH_TASK'
+  REFETCH_TASK = 'REFETCH_TASK',
 }
 
 export type TaskIntent =
@@ -53,6 +54,16 @@ export type TaskIntent =
     payload: {
       taskId: string
     }
+  } | {
+    type: TaskAction.STAGE_TASK,
+    payload: {
+      task: Task
+    }
+  } | {
+    type: TaskAction.UPDATE_ALL_TASKS,
+    payload: {
+      tasks: Task[]
+    }
   }
 
 export type Task = {
@@ -69,4 +80,5 @@ export type Task = {
   notes?: string,
   objectiveId?: string,
   timeEstimate?: number,
+  isPending: boolean,
 }
