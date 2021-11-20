@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { useRef } from 'react';
-import {v4 as uuid} from 'uuid';
+import { v4 as uuid } from 'uuid';
 import Task from './Task';
 import { Droppable } from 'react-beautiful-dnd';
 import localeData from 'dayjs/plugin/localeData';
@@ -8,6 +8,7 @@ import isoWeek from 'dayjs/plugin/isoWeek';
 import { useBoard } from '../contexts/Board';
 import { TaskAction } from '../types';
 import { useRouter } from 'next/router';
+import { Tasks } from '../lib/api';
 dayjs.extend(localeData);
 dayjs.extend(isoWeek);
 
@@ -16,30 +17,31 @@ const Column = ({ date, tasks, userId, innerRef }) => {
 
   const router = useRouter();
   const refreshData = () => {
-      router.replace(router.asPath);
-    }
+    router.replace(router.asPath);
+  }
 
   const dayOfWeek = dayjs.weekdays()[dayjs(date).day()].toString();
 
   const handleAddTask = () => {
+    const task = {
+      id: uuid(),
+      completed: false,
+      createdBy: userId,
+      isPending: true,
+      spaceId: null,
+      taskType: "outcome",
+      text: "",
+      plannedOnDate: date
+    };
+
     dispatch({
       type: TaskAction.STAGE_TASK,
       payload: {
         columnId: date,
-        task: {
-          id: uuid(),
-          completed: false,
-          createdBy: userId,
-          isPending: true,
-          spaceId: null,
-          taskType: "outcome",
-          text: "",
-          plannedOnDate: date
-        },
+        task: task,
         createdBy: userId
       },
     });
-    refreshData()
   };
 
   return (

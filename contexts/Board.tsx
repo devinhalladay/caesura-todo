@@ -11,6 +11,7 @@ import { Api } from '../lib/api'
 import { v4 as uuid } from 'uuid';
 import { HttpMethod, Task, TaskAction, TaskIntent } from '../types';
 import { createDaysForCurrentMonth } from '../utils/dates';
+import { Optimistic } from 'use-optimistic-reducer/build/types';
 
 const initialColumns = createDaysForCurrentMonth('2021', '10').reduce(
   (acc, currentValue, currentIndex) => ({
@@ -32,79 +33,6 @@ let initialColumnOrder = createDaysForCurrentMonth('2021', '10').map(
   (day, index) => day.dateString
 );
 
-// const initialTasks = createDaysForCurrentMonth('2021', '10').reduce(
-//   (acc, currentValue, currentIndex) => ({
-//     ...acc,
-//     [`${currentValue.dateString}-1`]: {
-//       'id': `${currentValue.dateString}-1`,
-//       'actualTime': null,
-//       'completeDate': null,
-//       'completeOn': null,
-//       'completed': false,
-//       'completedBy': null,
-//       'createdAt': '2021-10-11T20:05:47.293Z',
-//       'createdBy': '6116d75820a45f00095030ae',
-//       'dueDate': null,
-//       'duration': null,
-//       'eventInfo': null,
-//       'groupId': '6116d78120a45f00095030b0',
-//       'integration': null,
-//       'lastModified': '2021-10-25T14:31:12.628Z',
-//       'notes': '',
-//       'objectiveId': null,
-//       'runDate': null,
-//       'taskType': 'outcomes',
-//       'text': 'Clear sink of dishes',
-//       'timeEstimate': 15,
-//     },
-//     [`${currentValue.dateString}-2`]: {
-//       'id': `${currentValue.dateString}-2`,
-//       'actualTime': null,
-//       'completeDate': null,
-//       'completeOn': null,
-//       'completed': false,
-//       'completedBy': null,
-//       'createdAt': '2021-10-11T20:05:47.293Z',
-//       'createdBy': '6116d75820a45f00095030ae',
-//       'dueDate': null,
-//       'duration': null,
-//       'eventInfo': null,
-//       'groupId': '6116d78120a45f00095030b0',
-//       'integration': null,
-//       'lastModified': '2021-10-25T14:31:12.628Z',
-//       'notes': '',
-//       'objectiveId': null,
-//       'runDate': null,
-//       'taskType': 'outcomes',
-//       'text': 'Clear sink of dishes',
-//       'timeEstimate': 15,
-//     },
-//     [`${currentValue.dateString}-3`]: {
-//       'id': `${currentValue.dateString}-3`,
-//       'actualTime': null,
-//       'completeDate': null,
-//       'completeOn': null,
-//       'completed': false,
-//       'completedBy': null,
-//       'createdAt': '2021-10-11T20:05:47.293Z',
-//       'createdBy': '6116d75820a45f00095030ae',
-//       'dueDate': null,
-//       'duration': null,
-//       'eventInfo': null,
-//       'groupId': '6116d78120a45f00095030b0',
-//       'integration': null,
-//       'lastModified': '2021-10-25T14:31:12.628Z',
-//       'notes': '',
-//       'objectiveId': null,
-//       'runDate': null,
-//       'taskType': 'outcomes',
-//       'text': 'Clear sink of dishes',
-//       'timeEstimate': 15,
-//     },
-//   }),
-//   {}
-// );
-
 const initialTasks = {}
 
 /**
@@ -114,10 +42,11 @@ const initialTasks = {}
 type AllActionType = {
   type: TaskAction;
   payload?: object;
+  optimistic?: Optimistic<typeof taskReducer>;
 };
 
 type InitialStateType = {
-  tasks: Record<Task['id'], Task>;
+  tasks: Record<Task['id'], Task[]>;
   columns: object;
   columnOrder: string[];
 };
@@ -154,23 +83,17 @@ export const taskReducer = async (
       console.log('adding task');
 
       const { task } = action.payload;
-      console.log(task);
 
       const newState = {
         ...state,
         tasks: {
           ...state.tasks,
-          [task.plannedOnDate]: [
-            ...state.tasks[task.plannedOnDate.toString()],
-            {
-              ...task,
-              isPending: false
-            }
-          ]
+          [task.id]: {
+            ...task,
+            isPending: false
+          }
         },
       };
-
-
 
       await Api.request({
         method: HttpMethod.POST,
@@ -232,15 +155,14 @@ export const taskReducer = async (
 
       const { task } = action.payload;
 
+      console.log(task);
+
       const newState = {
         ...state,
         tasks: {
           ...state.tasks,
-          [task.plannedOnDate]: [
-            ...state.tasks[task.plannedOnDate.toString()],
-            task,
-          ]
-        },
+          [task.id]: task
+        }
       };
 
       console.log(newState);
@@ -251,9 +173,16 @@ export const taskReducer = async (
     case TaskAction.UPDATE_ALL_TASKS: {
       const newState = {
         ...state,
-        tasks: {
-          ...action.payload,
-        },
+        ...action.payload,
+      };
+
+      return newState;
+    }
+
+    case TaskAction.SET_TASKS: {
+      const newState = {
+        ...state,
+        tasks: action.payload,
       };
 
       return newState;
@@ -436,6 +365,10 @@ export const taskReducer = async (
       }
     }
 
+    case TaskAction.RESET_STATE: {
+      return action.payload;
+    }
+
     default:
       return state;
   }
@@ -449,14 +382,14 @@ export const taskReducer = async (
  */
 const mainReducer = (
   state: InitialStateType,
-  action: AllActionType
+  action: AllActionType,
 ) => ({
   ...state,
   ...taskReducer(state, action),
 });
 
 export const BoardProvider: React.FC = ({ children }) => {
-  const [state, dispatch] = useReducer(mainReducer, initialState);
+  const [state, dispatch] = useOptimisticReducer(mainReducer, initialState);
 
   // const registerSheetIntent = (type: SheetIntent) =>
   //   dispatch({ type: type });

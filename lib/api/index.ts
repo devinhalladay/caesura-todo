@@ -30,12 +30,61 @@ export const Api = {
   },
 };
 
-type Task = {
+type TasksTypes = {
   getTasksByDay: (options: { userId: string, date: Date | string }) => Promise<Task[]> | null;
-  createTask: (options: { task: Task }) => Promise<Task>
+  getAll: (options: { userId: string }) => Promise<Task[]> | null;
+  addTask: (task: Task) => Promise<Task>
 }
 
-export const Tasks: Task = {
+export const Tasks: TasksTypes = {
+  addTask: async (task: Task) => {
+    const res = await Api.request({
+      method: HttpMethod.POST,
+      path: `/tasks/create`,
+      body: {
+        createdBy: task.createdBy,
+        task: task
+      },
+    })
+
+    return res
+  },
+
+  getAll: async ({
+    userId,
+  }) => {
+    const db = getFirebaseAdmin().firestore()
+    let tasks = await db.collection("tasks").where("createdBy", "==", userId).get()
+    // tasks = tasks.docs.map(doc => doc.data());
+
+    // Reduce tasks.docs to an object with the id as the key and the task as the value
+    let tasksKeyedById = tasks.docs.reduce((acc, doc) => {
+      const data = doc.data();
+      acc[data.id] = data;
+      return acc;
+    }, {})
+
+    console.log(tasksKeyedById);
+
+
+    // db.collection("tasks").where("createdBy", "==", userId).onSnapshot((querySnapshot) => {
+    //   querySnapshot.forEach((doc) => {
+    //     tasks.push(doc.data());
+    //   });
+    // });
+
+    // tasks.docs.map(task => {
+    //   console.log(dayjs(date).isSame(task.data().plannedOnDate, 'day'));
+    // })
+
+    try {
+      return tasksKeyedById
+    } catch (error) {
+      console.error(error)
+      return null;
+    }
+  },
+
   getTasksByDay: async ({
     userId,
     date

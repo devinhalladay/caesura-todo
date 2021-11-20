@@ -21,29 +21,32 @@ import {
 
 type Home = {
   // tasks: Task,
-  tasksByDate: Record<Task['plannedOnDate'], Task>,
+  tasksByDate: Record<Task['plannedOnDate'], Task[]>,
   dates: string[],
   allTasks: Task[],
+  taskList: Task[],
 }
 
-const Home = ({ tasksByDate, dates, allTasks }: Home) => {
+const Home = ({ tasksByDate, dates, allTasks, taskList }: Home) => {
   const AuthUser = useAuthUser();
   const { state: { tasks }, dispatch } = useBoard();
 
+  console.log('TASK LIST', taskList);
+
   let columnRefs = useRef({});
   const boardRef = useRef()
-
-  useEffect(() => {
-    dispatch({
-      type: TaskAction.UPDATE_ALL_TASKS,
-      payload: tasksByDate
-    })
-  }, [])
 
   columnRefs.current = dates.reduce((newRefs, date, i) => {
     newRefs[date] = createRef();
     return newRefs
   }, {})
+
+  useEffect(() => {
+    console.log('TASKS', tasks);
+    dispatch({ type: TaskAction.SET_TASKS, tasksByDate });
+    console.log(tasks);
+
+  }, [tasks]);
 
   const executeScroll = (date) => {
     const x = columnRefs.current[date].current.getBoundingClientRect().left + boardRef.current.scrollLeft;
@@ -86,7 +89,7 @@ const Home = ({ tasksByDate, dates, allTasks }: Home) => {
                   // column={column}
                   innerRef={columnRefs.current[date]}
                   date={date}
-                  tasks={tasks[date] ? tasks[date] : tasksByDate[date]}
+                  tasks={tasks[date]}
                   userId={AuthUser.id}
                 />
               );
@@ -104,6 +107,14 @@ export const getServerSideProps = withAuthUserTokenSSR()(
 
     const dates = getDateRange(dayjs().subtract(8, 'day'), dayjs().add(7, 'day'));
 
+    let taskList = await Tasks.getAll({
+      userId: AuthUser.id,
+    });
+
+    console.log('TASK LISTTTTT==========');
+
+    // console.log(taskList);
+
     let allTasks = Promise.all(
       dates.map(async (date) =>
         await Tasks.getTasksByDay({
@@ -114,7 +125,7 @@ export const getServerSideProps = withAuthUserTokenSSR()(
 
     let tasks = await allTasks;
 
-    console.log(tasks.flat());
+    // console.log(tasks.flat());
 
     const tasksByDate = dates.reduce((acc, date, index) => {
       let currentTasks = tasks[index]
@@ -138,10 +149,12 @@ export const getServerSideProps = withAuthUserTokenSSR()(
     console.log(flatTasks);
 
 
+
     return {
       props: {
         dates: dates,
         tasksByDate: tasksByDate,
+        taskList: taskList
         // allTasks: flatTasks,
       },
     };

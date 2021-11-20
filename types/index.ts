@@ -22,6 +22,8 @@ export enum TaskAction {
   REORDER_TASK = 'REORDER_TASK',
   UNCOMPLETE_TASK = 'UNCOMPLETE_TASK',
   REFETCH_TASK = 'REFETCH_TASK',
+  RESET_STATE = 'RESET_STATE',
+  SET_TASKS = 'SET_TASKS',
 }
 
 export type TaskIntent =
@@ -64,6 +66,12 @@ export type TaskIntent =
     payload: {
       tasks: Task[]
     }
+  } | {
+    type: TaskAction.RESET_STATE,
+    payload: object
+  } | {
+    type: TaskAction.SET_TASKS,
+    payload: any
   }
 
 export type Task = {
