@@ -16,7 +16,6 @@ export enum TaskAction {
   ADD_TASK = 'ADD_TASK',
   UPDATE_TASK = 'UPDATE_TASK',
   STAGE_TASK = 'STAGE_TASK',
-  UPDATE_ALL_TASKS = 'UPDATE_ALL_TASKS',
   COMPLETE_TASK = 'COMPLETE_TASK',
   REMOVE_TASK = 'REMOVE_TASK',
   REORDER_TASK = 'REORDER_TASK',
@@ -60,11 +59,6 @@ export type TaskIntent =
     type: TaskAction.STAGE_TASK,
     payload: {
       task: Task
-    }
-  } | {
-    type: TaskAction.UPDATE_ALL_TASKS,
-    payload: {
-      tasks: Task[]
     }
   } | {
     type: TaskAction.RESET_STATE,

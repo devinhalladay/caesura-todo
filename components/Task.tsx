@@ -1,13 +1,12 @@
-import { useRef, useState, useEffect, createRef } from "react";
-import firebase from "firebase/app";
+import dayjs from "dayjs";
 import "firebase/firestore";
+import { createRef, useEffect, useRef, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import checkmark from "../assets/icons/check.svg";
 import ContentEditable from "react-contenteditable";
 import { useBoard } from "../contexts/Board";
 import { Task as TaskType, TaskAction } from "../types";
-import dayjs from "dayjs";
-import { getFirebaseAdmin } from "next-firebase-auth";
+import { debounce } from "../utils/debounce";
+import sanitizeHtml from 'sanitize-html';
 
 interface TaskProps {
   task: TaskType;
@@ -22,36 +21,35 @@ const Task = ({ task, index }: TaskProps) => {
   const text = useRef(task.text);
   const textEl = createRef();
 
-  const debounce = (func, timeout = 300) => {
-    let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(this, args);
-      }, timeout);
-    };
+  const sanitize = () => {
+    text.current = sanitizeHtml(text.current, {
+      allowedTags: [],
+      allowedAttributes: {}
+    })
   };
 
-  // const firebase = getFirebaseAdmin().firestore()
-
-  const handleChange = debounce((e) => {
+  const handleChange = (e) => {
     text.current = e.target.value;
 
-    if (!task.isPending) {
-      dispatch({
-        type: TaskAction.UPDATE_TASK,
-        payload: {
-          id: task.id,
-          updates: {
-            text: text.current,
-            isPending: task.isPending,
-          },
-        },
-      });
-    }
-  });
+    // if (!task.isPending) {
+    // sanitize();
+
+    // dispatch({
+    //   type: TaskAction.UPDATE_TASK,
+    //   payload: {
+    //     id: task.id,
+    //     updates: {
+    //       text: text.current,
+    //       isPending: task.isPending,
+    //     },
+    //   },
+    // });
+    // }
+  };
 
   const handleBlur = (e) => {
+    sanitize();
+
     if (task.isPending && text.current.length > 0) {
       dispatch({
         type: TaskAction.ADD_TASK,
@@ -67,6 +65,12 @@ const Task = ({ task, index }: TaskProps) => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+    };
+  };
+
   const handleCheckClick = () => {
     if (task.completed) {
       dispatch({
@@ -80,6 +84,7 @@ const Task = ({ task, index }: TaskProps) => {
         type: TaskAction.COMPLETE_TASK,
         payload: {
           id: task.id,
+          task: task,
           updates: {
             completed: true,
             completedDate: dayjs(),
@@ -91,7 +96,6 @@ const Task = ({ task, index }: TaskProps) => {
 
   useEffect(() => {
     setWindowReady(true);
-    console.log(textEl);
   }, []);
 
   useEffect(() => {
@@ -115,6 +119,7 @@ const Task = ({ task, index }: TaskProps) => {
                 html={text.current}
                 onBlur={handleBlur}
                 onChange={handleChange}
+                onKeyDown={handleKeyDown}
               />
             ) : (
               <p>{task.text}</p>

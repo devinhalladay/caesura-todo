@@ -1,10 +1,8 @@
 import { getFirebaseAdmin } from "next-firebase-auth";
 
 export default async function udpateEvent(req, res) {
-  const {id, updates} = req.body;
-  const db = getFirebaseAdmin().firestore()
-
-  console.log(updates);
+  const { id, updates } = req.body;
+  const db = getFirebaseAdmin().firestore();
 
   db.collection("tasks").doc(id).update(updates)
     .then((doc) => {
