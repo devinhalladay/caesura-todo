@@ -1,39 +1,25 @@
+import dayjs from "dayjs";
 import { Api } from "../../lib/api";
 import { HttpMethod, TaskAction, TaskIntent } from "../../types";
 import { InitialStateType } from "../Board";
 
 /** Controls the state of a task. */
-export const taskReducer = async (
+export const taskReducer = (
   state: InitialStateType,
   action: TaskIntent
-): Promise<InitialStateType> => {
+): InitialStateType => {
   switch (action.type) {
     case TaskAction.ADD_TASK: {
       const { task } = action.payload;
 
       const newState = state;
       newState.tasks[task.plannedOnDate][task.id] = task;
-
-      await Api.request({
-        method: HttpMethod.POST,
-        path: `/tasks/create`,
-        body: {
-          createdBy: task.createdBy,
-          task: task,
-        },
-      })
-        .then((r) => {
-          console.log("ACTION DONE AND PROMISE RESOLVED:", r.docs);
-        })
-        .catch((err) => {
-          console.error("ACTION FAILED:", err);
-        });
     }
 
     case TaskAction.STAGE_TASK: {
       const { task } = action.payload;
 
-      const newState = state;
+      let newState = state;
 
       newState.tasks[task.plannedOnDate][task.id] = task;
 
@@ -50,41 +36,26 @@ export const taskReducer = async (
     }
 
     case TaskAction.COMPLETE_TASK: {
-      const newState = state;
-      let task;
-      console.log(state);
+      const { task } = action.payload;
 
-
-      // const resp = Api.request({
-      //   method: HttpMethod.POST,
-      //   path: `/tasks/update`,
-      //   body: {
-      //     id: action.payload.id,
-      //     updates: action.payload.updates,
-      //   },
-      // })
-      //   .then((doc) => {
-      //     const newState = {
-      //       ...state,
-      //       tasks: {
-      //         ...state.tasks,
-      //         [action.payload.id]: {
-      //           ...state.tasks[action.payload.id],
-      //           ...action.payload.updates,
-      //         },
-      //       },
-      //     };
-
-      //     return newState;
-      //   })
-      //   .catch((err) => {
-      //     console.error(err);
-      //     return err;
-      //   });
+      return {
+        ...state,
+        tasks: {
+          ...state.tasks,
+          [task.plannedOnDate]: {
+            ...state.tasks[task.plannedOnDate],
+            [task.id]: {
+              ...state.tasks[task.plannedOnDate][task.id],
+              completed: true,
+              completeDate: dayjs().format("YYYY-MM-DD")
+            }
+          }
+        }
+      };
     }
 
     case TaskAction.UPDATE_TASK: {
-      await Api.request({
+      Api.request({
         method: HttpMethod.POST,
         path: `/tasks/update`,
         body: {
@@ -126,33 +97,22 @@ export const taskReducer = async (
     }
 
     case TaskAction.UNCOMPLETE_TASK: {
-      const resp = Api.request({
-        method: HttpMethod.POST,
-        path: `/tasks/update`,
-        body: {
-          id: action.payload.id,
-          updates: {
-            completed: false,
-            completedDate: null,
-          },
-        },
-      }).then((doc) => console.log(doc));
+      const { task } = action.payload;
 
-      console.log(resp);
-
-      const newState = {
+      return {
         ...state,
         tasks: {
           ...state.tasks,
-          [action.payload.id]: {
-            ...state.tasks[action.payload.id],
-            completed: false,
-            completedDate: null,
-          },
-        },
+          [task.plannedOnDate]: {
+            ...state.tasks[task.plannedOnDate],
+            [task.id]: {
+              ...state.tasks[task.plannedOnDate][task.id],
+              completed: false,
+              completeDate: null
+            }
+          }
+        }
       };
-
-      return newState;
     }
 
     case TaskAction.REMOVE_TASK:

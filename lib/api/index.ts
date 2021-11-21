@@ -36,6 +36,8 @@ type TasksTypes = {
   }) => Promise<Task[]> | null;
   getAll: (options: { userId: string }) => Promise<Task[]> | null;
   addTask: (task: Task) => Promise<Task>;
+  update: (task: Task) => Promise<Task>;
+  complete: (task: Task) => Promise<Task>;
 };
 
 export const Tasks: TasksTypes = {
@@ -46,6 +48,53 @@ export const Tasks: TasksTypes = {
       body: {
         createdBy: task.createdBy,
         task: task,
+      },
+    });
+
+    return res;
+  },
+
+  update: async (task: Task) => {
+    const res = await Api.request({
+      method: HttpMethod.POST,
+      path: `/tasks/update`,
+      body: {
+        id: task.id,
+        updates: task,
+      },
+    });
+
+    return res;
+  },
+
+  complete: async (task: Task) => {
+    const res = await Api.request({
+      method: HttpMethod.POST,
+      path: `/tasks/update`,
+      body: {
+        id: task.id,
+        updates: {
+          completed: true,
+          completedDate: dayjs(),
+        },
+      },
+    });
+
+    return res;
+  },
+
+  uncomplete: async (task: Task) => {
+    console.log(task);
+
+    const res = await Api.request({
+      method: HttpMethod.POST,
+      path: `/tasks/update`,
+      body: {
+        id: task.id,
+        updates: {
+          completed: false,
+          completedDate: null,
+        },
       },
     });
 

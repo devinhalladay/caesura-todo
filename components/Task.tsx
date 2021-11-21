@@ -7,6 +7,7 @@ import { useBoard } from "../contexts/Board";
 import { Task as TaskType, TaskAction } from "../types";
 import { debounce } from "../utils/debounce";
 import sanitizeHtml from 'sanitize-html';
+import { Tasks } from "../lib/api";
 
 interface TaskProps {
   task: TaskType;
@@ -30,21 +31,6 @@ const Task = ({ task, index }: TaskProps) => {
 
   const handleChange = (e) => {
     text.current = e.target.value;
-
-    // if (!task.isPending) {
-    // sanitize();
-
-    // dispatch({
-    //   type: TaskAction.UPDATE_TASK,
-    //   payload: {
-    //     id: task.id,
-    //     updates: {
-    //       text: text.current,
-    //       isPending: task.isPending,
-    //     },
-    //   },
-    // });
-    // }
   };
 
   const handleBlur = (e) => {
@@ -61,6 +47,13 @@ const Task = ({ task, index }: TaskProps) => {
             isPending: false,
           },
         },
+        optimistic: {
+          callback: async () => { await Tasks.addTask(task); },
+          fallback: (prevState) => {
+            dispatch({ type: TaskAction.RESET_STATE, payload: prevState });
+          }, // (Optional)
+          queue: "tasks" // (Optional)
+        }
       });
     }
   };
@@ -72,24 +65,47 @@ const Task = ({ task, index }: TaskProps) => {
   };
 
   const handleCheckClick = () => {
+    console.log('CLICKED CHECK');
+
     if (task.completed) {
+      console.log('UNCOMPLETING');
+
       dispatch({
         type: TaskAction.UNCOMPLETE_TASK,
         payload: {
-          id: task.id,
+          task: {
+            ...task,
+            completed: false,
+            completedOn: null,
+          },
         },
+        optimistic: {
+          callback: async () => { await Tasks.uncomplete(task); },
+          fallback: (prevState) => {
+            dispatch({ type: TaskAction.RESET_STATE, payload: prevState });
+          }, // (Optional)
+          queue: "tasks" // (Optional)
+        }
       });
     } else {
+      console.log('COMPLETING');
+
       dispatch({
         type: TaskAction.COMPLETE_TASK,
         payload: {
-          id: task.id,
-          task: task,
-          updates: {
+          task: {
+            ...task,
             completed: true,
-            completedDate: dayjs(),
+            completedOn: dayjs(),
           },
         },
+        optimistic: {
+          callback: async () => { await Tasks.complete(task); },
+          fallback: (prevState) => {
+            dispatch({ type: TaskAction.RESET_STATE, payload: prevState });
+          }, // (Optional)
+          queue: "tasks" // (Optional)
+        }
       });
     }
   };

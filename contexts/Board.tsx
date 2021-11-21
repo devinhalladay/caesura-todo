@@ -8,8 +8,6 @@ import { Task, TaskAction } from "../types";
 import { Optimistic } from "use-optimistic-reducer/build/types";
 import { taskReducer } from "./reducers/task";
 
-const initialTasks = {};
-
 /**
  * This will be used to combine UI actions into a single type.
  * This is mainly to make it easier to maintain action types.
@@ -25,7 +23,7 @@ export type InitialStateType = {
 };
 
 const initialState = {
-  tasks: initialTasks,
+  tasks: {},
 };
 
 /**
@@ -56,11 +54,8 @@ const mainReducer = (state: InitialStateType, action: AllActionType) => ({
 });
 
 export const BoardProvider: React.FC = ({ children, value }) => {
-  console.log(value);
-
-  const _initialState = initialState;
-  _initialState.tasks = value.tasks
-  const [state, dispatch] = useOptimisticReducer(mainReducer, _initialState);
+  const initialState = value;
+  const [state, dispatch] = useOptimisticReducer(mainReducer, initialState);
 
   return (
     <BoardContext.Provider value={{ state, dispatch }}>
