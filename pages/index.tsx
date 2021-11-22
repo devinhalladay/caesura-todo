@@ -5,7 +5,7 @@ import {
   withAuthUser,
   withAuthUserTokenSSR
 } from 'next-firebase-auth';
-import { createRef, useEffect, useRef, useState } from 'react';
+import { createRef, useRef, useState } from 'react';
 import {
   DragDropContext,
   resetServerContext

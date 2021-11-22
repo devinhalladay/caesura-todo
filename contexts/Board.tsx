@@ -1,8 +1,4 @@
-import React, {
-  createContext,
-  Dispatch,
-  useContext,
-} from "react";
+import React, { createContext, Dispatch, useContext } from "react";
 import useOptimisticReducer from "use-optimistic-reducer";
 import { Task, TaskAction } from "../types";
 import { Optimistic } from "use-optimistic-reducer/build/types";

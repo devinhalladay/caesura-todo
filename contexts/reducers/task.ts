@@ -47,10 +47,10 @@ export const taskReducer = (
             [task.id]: {
               ...state.tasks[task.plannedOnDate][task.id],
               completed: true,
-              completeDate: dayjs().format("YYYY-MM-DD")
-            }
-          }
-        }
+              completeDate: dayjs().format("YYYY-MM-DD"),
+            },
+          },
+        },
       };
     }
 
@@ -108,10 +108,10 @@ export const taskReducer = (
             [task.id]: {
               ...state.tasks[task.plannedOnDate][task.id],
               completed: false,
-              completeDate: null
-            }
-          }
-        }
+              completeDate: null,
+            },
+          },
+        },
       };
     }
 

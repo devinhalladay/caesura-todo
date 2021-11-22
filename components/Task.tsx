@@ -3,11 +3,10 @@ import "firebase/firestore";
 import { createRef, useEffect, useRef, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import ContentEditable from "react-contenteditable";
+import sanitizeHtml from "sanitize-html";
 import { useBoard } from "../contexts/Board";
-import { Task as TaskType, TaskAction } from "../types";
-import { debounce } from "../utils/debounce";
-import sanitizeHtml from 'sanitize-html';
 import { Tasks } from "../lib/api";
+import { Task as TaskType, TaskAction } from "../types";
 
 interface TaskProps {
   task: TaskType;
@@ -25,8 +24,8 @@ const Task = ({ task, index }: TaskProps) => {
   const sanitize = () => {
     text.current = sanitizeHtml(text.current, {
       allowedTags: [],
-      allowedAttributes: {}
-    })
+      allowedAttributes: {},
+    });
   };
 
   const handleChange = (e) => {
@@ -48,12 +47,14 @@ const Task = ({ task, index }: TaskProps) => {
           },
         },
         optimistic: {
-          callback: async () => { await Tasks.addTask(task); },
+          callback: async () => {
+            await Tasks.addTask(task);
+          },
           fallback: (prevState) => {
             dispatch({ type: TaskAction.RESET_STATE, payload: prevState });
           }, // (Optional)
-          queue: "tasks" // (Optional)
-        }
+          queue: "tasks", // (Optional)
+        },
       });
     }
   };
@@ -61,14 +62,14 @@ const Task = ({ task, index }: TaskProps) => {
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
-    };
+    }
   };
 
   const handleCheckClick = () => {
-    console.log('CLICKED CHECK');
+    console.log("CLICKED CHECK");
 
     if (task.completed) {
-      console.log('UNCOMPLETING');
+      console.log("UNCOMPLETING");
 
       dispatch({
         type: TaskAction.UNCOMPLETE_TASK,
@@ -80,15 +81,17 @@ const Task = ({ task, index }: TaskProps) => {
           },
         },
         optimistic: {
-          callback: async () => { await Tasks.uncomplete(task); },
+          callback: async () => {
+            await Tasks.uncomplete(task);
+          },
           fallback: (prevState) => {
             dispatch({ type: TaskAction.RESET_STATE, payload: prevState });
           }, // (Optional)
-          queue: "tasks" // (Optional)
-        }
+          queue: "tasks", // (Optional)
+        },
       });
     } else {
-      console.log('COMPLETING');
+      console.log("COMPLETING");
 
       dispatch({
         type: TaskAction.COMPLETE_TASK,
@@ -100,12 +103,14 @@ const Task = ({ task, index }: TaskProps) => {
           },
         },
         optimistic: {
-          callback: async () => { await Tasks.complete(task); },
+          callback: async () => {
+            await Tasks.complete(task);
+          },
           fallback: (prevState) => {
             dispatch({ type: TaskAction.RESET_STATE, payload: prevState });
           }, // (Optional)
-          queue: "tasks" // (Optional)
-        }
+          queue: "tasks", // (Optional)
+        },
       });
     }
   };

@@ -1,17 +1,16 @@
 /* globals window */
-import { init } from 'next-firebase-auth'
-import absoluteUrl from 'next-absolute-url'
+import { init } from "next-firebase-auth";
 
-const TWELVE_DAYS_IN_MS = 12 * 60 * 60 * 24 * 1000
+const TWELVE_DAYS_IN_MS = 12 * 60 * 60 * 24 * 1000;
 
 const initAuth = () => {
   init({
     debug: true,
 
-    authPageURL: '/auth',
-    appPageURL: '/',
-    loginAPIEndpoint: '/api/login',
-    logoutAPIEndpoint: '/api/logout',
+    authPageURL: "/auth",
+    appPageURL: "/",
+    loginAPIEndpoint: "/api/login",
+    logoutAPIEndpoint: "/api/logout",
     firebaseAdminInitConfig: {
       credential: {
         projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
@@ -32,7 +31,7 @@ const initAuth = () => {
       projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
     },
     cookies: {
-      name: 'Caesura',
+      name: "Caesura",
       keys: [
         process.env.COOKIE_SECRET_CURRENT,
         process.env.COOKIE_SECRET_PREVIOUS,
@@ -40,12 +39,12 @@ const initAuth = () => {
       httpOnly: true,
       maxAge: TWELVE_DAYS_IN_MS,
       overwrite: true,
-      path: '/',
-      sameSite: 'strict',
-      secure: process.env.NODE_ENV === 'development' ? false : true,
+      path: "/",
+      sameSite: "strict",
+      secure: process.env.NODE_ENV === "development" ? false : true,
       signed: true,
     },
-  })
-}
+  });
+};
 
-export default initAuth
+export default initAuth;
