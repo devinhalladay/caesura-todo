@@ -26,15 +26,6 @@ export const taskReducer = (
       return newState;
     }
 
-    case TaskAction.SET_TASKS: {
-      const newState = {
-        ...state,
-        tasks: action.payload,
-      };
-
-      return newState;
-    }
-
     case TaskAction.COMPLETE_TASK: {
       const { task } = action.payload;
 
@@ -70,25 +61,6 @@ export const taskReducer = (
           newState.tasks[task.plannedOnDate][task.id] = task;
 
           return newState;
-        })
-        .catch((err) => {
-          console.error(err);
-          return err;
-        });
-    }
-
-    case TaskAction.REFETCH_TASK: {
-      const resp = Api.request({
-        method: HttpMethod.GET,
-        path: `/tasks`,
-        body: {
-          id: action.payload.id,
-        },
-      })
-        .then((doc) => {
-          console.log(doc);
-
-          return state;
         })
         .catch((err) => {
           console.error(err);
@@ -174,7 +146,7 @@ export const taskReducer = (
       }
     }
 
-    case TaskAction.RESET_STATE: {
+    case TaskAction.REVERT_STATE: {
       return action.payload;
     }
 

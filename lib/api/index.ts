@@ -124,6 +124,18 @@ export const Tasks: TasksTypes = {
     }
   },
 
+  get: async ({ taskId }) => {
+    const db = getFirebaseAdmin().firestore();
+    const task = await db.collection("tasks").doc(taskId).get();
+
+    try {
+      return task.data();
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  },
+
   getTasksByDay: async ({ userId, date }) => {
     const db = getFirebaseAdmin().firestore();
     let snapshot = await db

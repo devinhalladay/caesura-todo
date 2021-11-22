@@ -51,7 +51,7 @@ const Task = ({ task, index }: TaskProps) => {
             await Tasks.addTask(task);
           },
           fallback: (prevState) => {
-            dispatch({ type: TaskAction.RESET_STATE, payload: prevState });
+            dispatch({ type: TaskAction.REVERT_STATE, payload: prevState });
           }, // (Optional)
           queue: "tasks", // (Optional)
         },
@@ -85,7 +85,7 @@ const Task = ({ task, index }: TaskProps) => {
             await Tasks.uncomplete(task);
           },
           fallback: (prevState) => {
-            dispatch({ type: TaskAction.RESET_STATE, payload: prevState });
+            dispatch({ type: TaskAction.REVERT_STATE, payload: prevState });
           }, // (Optional)
           queue: "tasks", // (Optional)
         },
@@ -107,7 +107,7 @@ const Task = ({ task, index }: TaskProps) => {
             await Tasks.complete(task);
           },
           fallback: (prevState) => {
-            dispatch({ type: TaskAction.RESET_STATE, payload: prevState });
+            dispatch({ type: TaskAction.REVERT_STATE, payload: prevState });
           }, // (Optional)
           queue: "tasks", // (Optional)
         },

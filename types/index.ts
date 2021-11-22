@@ -1,4 +1,5 @@
 import { Dayjs } from "dayjs";
+import { InitialStateType } from "../contexts/Board";
 
 export enum HttpMethod {
   CONNECT = "CONNECT",
@@ -20,55 +21,28 @@ export enum TaskAction {
   REMOVE_TASK = "REMOVE_TASK",
   REORDER_TASK = "REORDER_TASK",
   UNCOMPLETE_TASK = "UNCOMPLETE_TASK",
-  REFETCH_TASK = "REFETCH_TASK",
-  RESET_STATE = "RESET_STATE",
-  SET_TASKS = "SET_TASKS",
+  REVERT_STATE = "REVERT_STATE",
 }
+
+export type TaskPayload = {
+  task: Task;
+};
 
 export type TaskIntent =
   | {
-      type: TaskAction.ADD_TASK;
-      payload?: any;
+      type:
+        | TaskAction.ADD_TASK
+        | TaskAction.UPDATE_TASK
+        | TaskAction.STAGE_TASK
+        | TaskAction.COMPLETE_TASK
+        | TaskAction.REMOVE_TASK
+        | TaskAction.REORDER_TASK
+        | TaskAction.UNCOMPLETE_TASK;
+      payload: TaskPayload;
     }
   | {
-      type: TaskAction.COMPLETE_TASK;
-      payload: {
-        taskId: string;
-      };
-    }
-  | {
-      type: TaskAction.REMOVE_TASK;
-      payload?: any;
-    }
-  | {
-      type: TaskAction.REORDER_TASK;
-      payload?: any;
-    }
-  | {
-      type: TaskAction.UNCOMPLETE_TASK;
-      payload: {
-        taskId: string;
-      };
-    }
-  | {
-      type: TaskAction.REFETCH_TASK;
-      payload: {
-        taskId: string;
-      };
-    }
-  | {
-      type: TaskAction.STAGE_TASK;
-      payload: {
-        task: Task;
-      };
-    }
-  | {
-      type: TaskAction.RESET_STATE;
-      payload: object;
-    }
-  | {
-      type: TaskAction.SET_TASKS;
-      payload: Record<Task["plannedOnDate"], Record<Task["id"], Task>>;
+      type: TaskAction.REVERT_STATE;
+      payload: InitialStateType;
     };
 
 export type Task = {

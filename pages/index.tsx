@@ -8,6 +8,7 @@ import {
 import { createRef, useRef, useState } from 'react';
 import {
   DragDropContext,
+  DropResult,
   resetServerContext
 } from 'react-beautiful-dnd';
 import DatePicker from 'react-datepicker';
@@ -21,7 +22,7 @@ import {
 
 type Home = {
   dates: string[],
-  tasksData: Record<Task['plannedOnDate'], Task[]>,
+  tasksData: Record<string, Task[]>,
 }
 
 const Home = ({ dates }: Home) => {
@@ -36,13 +37,13 @@ const Home = ({ dates }: Home) => {
     return newRefs
   }, {})
 
-  const executeScroll = (date) => {
+  const executeScroll = (date: string) => {
     const x = columnRefs.current[date].current.getBoundingClientRect().left + boardRef.current.scrollLeft;
     const offset = (columnRefs.current[date].current.offsetWidth * -1) - 32
     boardRef.current.scrollTo({ left: x + offset, behavior: 'smooth' });
   }
 
-  const dragEnd = (result) => {
+  const dragEnd = (result: DropResult) => {
     dispatch({
       type: TaskAction.REORDER_TASK,
       payload: result,
