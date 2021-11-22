@@ -1,12 +1,12 @@
-import humps from 'humps';
-import { HttpMethod } from '../types';
-import * as z from 'zod';
+import humps from "humps";
+import * as z from "zod";
+import { HttpMethod } from "../types";
 
 const objectToParams = (params: object) =>
   Object.entries(params)
     .filter(([_, value]) => value !== undefined)
-    .map(([key, value]) => key + '=' + encodeURIComponent(value))
-    .join('&');
+    .map(([key, value]) => key + "=" + encodeURIComponent(value))
+    .join("&");
 
 const Request = {
   async make(options: {
@@ -32,7 +32,7 @@ const Request = {
         throw response.status;
       })
       .then((text) => {
-        if (text === '') return null;
+        if (text === "") return null;
         console.log(text);
 
         const json = JSON.parse(text);
@@ -46,11 +46,11 @@ const Request = {
     try {
       return parser.parse(response);
     } catch (err) {
-      if (process.env.NODE_ENV === 'development') {
-        console.error('API response type mismatch', err, response);
+      if (process.env.NODE_ENV === "development") {
+        console.error("API response type mismatch", err, response);
       }
-      if (process.env.NODE_ENV === 'production') {
-        console.error('API response type mismatch', err, response);
+      if (process.env.NODE_ENV === "production") {
+        console.error("API response type mismatch", err, response);
         // TODO: Add Sentry
         // Sentry.captureException(err);
       }

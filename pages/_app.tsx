@@ -1,12 +1,8 @@
 import React from 'react';
-import initAuth from '../lib/auth';
 import 'tailwindcss/tailwind.css';
 import '../assets/css/components/DatePicker/datepicker.scss';
 import { BoardProvider } from '../contexts/Board';
-import { withAuthUserTokenSSR } from 'next-firebase-auth';
-import { getDateRange } from '../utils/dates';
-import dayjs from 'dayjs';
-import { Tasks } from '../lib/api';
+import initAuth from '../lib/auth';
 
 initAuth();
 

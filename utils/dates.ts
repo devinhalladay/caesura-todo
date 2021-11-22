@@ -1,7 +1,7 @@
-import { range } from "ramda";
 import dayjs from "dayjs";
 import weekday from "dayjs/plugin/weekday";
 import weekOfYear from "dayjs/plugin/weekOfYear";
+import { range } from "ramda";
 
 dayjs.extend(weekday);
 dayjs.extend(weekOfYear);
@@ -13,21 +13,20 @@ export const daysOfWeek = [
   "Wednesday",
   "Thursday",
   "Friday",
-  "Saturday"
+  "Saturday",
 ];
 
 export function getDateRange(openTime: any, closeTime: any) {
-  let ranges = []
+  let ranges = [];
   let currentDate = dayjs(openTime);
 
   while (currentDate.isBefore(closeTime)) {
-    currentDate = currentDate.add(1, 'day');
-    ranges.push(currentDate.format('YYYY-MM-DD'));
+    currentDate = currentDate.add(1, "day");
+    ranges.push(currentDate.format("YYYY-MM-DD"));
   }
 
-  return ranges
+  return ranges;
 }
-
 
 export function getYearDropdownOptions(currentYear) {
   let minYear = currentYear - 4;
@@ -40,7 +39,7 @@ export function getMonthDropdownOptions() {
     value: m,
     label: dayjs()
       .month(m - 1)
-      .format("MMMM")
+      .format("MMMM"),
   }));
 }
 
@@ -53,7 +52,7 @@ export function createDaysForCurrentMonth(year, month) {
     return {
       dateString: dayjs(`${year}-${month}-${index + 1}`).format("YYYY-MM-DD"),
       dayOfMonth: index + 1,
-      isCurrentMonth: true
+      isCurrentMonth: true,
     };
   });
 }
@@ -73,12 +72,13 @@ export function createDaysForPreviousMonth(year, month, currentMonthDays) {
   return [...Array(visibleNumberOfDaysFromPreviousMonth)].map((_, index) => {
     return {
       dateString: dayjs(
-        `${previousMonth.year()}-${previousMonth.month() + 1}-${previousMonthLastMondayDayOfMonth + index
+        `${previousMonth.year()}-${previousMonth.month() + 1}-${
+          previousMonthLastMondayDayOfMonth + index
         }`
       ).format("YYYY-MM-DD"),
       dayOfMonth: previousMonthLastMondayDayOfMonth + index,
       isCurrentMonth: false,
-      isPreviousMonth: true
+      isPreviousMonth: true,
     };
   });
 }
@@ -97,7 +97,7 @@ export function createDaysForNextMonth(year, month, currentMonthDays) {
       ).format("YYYY-MM-DD"),
       dayOfMonth: index + 1,
       isCurrentMonth: false,
-      isNextMonth: true
+      isNextMonth: true,
     };
   });
 }

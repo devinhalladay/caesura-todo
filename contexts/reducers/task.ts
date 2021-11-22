@@ -26,15 +26,6 @@ export const taskReducer = (
       return newState;
     }
 
-    case TaskAction.SET_TASKS: {
-      const newState = {
-        ...state,
-        tasks: action.payload,
-      };
-
-      return newState;
-    }
-
     case TaskAction.COMPLETE_TASK: {
       const { task } = action.payload;
 
@@ -47,10 +38,10 @@ export const taskReducer = (
             [task.id]: {
               ...state.tasks[task.plannedOnDate][task.id],
               completed: true,
-              completeDate: dayjs().format("YYYY-MM-DD")
-            }
-          }
-        }
+              completeDate: dayjs().format("YYYY-MM-DD"),
+            },
+          },
+        },
       };
     }
 
@@ -77,25 +68,6 @@ export const taskReducer = (
         });
     }
 
-    case TaskAction.REFETCH_TASK: {
-      const resp = Api.request({
-        method: HttpMethod.GET,
-        path: `/tasks`,
-        body: {
-          id: action.payload.id,
-        },
-      })
-        .then((doc) => {
-          console.log(doc);
-
-          return state;
-        })
-        .catch((err) => {
-          console.error(err);
-          return err;
-        });
-    }
-
     case TaskAction.UNCOMPLETE_TASK: {
       const { task } = action.payload;
 
@@ -108,10 +80,10 @@ export const taskReducer = (
             [task.id]: {
               ...state.tasks[task.plannedOnDate][task.id],
               completed: false,
-              completeDate: null
-            }
-          }
-        }
+              completeDate: null,
+            },
+          },
+        },
       };
     }
 
@@ -174,7 +146,7 @@ export const taskReducer = (
       }
     }
 
-    case TaskAction.RESET_STATE: {
+    case TaskAction.REVERT_STATE: {
       return action.payload;
     }
 

@@ -1,10 +1,6 @@
-import React, {
-  createContext,
-  Dispatch,
-  useContext,
-} from "react";
+import React, { createContext, Dispatch, useContext } from "react";
 import useOptimisticReducer from "use-optimistic-reducer";
-import { Task, TaskAction } from "../types";
+import { Task, TaskAction, TaskIntent } from "../types";
 import { Optimistic } from "use-optimistic-reducer/build/types";
 import { taskReducer } from "./reducers/task";
 
@@ -19,7 +15,7 @@ export type AllActionType = {
 };
 
 export type InitialStateType = {
-  tasks: Record<Task["id"], Task[]>;
+  tasks: Record<string, Record<Task["id"], Task>>;
 };
 
 const initialState = {
@@ -48,7 +44,7 @@ export const BoardContext = createContext<{
  * a specific piece of state. This keeps things a little cleaner
  * in the BoardProvider code.
  */
-const mainReducer = (state: InitialStateType, action: AllActionType) => ({
+const mainReducer = (state: InitialStateType, action: TaskIntent) => ({
   ...state,
   ...taskReducer(state, action),
 });

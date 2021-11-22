@@ -1,14 +1,11 @@
 import dayjs from 'dayjs';
-import { useRef } from 'react';
-import { v4 as uuid } from 'uuid';
-import Task from './Task';
-import { Droppable } from 'react-beautiful-dnd';
-import localeData from 'dayjs/plugin/localeData';
 import isoWeek from 'dayjs/plugin/isoWeek';
+import localeData from 'dayjs/plugin/localeData';
+import { Droppable } from 'react-beautiful-dnd';
+import { v4 as uuid } from 'uuid';
 import { useBoard } from '../contexts/Board';
-import { Task as TaskType, TaskAction } from '../types';
-import { useRouter } from 'next/router';
-import { Tasks } from '../lib/api';
+import { TaskAction } from '../types';
+import Task from './Task';
 dayjs.extend(localeData);
 dayjs.extend(isoWeek);
 

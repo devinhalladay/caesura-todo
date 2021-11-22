@@ -1,8 +1,8 @@
-import { getFirebaseAdmin } from "next-firebase-auth";
+import dayjs from "dayjs";
 import "firebase/firestore";
+import { getFirebaseAdmin } from "next-firebase-auth";
 import { HttpMethod, Task } from "../../types";
 import Request from "../request";
-import dayjs from "dayjs";
 
 export const Api = {
   url: (path: string) => `/api${path}`,
@@ -124,6 +124,18 @@ export const Tasks: TasksTypes = {
     }
   },
 
+  get: async ({ taskId }) => {
+    const db = getFirebaseAdmin().firestore();
+    const task = await db.collection("tasks").doc(taskId).get();
+
+    try {
+      return task.data();
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  },
+
   getTasksByDay: async ({ userId, date }) => {
     const db = getFirebaseAdmin().firestore();
     let snapshot = await db
@@ -145,8 +157,6 @@ export const Tasks: TasksTypes = {
 
     // console.log('COLLECTION');
     // console.log(collection);
-
-
 
     try {
       return collection;

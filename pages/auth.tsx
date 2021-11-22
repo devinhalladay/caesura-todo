@@ -1,13 +1,10 @@
-import { useEffect, useState } from 'react';
 import firebase from 'firebase';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import {
-  withAuthUser,
-  withAuthUserTokenSSR,
   AuthAction,
-  useAuthUser,
+  useAuthUser, withAuthUser,
+  withAuthUserTokenSSR
 } from 'next-firebase-auth';
+import { useEffect } from 'react';
 
 const Login = () => {
   const AuthUser = useAuthUser();

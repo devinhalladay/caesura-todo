@@ -1,15 +1,9 @@
 import {
   useAuthUser,
   withAuthUser,
-  withAuthUserTokenSSR,
+  withAuthUserTokenSSR
 } from 'next-firebase-auth';
 import { useState } from 'react';
-import {
-  google, // The top level object used to access services
-  calendar_v3, // Calendar API types
-  Auth, // Namespace for auth related types
-  Common, // General types used throughout the library
-} from 'googleapis';
 
 const Calendar = () => {
   const AuthUser = useAuthUser();
