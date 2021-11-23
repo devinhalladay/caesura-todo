@@ -1,6 +1,13 @@
 import dayjs from "dayjs";
 import { Api } from "../../lib/api";
-import { HttpMethod, TaskAction, TaskIntent } from "../../types";
+import {
+  HttpMethod,
+  Task,
+  TaskAction,
+  TaskIntent,
+  TaskModalAction,
+  TaskModalIntent,
+} from "../../types";
 import { InitialStateType } from "../Board";
 
 /** Controls the state of a task. */
@@ -155,6 +162,32 @@ export const taskReducer = (
 
     case TaskAction.REVERT_STATE: {
       return action.payload;
+    }
+
+    default:
+      return state;
+  }
+};
+
+/** Controls the state of the task modal. */
+export const taskModalReducer = (
+  state: {
+    openTask: Task | null;
+  },
+  action: TaskModalIntent
+): {
+  openTask: Task | null;
+} => {
+  switch (action.type) {
+    case TaskModalAction.OPEN_MODAL: {
+      console.log(action.payload);
+
+      const task = action.payload;
+
+      const newState = state;
+      newState.openTask = task;
+
+      return newState;
     }
 
     default:

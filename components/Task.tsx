@@ -13,7 +13,7 @@ interface TaskProps {
   index: number;
 }
 
-const Task = ({ task, index }: TaskProps) => {
+const Task = ({ task, index, handleOpenModal }: TaskProps) => {
   const [windowReady, setWindowReady] = useState(false);
 
   const { dispatch } = useBoard();
@@ -70,7 +70,9 @@ const Task = ({ task, index }: TaskProps) => {
     }
   };
 
-  const handleCheckClick = () => {
+  const handleCheckClick = (e) => {
+    e.stopPropagation();
+
     if (task.completed) {
       dispatch({
         type: TaskAction.UNCOMPLETE_TASK,
@@ -127,6 +129,7 @@ const Task = ({ task, index }: TaskProps) => {
     <Draggable draggableId={task.id} index={index}>
       {(provided, snapshot, ...rest) => (
         <div
+          onClick={() => handleOpenModal(task)}
           className="border mb-2 shadow-sm hover:shadow-md rounded-md p-3 flex flex-col bg-white font-sans-serif transition-all duration-300"
           ref={provided.innerRef}
           {...provided.draggableProps}
@@ -147,9 +150,11 @@ const Task = ({ task, index }: TaskProps) => {
           </div>
           <div className="w-full">
             <button
-              className={`border ${!task.completed ? "border-gray-300" : "border-green-500"
-                } flex items-center justify-center h-5 w-5 rounded-full transition-all hover:border-green-500 hover:border-2 ${!task.completed ? "text-gray-300" : "text-green-500"
-                } hover:text-green-500 stroke-4 hover:stroke-6`}
+              className={`border ${
+                !task.completed ? "border-gray-300" : "border-green-500"
+              } flex items-center justify-center h-5 w-5 rounded-full transition-all hover:border-green-500 hover:border-2 ${
+                !task.completed ? "text-gray-300" : "text-green-500"
+              } hover:text-green-500 stroke-4 hover:stroke-6`}
               onClick={handleCheckClick}
             >
               <svg

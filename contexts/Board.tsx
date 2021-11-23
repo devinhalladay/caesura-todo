@@ -1,25 +1,33 @@
 import React, { createContext, Dispatch, useContext } from "react";
 import useOptimisticReducer from "use-optimistic-reducer";
-import { Task, TaskAction, TaskIntent } from "../types";
+import {
+  Task,
+  TaskAction,
+  TaskIntent,
+  TaskModalAction,
+  TaskModalIntent,
+} from "../types";
 import { Optimistic } from "use-optimistic-reducer/build/types";
-import { taskReducer } from "./reducers/task";
+import { taskModalReducer, taskReducer } from "./reducers/task";
 
 /**
  * This will be used to combine UI actions into a single type.
  * This is mainly to make it easier to maintain action types.
  */
 export type AllActionType = {
-  type: TaskAction;
+  type: TaskAction | TaskModalAction;
   payload?: object;
   optimistic?: Optimistic<typeof taskReducer>;
 };
 
 export type InitialStateType = {
   tasks: Record<string, Record<Task["id"], Task>>;
+  openTask: Task | null;
 };
 
 const initialState = {
-  tasks: {},
+  tasks: {} as Record<string, Record<Task["id"], Task>>,
+  openTask: {} as Task,
 };
 
 /**
@@ -44,9 +52,13 @@ export const BoardContext = createContext<{
  * a specific piece of state. This keeps things a little cleaner
  * in the BoardProvider code.
  */
-const mainReducer = (state: InitialStateType, action: TaskIntent) => ({
+const mainReducer = (
+  state: InitialStateType,
+  action: TaskIntent | TaskModalIntent
+) => ({
   ...state,
   ...taskReducer(state, action),
+  ...taskModalReducer(state, action),
 });
 
 export const BoardProvider: React.FC = ({ children, value }) => {

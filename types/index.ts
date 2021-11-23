@@ -29,6 +29,17 @@ export type TaskPayload = {
   task: Task;
 };
 
+export enum TaskModalAction {
+  OPEN_MODAL = "OPEN_MODAL",
+}
+
+export type TaskModalIntent = {
+  type: TaskModalAction.OPEN_MODAL;
+  payload: {
+    task: Task | null;
+  };
+};
+
 export type TaskIntent =
   | {
       type:
