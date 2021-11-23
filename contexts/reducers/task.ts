@@ -120,10 +120,18 @@ export const taskReducer = (
       ) {
         return state;
       }
-
       // add a variable for the startColumn and assign it to the source.droppableId
       const startColumn = source.droppableId;
       const finishColumn = destination.droppableId;
+
+      // get next task (before move)
+      const tasksInStartColumn = state.tasks[startColumn];
+      const nextTaskBeforeMove: string | null = "";
+      //
+      const tasksInFinishColumn = state.tasks[startColumn];
+      const prevTaskAfterMove: string | null = "";
+      // get next task (after move)
+      const nextTaskAfterMove: string | null = "";
 
       if (startColumn !== finishColumn) {
         const newState = {

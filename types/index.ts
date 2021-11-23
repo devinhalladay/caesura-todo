@@ -75,4 +75,6 @@ export type Task = {
   objectiveId?: string;
   timeEstimate?: number;
   isPending: boolean;
+  /** After will null if it is the first task in a day */
+  after?: string | null;
 };
