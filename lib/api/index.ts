@@ -42,6 +42,8 @@ type TasksTypes = {
 
 export const Tasks: TasksTypes = {
   addTask: async (task: Task) => {
+    console.log(task);
+
     const res = await Api.request({
       method: HttpMethod.POST,
       path: `/tasks/create`,

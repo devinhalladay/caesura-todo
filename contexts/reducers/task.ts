@@ -19,11 +19,16 @@ export const taskReducer = (
     case TaskAction.STAGE_TASK: {
       const { task } = action.payload;
 
-      let newState = state;
-
-      newState.tasks[task.plannedOnDate][task.id] = task;
-
-      return newState;
+      return {
+        ...state,
+        tasks: {
+          ...state.tasks,
+          [task.plannedOnDate]: {
+            ...state.tasks[task.plannedOnDate],
+            [task.id]: { ...task },
+          },
+        },
+      };
     }
 
     case TaskAction.COMPLETE_TASK: {
@@ -92,12 +97,16 @@ export const taskReducer = (
       return state;
 
     case TaskAction.REORDER_TASK: {
-      const { destination, source, draggableId } = action.payload;
+      console.log(action.payload);
+      const { draggableId, mode, reason, source, type, combine, destination } =
+        action.payload;
 
+      // if there is no destination, return the existing state
       if (!destination) {
         return state;
       }
 
+      // if the destination is the same as the source, return the existing state
       if (
         destination.droppableId === source.droppableId &&
         destination.index === source.index
@@ -105,41 +114,39 @@ export const taskReducer = (
         return state;
       }
 
-      const startColumn = state.columns[source.droppableId];
-      const finishColumn = state.columns[destination.droppableId];
+      // add a variable for the startColumn and assign it to the source.droppableId
+      const startColumn = source.droppableId;
+      const finishColumn = destination.droppableId;
 
-      if (startColumn === finishColumn) {
-        const newTaskIds = Array.from(startColumn.taskIds);
-
-        newTaskIds.splice(source.index, 1);
-        newTaskIds.splice(destination.index, 0, draggableId);
-
-        const newColumn = {
-          ...startColumn,
-          taskIds: newTaskIds,
-        };
-
-        return {
-          tasks: state.tasks,
-        };
-      } else {
-        // Move from one list to another
-        const startTaskIds = Array.from(startColumn.taskIds);
-        startTaskIds.splice(source.index, 1);
-        const newStart = {
-          ...startColumn,
-          taskIds: startTaskIds,
-        };
-
-        const finishTaskIds = Array.from(finishColumn.taskIds);
-        finishTaskIds.splice(destination.index, 0, draggableId);
-        const newFinish = {
-          ...finishColumn,
-          taskIds: finishTaskIds,
-        };
-
+      if (startColumn !== finishColumn) {
         const newState = {
           ...state,
+          tasks: {
+            ...state.tasks,
+            [finishColumn]: {
+              ...state.tasks[finishColumn],
+              [draggableId]: {
+                ...state.tasks[startColumn][draggableId],
+              },
+            },
+          },
+        };
+
+        delete newState.tasks[startColumn][draggableId];
+
+        return newState;
+      } else {
+        const newState = {
+          ...state,
+          tasks: {
+            ...state.tasks,
+            [startColumn]: {
+              ...state.tasks[startColumn],
+              [draggableId]: {
+                ...state.tasks[startColumn][draggableId],
+              },
+            },
+          },
         };
 
         return newState;

@@ -36,6 +36,8 @@ const Column = ({ date, tasks, userId, innerRef }) => {
     });
   };
 
+  const progressBarWidth = Object.values(tasks).length ? Object.values(tasks).filter(task => task.completed === true).length / Object.values(tasks).length * 100 : 0;
+
   return (
     <div className="mr-4" ref={innerRef}>
       <p className="font-sans-serif text-2xl font-bold">
@@ -45,7 +47,7 @@ const Column = ({ date, tasks, userId, innerRef }) => {
         {dayjs(date).format('MMMM DD')}
       </p>
       <div className="h-2 relative w-full bg-gray-200 rounded-full overflow-hidden mb-4">
-        <span className="absolute top-0 left-0 h-full w-10 bg-green-500"></span>
+        <span className="absolute top-0 left-0 h-full w-10 bg-green-500 transition-all" style={{ width: `${progressBarWidth}%` }}></span>
       </div>
       <div>
         <Droppable droppableId={date}>
@@ -90,7 +92,7 @@ const Column = ({ date, tasks, userId, innerRef }) => {
           )}
         </Droppable>
       </div>
-    </div>
+    </div >
   );
 };
 

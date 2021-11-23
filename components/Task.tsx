@@ -30,6 +30,7 @@ const Task = ({ task, index }: TaskProps) => {
 
   const handleChange = (e) => {
     text.current = e.target.value;
+    console.log(text.current);
   };
 
   const handleBlur = (e) => {
@@ -48,7 +49,11 @@ const Task = ({ task, index }: TaskProps) => {
         },
         optimistic: {
           callback: async () => {
-            await Tasks.addTask(task);
+            await Tasks.addTask({
+              ...task,
+              text: text.current,
+              isPending: false,
+            });
           },
           fallback: (prevState) => {
             dispatch({ type: TaskAction.REVERT_STATE, payload: prevState });
@@ -66,11 +71,7 @@ const Task = ({ task, index }: TaskProps) => {
   };
 
   const handleCheckClick = () => {
-    console.log("CLICKED CHECK");
-
     if (task.completed) {
-      console.log("UNCOMPLETING");
-
       dispatch({
         type: TaskAction.UNCOMPLETE_TASK,
         payload: {
@@ -91,8 +92,6 @@ const Task = ({ task, index }: TaskProps) => {
         },
       });
     } else {
-      console.log("COMPLETING");
-
       dispatch({
         type: TaskAction.COMPLETE_TASK,
         payload: {

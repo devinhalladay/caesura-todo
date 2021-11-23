@@ -1,10 +1,11 @@
-import firebase from 'firebase';
+import firebase from "firebase";
 import {
   AuthAction,
-  useAuthUser, withAuthUser,
-  withAuthUserTokenSSR
-} from 'next-firebase-auth';
-import { useEffect } from 'react';
+  useAuthUser,
+  withAuthUser,
+  withAuthUserTokenSSR,
+} from "next-firebase-auth";
+import { useEffect } from "react";
 
 const Login = () => {
   const AuthUser = useAuthUser();
@@ -20,22 +21,16 @@ const Login = () => {
       .signInWithPopup(provider)
       .then((result) => {
         console.log(result);
-        firebase
-          .firestore()
-          .collection('users')
-          .doc(result.user.email)
-          .set({
-            email: result.user.email,
-            displayName: result.user.displayName,
-          });
+        firebase.firestore().collection("users").doc(result.user.email).set({
+          email: result.user.email,
+          displayName: result.user.displayName,
+        });
       });
   };
 
   return (
     <>
-      <p>
-        Your email is {AuthUser.email ? AuthUser.email : 'unknown'}.
-      </p>
+      <p>Your email is {AuthUser.email ? AuthUser.email : "unknown"}.</p>
       <button onClick={login}>Login</button>
     </>
   );

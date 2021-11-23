@@ -1,4 +1,5 @@
 import { Dayjs } from "dayjs";
+import { DropResult } from "react-beautiful-dnd";
 import { InitialStateType } from "../contexts/Board";
 
 export enum HttpMethod {
@@ -36,13 +37,16 @@ export type TaskIntent =
         | TaskAction.STAGE_TASK
         | TaskAction.COMPLETE_TASK
         | TaskAction.REMOVE_TASK
-        | TaskAction.REORDER_TASK
         | TaskAction.UNCOMPLETE_TASK;
       payload: TaskPayload;
     }
   | {
       type: TaskAction.REVERT_STATE;
       payload: InitialStateType;
+    }
+  | {
+      type: TaskAction.REORDER_TASK;
+      payload: DropResult;
     };
 
 export type Task = {
@@ -51,10 +55,10 @@ export type Task = {
   text: string;
   completed: boolean;
   createdBy: string;
-  plannedOnDate: Date | string;
+  plannedOnDate: string;
   actualTime?: number;
-  completeDate?: string | Dayjs | Date | null;
-  dueDate?: Date;
+  completeDate?: string | null;
+  dueDate?: string;
   duration?: number;
   notes?: string;
   objectiveId?: string;

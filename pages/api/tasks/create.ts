@@ -10,7 +10,7 @@ export default async function createEvent(req, res) {
     .then((doc) => {
       console.log("Document successfully written!");
       console.log(doc);
-      res.status(200)..json({ doc });
+      res.status(200).json({ doc });
     })
     .catch((err) => {
       res.status(500).json({ error: "failed to load data" });
